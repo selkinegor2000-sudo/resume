@@ -489,13 +489,19 @@
 
     @media print {
       @page { margin: 12mm; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
       html, body {
         background: #ffffff !important;
         color: #0f172a !important;
         overflow: visible !important;
       }
       .bg-blob, .stars, .photo-overlay, .photo-modal, .toolbar,
-      .carousel-nav, .carousel-dots, #themeToggle, #pdfBtn, #langToggle,
+      .carousel-nav, .carousel-dots, .carousel-progress,
+      #themeToggle, #pdfBtn, #langToggle,
       .lang-toggle, .icon-btn { display: none !important; }
       .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
       .card {
@@ -508,13 +514,36 @@
         opacity: 1 !important;
         transform: none !important;
       }
-      h1, h2, h3, h4, h5, p, li, span { color: #0f172a !important; }
+      .hero {
+        display: block !important;
+        padding: 14px !important;
+      }
+      .hero-top {
+        display: block !important;
+      }
+      .avatar {
+        width: 90px !important;
+        height: 90px !important;
+        float: left;
+        margin: 0 16px 8px 0 !important;
+        animation: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .avatar img { width: 100% !important; height: 100% !important; }
+      h1, h2, h3, h4, h5, p, li, span, div { color: #0f172a !important; }
       .section-title, .slide-title {
         background: none !important;
         -webkit-background-clip: initial !important;
         background-clip: initial !important;
         color: #0b1020 !important;
         -webkit-text-fill-color: #0b1020 !important;
+      }
+      .stat-num {
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        background-clip: initial !important;
+        color: #1e40af !important;
+        -webkit-text-fill-color: #1e40af !important;
       }
       .role { color: #1e40af !important; }
       .job-company { color: #1e40af !important; }
@@ -526,6 +555,7 @@
       .skill-ico { filter: none !important; }
       .text-muted, .edu-meta, .simple-meta { color: #475569 !important; }
       .slide-block ul, .job p { color: #1e293b !important; }
+      .tier-head { color: #475569 !important; }
       /* expand carousel: stack all slides */
       .carousel-viewport { overflow: visible !important; }
       .carousel-track {
@@ -542,6 +572,7 @@
         break-inside: avoid;
         page-break-inside: avoid;
       }
+      .stat { background: #f8fafc !important; border-color: #cbd5e1 !important; }
       .reveal { opacity: 1 !important; transform: none !important; }
       .stats { display: grid !important; }
       .qr-print { display: flex !important; }
@@ -811,6 +842,23 @@
       transform: scale(1.3);
     }
 
+    .carousel-progress {
+      margin-top: 10px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .carousel-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width linear;
+      opacity: 0.7;
+    }
+    body.light .carousel-progress { background: rgba(15, 23, 42, 0.08); }
+
     @media (max-width: 640px) {
       .slide-grid { grid-template-columns: 1fr; }
     }
@@ -941,13 +989,9 @@
           <span class="skill">LLM · RAG</span>
           <span class="skill">Prompt Engineering</span>
           <span class="skill">Fine-tuning · LoRA / QLoRA</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/langchain/76a9ff" alt="" loading="lazy" />LangChain</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/fastapi/76a9ff" alt="" loading="lazy" />FastAPI</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/docker/76a9ff" alt="" loading="lazy" />Docker</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/postgresql/76a9ff" alt="" loading="lazy" />PostgreSQL</span>
           <span class="skill">OCR · PaddleOCR · Tesseract</span>
           <span class="skill">REST API · WebSockets</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/git/76a9ff" alt="" loading="lazy" />Git</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/linux/76a9ff" alt="" loading="lazy" />Linux</span>
         </div>
       </div>
@@ -955,6 +999,9 @@
       <div class="tier tier-advanced">
         <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_advanced">Advanced · уверенно в боевых задачах</span></h4>
         <div class="skills">
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/postgresql/76a9ff" alt="" loading="lazy" />PostgreSQL</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/langchain/76a9ff" alt="" loading="lazy" />LangChain</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/git/76a9ff" alt="" loading="lazy" />Git</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/pytorch/76a9ff" alt="" loading="lazy" />PyTorch</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/tensorflow/76a9ff" alt="" loading="lazy" />TensorFlow</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/huggingface/76a9ff" alt="" loading="lazy" />Hugging Face</span>
@@ -981,6 +1028,7 @@
       <div class="tier tier-familiar">
         <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_familiar">Familiar · был опыт, могу подхватить</span></h4>
         <div class="skills">
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/docker/76a9ff" alt="" loading="lazy" />Docker</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/kubernetes/76a9ff" alt="" loading="lazy" />Kubernetes</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/apacheairflow/76a9ff" alt="" loading="lazy" />Apache Airflow</span>
           <span class="skill">ONNX · TensorRT</span>
@@ -1162,16 +1210,16 @@
 
             <article class="slide slide-feature" aria-roledescription="slide">
               <div class="slide-head">
-                <h3 class="slide-title" data-i18n="slide5_title">ФАКТ — аудит конфиденциальных файлов</h3>
-                <span class="slide-tag" data-i18n="slide5_tag">Security · OCR + LLM локально · 2024—настоящее</span>
+                <h3 class="slide-title" data-i18n="slide5_title">Локальный AI-аудит файлового хранилища</h3>
+                <span class="slide-tag" data-i18n="slide5_tag">Security · OCR + LLM на on-prem · 2024—настоящее</span>
               </div>
               <div class="slide-grid">
                 <div class="slide-block">
                   <h5 data-i18n="slide_what">Что делала система</h5>
                   <ul>
-                    <li data-i18n="slide5_w1">Поиск ДСП, ПДн, «Секретно» в файловых хранилищах</li>
+                    <li data-i18n="slide5_w1">Поиск чувствительных документов в больших хранилищах</li>
                     <li data-i18n="slide5_w2">OCR изображений и PDF (PaddleOCR + VLM)</li>
-                    <li data-i18n="slide5_w3">LLM-классификация документов (Ollama, локально)</li>
+                    <li data-i18n="slide5_w3">LLM-классификация документов локально (без интернета)</li>
                     <li data-i18n="slide5_w4">Поиск дубликатов: SHA-256 + эмбеддинги</li>
                   </ul>
                 </div>
@@ -1179,14 +1227,14 @@
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
                     <li data-i18n="slide5_i1">Всё работает локально — файлы не покидают контур</li>
-                    <li data-i18n="slide5_i2">Скан VLM-OCR: ~15 сек на файл вместо ~3 минут CPU</li>
+                    <li data-i18n="slide5_i2">VLM-OCR: секунды на файл вместо минут на CPU</li>
                     <li data-i18n="slide5_i3">Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL</li>
                     <li data-i18n="slide5_i4">Поддержка txt/doc/docx/pdf/xlsx/изображений/архивов</li>
                   </ul>
                 </div>
               </div>
               <div class="slide-stack">
-                <span>Python</span><span>PaddleOCR</span><span>Qwen2.5-VL</span><span>GigaChat3-10B</span><span>Ollama</span><span>PostgreSQL</span><span>FastAPI</span><span>Windows Server</span>
+                <span>Python</span><span>PaddleOCR</span><span>VLM-OCR</span><span>Локальные LLM</span><span>Ollama</span><span>PostgreSQL</span><span>FastAPI</span>
               </div>
             </article>
 
@@ -1318,6 +1366,7 @@
           <div class="carousel-dots" id="carDots" role="tablist"></div>
           <button class="carousel-btn" id="carNext" type="button" aria-label="Следующий проект">→</button>
         </div>
+        <div class="carousel-progress" aria-hidden="true"><div class="carousel-progress-bar" id="carProgressBar"></div></div>
       </div>
     </section>
 
@@ -1354,7 +1403,7 @@
 
         <div class="simple-item">
           <h4 data-i18n="hobby_title">Увлечения</h4>
-          <p class="text-muted" data-i18n="hobby_desc">Разработка AI-агентов и приложений на базе LLM, исследование новых архитектур моделей, open-source ИИ-проекты.</p>
+          <p class="text-muted" data-i18n="hobby_desc">Интересно придумывать оптимизации в ИИ (ускорение инференса, эффективные RAG-пайплайны, агентные архитектуры) и изучать теорию самообучаемого AGI — как агент может ставить себе цели, рефлексировать и улучшать собственные веса.</p>
         </div>
       </div>
     </section>
@@ -1460,14 +1509,14 @@
         slide4_i2: 'Версионирование методик, промптов и моделей',
         slide4_i3: 'Confidence-метрика и аудит решений',
         slide4_i4: 'Безопасное хранение ПДн без утечек в логи',
-        slide5_title: 'ФАКТ — аудит конфиденциальных файлов',
-        slide5_tag: 'Security · OCR + LLM локально · 2024—настоящее',
-        slide5_w1: 'Поиск ДСП, ПДн, «Секретно» в файловых хранилищах',
+        slide5_title: 'Локальный AI-аудит файлового хранилища',
+        slide5_tag: 'Security · OCR + LLM на on-prem · 2024—настоящее',
+        slide5_w1: 'Поиск чувствительных документов в больших хранилищах',
         slide5_w2: 'OCR изображений и PDF (PaddleOCR + VLM)',
-        slide5_w3: 'LLM-классификация документов (Ollama, локально)',
+        slide5_w3: 'LLM-классификация документов локально (без интернета)',
         slide5_w4: 'Поиск дубликатов: SHA-256 + эмбеддинги',
         slide5_i1: 'Всё работает локально — файлы не покидают контур',
-        slide5_i2: 'Скан VLM-OCR: ~15 сек на файл вместо ~3 минут CPU',
+        slide5_i2: 'VLM-OCR: секунды на файл вместо минут на CPU',
         slide5_i3: 'Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL',
         slide5_i4: 'Поддержка txt/doc/docx/pdf/xlsx/изображений/архивов',
         slide6_title: 'AI-автоматизация бизнес-процессов',
@@ -1534,7 +1583,7 @@
         lang_title: 'Языки',
         lang_desc: 'Русский — родной, Английский — B2.',
         hobby_title: 'Увлечения',
-        hobby_desc: 'Разработка AI-агентов и приложений на базе LLM, исследование новых архитектур моделей, open-source ИИ-проекты.',
+        hobby_desc: 'Интересно придумывать оптимизации в ИИ (ускорение инференса, эффективные RAG-пайплайны, агентные архитектуры) и изучать теорию самообучаемого AGI — как агент может ставить себе цели, рефлексировать и улучшать собственные веса.',
         footer: 'Технологии и ИИ — это не просто тренд, это фундамент будущего, которое мы создаём уже сегодня.',
         photo_open: 'Увеличить фото',
         photo_close: 'Закрыть увеличенное фото',
@@ -1605,14 +1654,14 @@
         slide4_i2: 'Versioning of methods, prompts, and models',
         slide4_i3: 'Confidence metric and decision audit',
         slide4_i4: 'Safe PII storage, no leaks into logs',
-        slide5_title: 'FAKT — Confidential File Audit',
+        slide5_title: 'On-prem AI Audit of File Storage',
         slide5_tag: 'Security · OCR + LLM on-prem · 2024—Present',
-        slide5_w1: 'Detection of restricted, PII and classified content',
+        slide5_w1: 'Detects sensitive documents inside large file shares',
         slide5_w2: 'OCR of images and PDFs (PaddleOCR + VLM)',
-        slide5_w3: 'LLM classification (Ollama, fully local)',
+        slide5_w3: 'Fully local LLM classification (offline)',
         slide5_w4: 'Duplicate detection: SHA-256 + embeddings',
         slide5_i1: 'Fully on-prem — files never leave the perimeter',
-        slide5_i2: 'VLM-OCR: ~15s per file vs ~3 min on CPU',
+        slide5_i2: 'VLM-OCR: seconds per file vs minutes on CPU',
         slide5_i3: 'Web UI, scheduler, CSV/JSON/PostgreSQL export',
         slide5_i4: 'Supports txt/doc/docx/pdf/xlsx/images/archives',
         slide6_title: 'AI Automation of Business Processes',
@@ -1679,7 +1728,7 @@
         lang_title: 'Languages',
         lang_desc: 'Russian — Native, English — B2.',
         hobby_title: 'Interests',
-        hobby_desc: 'Building AI agents and LLM-based applications, exploring new model architectures, open-source AI projects.',
+        hobby_desc: 'I enjoy designing AI optimizations (faster inference, efficient RAG pipelines, agent architectures) and studying the theory of self-improving AGI — how an agent can set its own goals, reflect on its actions and update its own weights.',
         footer: 'Technology and AI are not just a trend — they are the foundation of the future we are building today.',
         photo_open: 'Zoom in photo',
         photo_close: 'Close enlarged photo',
@@ -1834,10 +1883,31 @@
         if (Math.abs(dx) > 50) (dx < 0 ? next(true) : prev(true));
         startX = null;
       });
-
-      // Autoplay (pauses on hover)
-      const start = () => { autoTimer = setInterval(() => next(false), 6500); };
-      const stop = () => { clearInterval(autoTimer); autoTimer = null; };
+      // Autoplay (pauses on hover) — 30s per slide with progress bar
+      const AUTOPLAY_MS = 30000;
+      const progressBar = document.getElementById('carProgressBar');
+      const resetProgress = () => {
+        if (!progressBar) return;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+        // force reflow then start animation
+        void progressBar.offsetWidth;
+        progressBar.style.transition = `width ${AUTOPLAY_MS}ms linear`;
+        progressBar.style.width = '100%';
+      };
+      const pauseProgress = () => {
+        if (!progressBar) return;
+        const cs = getComputedStyle(progressBar);
+        const w = cs.width;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = w;
+      };
+      const start = () => {
+        if (autoTimer) return;
+        resetProgress();
+        autoTimer = setInterval(() => { next(false); resetProgress(); }, AUTOPLAY_MS);
+      };
+      const stop = () => { clearInterval(autoTimer); autoTimer = null; pauseProgress(); };
       const restart = () => { stop(); start(); };
       root.addEventListener('mouseenter', stop);
       root.addEventListener('mouseleave', start);
