@@ -549,12 +549,22 @@
       border-radius: 999px;
       padding: 7px 11px;
       background: rgba(118, 169, 255, 0.08);
-      transition: transform 0.22s ease, background 0.22s ease;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+      user-select: none;
+      outline: none;
     }
 
     .skill:hover {
       transform: translateY(-2px);
       background: rgba(145, 240, 211, 0.14);
+      border-color: rgba(145, 240, 211, 0.4);
+      box-shadow: 0 6px 18px rgba(118, 169, 255, 0.12);
+    }
+
+    .skill:focus-visible {
+      box-shadow: 0 0 0 2px rgba(145, 240, 211, 0.35), 0 6px 18px rgba(118, 169, 255, 0.12);
+      border-color: rgba(145, 240, 211, 0.65);
     }
 
     .timeline {
@@ -673,7 +683,6 @@
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
         opacity: 1 !important;
         animation: none !important;
         transition: none !important;
@@ -685,7 +694,7 @@
       }
       .bg-blob, .stars, .photo-overlay, .photo-modal, .toolbar,
       .carousel-nav, .carousel-dots, .carousel-progress,
-      #themeToggle, #langToggle, #codeShowcaseBtn, .code-modal,
+      #themeToggle, #langToggle, #codeShowcaseBtn, .code-modal, #techModal,
       .lang-toggle, .icon-btn { display: none !important; }
       .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
       section, article, div, p, ul, li, h1, h2, h3, h4, h5, span {
@@ -1076,6 +1085,95 @@
 
     /* ===== Light theme ===== */
     body.light {
+
+    /* ===== Tech info modal ===== */
+    .tech-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5, 8, 18, 0.76);
+      backdrop-filter: blur(10px);
+      z-index: 80;
+      padding: 24px;
+    }
+    .tech-modal.visible { display: flex; }
+    .tech-modal-inner {
+      width: min(760px, 100%);
+      max-height: 86vh;
+      background: linear-gradient(160deg, #0f1730 0%, #131c39 100%);
+      border: 1px solid rgba(118, 169, 255, 0.35);
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: var(--text);
+    }
+    .tech-modal-head {
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    .tech-modal-head h3 {
+      margin: 0;
+      font-size: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .tech-modal-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .tech-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      transition: 0.2s;
+    }
+    .tech-close-btn:hover { background: rgba(255, 255, 255, 0.16); }
+    .tech-modal-body {
+      padding: 18px 22px 22px;
+      overflow: auto;
+    }
+    .tech-modal-desc {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .tech-modal-meta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tech-chip {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(118, 169, 255, 0.10);
+      border: 1px solid rgba(118, 169, 255, 0.20);
+      color: var(--text);
+    }
+    body.light .tech-modal-inner { background: linear-gradient(160deg, #1a2547 0%, #0f1832 100%); color: #ebf0ff; }
+    body.light .tech-modal-desc { color: #ebf0ff; }
+    body.light .tech-chip { color: #ebf0ff; }
       --bg: #f4f6fb;
       --bg-soft: #ffffff;
       --card: rgba(255, 255, 255, 0.92);
@@ -1168,6 +1266,20 @@
     </div>
   </div>
 
+  <div class="tech-modal" id="techModal" role="dialog" aria-modal="true" aria-labelledby="techModalTitle">
+    <div class="tech-modal-inner">
+      <div class="tech-modal-head">
+        <h3 id="techModalTitle">Python</h3>
+        <p id="techModalSubtitle">Технология из моего стека</p>
+        <button class="tech-close-btn" id="techCloseBtn" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <div class="tech-modal-body">
+        <p class="tech-modal-desc" id="techModalDesc"></p>
+        <div class="tech-modal-meta" id="techModalMeta"></div>
+      </div>
+    </div>
+  </div>
+
   <main class="container">
     <section class="card hero reveal">
       <div class="avatar" id="avatarZoom" role="button" tabindex="0" aria-label="Увеличить фото">
@@ -1234,54 +1346,54 @@
       <div class="tier tier-expert">
         <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_expert">Core stack · использую каждый день</span></h4>
         <div class="skills">
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/python/76a9ff" alt="" loading="lazy" />Python</span>
-          <span class="skill">LLM · RAG</span>
-          <span class="skill">Prompt Engineering</span>
-          <span class="skill">Fine-tuning · LoRA / QLoRA</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/fastapi/76a9ff" alt="" loading="lazy" />FastAPI</span>
-          <span class="skill">OCR · PaddleOCR · Tesseract</span>
-          <span class="skill">REST API · WebSockets</span>
+          <span class="skill" data-tech="python"><img class="skill-ico" src="https://cdn.simpleicons.org/python/76a9ff" alt="" loading="lazy" />Python</span>
+          <span class="skill" data-tech="llm-rag">LLM · RAG</span>
+          <span class="skill" data-tech="prompt-engineering">Prompt Engineering</span>
+          <span class="skill" data-tech="lora-qlora">Fine-tuning · LoRA / QLoRA</span>
+          <span class="skill" data-tech="fastapi"><img class="skill-ico" src="https://cdn.simpleicons.org/fastapi/76a9ff" alt="" loading="lazy" />FastAPI</span>
+          <span class="skill" data-tech="ocr">OCR · PaddleOCR · Tesseract</span>
+          <span class="skill" data-tech="rest-websockets">REST API · WebSockets</span>
         </div>
       </div>
 
       <div class="tier tier-advanced">
         <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_advanced">Advanced · уверенно в боевых задачах</span></h4>
         <div class="skills">
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/linux/76a9ff" alt="" loading="lazy" />Linux</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/postgresql/76a9ff" alt="" loading="lazy" />PostgreSQL</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/langchain/76a9ff" alt="" loading="lazy" />LangChain</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/git/76a9ff" alt="" loading="lazy" />Git</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/pytorch/76a9ff" alt="" loading="lazy" />PyTorch</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/tensorflow/76a9ff" alt="" loading="lazy" />TensorFlow</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/huggingface/76a9ff" alt="" loading="lazy" />Hugging Face</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/ollama/76a9ff" alt="" loading="lazy" />Ollama</span>
-          <span class="skill">LangGraph · AutoGen · CrewAI</span>
-          <span class="skill">AI Agents · Multi-agent</span>
-          <span class="skill">Qdrant · FAISS · Chroma</span>
-          <span class="skill">Sentence Transformers</span>
-          <span class="skill">vLLM · GigaChat · LLaMA · DeepSeek</span>
-          <span class="skill">Whisper · TTS</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/opencv/76a9ff" alt="" loading="lazy" />OpenCV · YOLO · CV</span>
-          <span class="skill">MLOps · MLflow · W&amp;B</span>
-          <span class="skill">n8n · Make</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/telegram/76a9ff" alt="" loading="lazy" />Telegram Bots</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/numpy/76a9ff" alt="" loading="lazy" />NumPy</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/pandas/76a9ff" alt="" loading="lazy" />Pandas</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/flask/76a9ff" alt="" loading="lazy" />Flask</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/django/76a9ff" alt="" loading="lazy" />Django</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/streamlit/76a9ff" alt="" loading="lazy" />Streamlit</span>
-          <span class="skill">1С · Интеграции</span>
+          <span class="skill" data-tech="linux"><img class="skill-ico" src="https://cdn.simpleicons.org/linux/76a9ff" alt="" loading="lazy" />Linux</span>
+          <span class="skill" data-tech="postgresql"><img class="skill-ico" src="https://cdn.simpleicons.org/postgresql/76a9ff" alt="" loading="lazy" />PostgreSQL</span>
+          <span class="skill" data-tech="langchain"><img class="skill-ico" src="https://cdn.simpleicons.org/langchain/76a9ff" alt="" loading="lazy" />LangChain</span>
+          <span class="skill" data-tech="git"><img class="skill-ico" src="https://cdn.simpleicons.org/git/76a9ff" alt="" loading="lazy" />Git</span>
+          <span class="skill" data-tech="pytorch"><img class="skill-ico" src="https://cdn.simpleicons.org/pytorch/76a9ff" alt="" loading="lazy" />PyTorch</span>
+          <span class="skill" data-tech="tensorflow"><img class="skill-ico" src="https://cdn.simpleicons.org/tensorflow/76a9ff" alt="" loading="lazy" />TensorFlow</span>
+          <span class="skill" data-tech="huggingface"><img class="skill-ico" src="https://cdn.simpleicons.org/huggingface/76a9ff" alt="" loading="lazy" />Hugging Face</span>
+          <span class="skill" data-tech="ollama"><img class="skill-ico" src="https://cdn.simpleicons.org/ollama/76a9ff" alt="" loading="lazy" />Ollama</span>
+          <span class="skill" data-tech="agent-frameworks">LangGraph · AutoGen · CrewAI</span>
+          <span class="skill" data-tech="multi-agent">AI Agents · Multi-agent</span>
+          <span class="skill" data-tech="vector-db">Qdrant · FAISS · Chroma</span>
+          <span class="skill" data-tech="sentence-transformers">Sentence Transformers</span>
+          <span class="skill" data-tech="vllm-models">vLLM · GigaChat · LLaMA · DeepSeek</span>
+          <span class="skill" data-tech="whisper-tts">Whisper · TTS</span>
+          <span class="skill" data-tech="opencv-yolo"><img class="skill-ico" src="https://cdn.simpleicons.org/opencv/76a9ff" alt="" loading="lazy" />OpenCV · YOLO · CV</span>
+          <span class="skill" data-tech="mlops">MLOps · MLflow · W&amp;B</span>
+          <span class="skill" data-tech="automation">n8n · Make</span>
+          <span class="skill" data-tech="telegram-bots"><img class="skill-ico" src="https://cdn.simpleicons.org/telegram/76a9ff" alt="" loading="lazy" />Telegram Bots</span>
+          <span class="skill" data-tech="numpy"><img class="skill-ico" src="https://cdn.simpleicons.org/numpy/76a9ff" alt="" loading="lazy" />NumPy</span>
+          <span class="skill" data-tech="pandas"><img class="skill-ico" src="https://cdn.simpleicons.org/pandas/76a9ff" alt="" loading="lazy" />Pandas</span>
+          <span class="skill" data-tech="flask"><img class="skill-ico" src="https://cdn.simpleicons.org/flask/76a9ff" alt="" loading="lazy" />Flask</span>
+          <span class="skill" data-tech="django"><img class="skill-ico" src="https://cdn.simpleicons.org/django/76a9ff" alt="" loading="lazy" />Django</span>
+          <span class="skill" data-tech="streamlit"><img class="skill-ico" src="https://cdn.simpleicons.org/streamlit/76a9ff" alt="" loading="lazy" />Streamlit</span>
+          <span class="skill" data-tech="1c">1С · Интеграции</span>
         </div>
       </div>
 
       <div class="tier tier-familiar">
         <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_familiar">Familiar · был опыт, могу подхватить</span></h4>
         <div class="skills">
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/docker/76a9ff" alt="" loading="lazy" />Docker</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/kubernetes/76a9ff" alt="" loading="lazy" />Kubernetes</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/apacheairflow/76a9ff" alt="" loading="lazy" />Apache Airflow</span>
-          <span class="skill">ONNX · TensorRT</span>
-          <span class="skill">Reinforcement Learning</span>
+          <span class="skill" data-tech="docker"><img class="skill-ico" src="https://cdn.simpleicons.org/docker/76a9ff" alt="" loading="lazy" />Docker</span>
+          <span class="skill" data-tech="kubernetes"><img class="skill-ico" src="https://cdn.simpleicons.org/kubernetes/76a9ff" alt="" loading="lazy" />Kubernetes</span>
+          <span class="skill" data-tech="airflow"><img class="skill-ico" src="https://cdn.simpleicons.org/apacheairflow/76a9ff" alt="" loading="lazy" />Apache Airflow</span>
+          <span class="skill" data-tech="onnx-tensorrt">ONNX · TensorRT</span>
+          <span class="skill" data-tech="reinforcement-learning">Reinforcement Learning</span>
         </div>
       </div>
     </section>
@@ -2079,13 +2191,136 @@
       if (typeof window.__renderCodeSnippet === 'function') {
         window.__renderCodeSnippet();
       }
+      if (typeof window.__renderTechModal === 'function') {
+        window.__renderTechModal();
+      }
     };
 
     window.__translations = translations;
     window.__currentLang = currentLang;
 
+    const techCatalog = {
+      python: {
+        ru: {
+          subtitle: 'Базовый язык для AI, backend и автоматизации',
+          desc: 'Использую для всего основного: сервисы, ML-скрипты, обработка данных, интеграции и быстрые прототипы. Это мой главный рабочий язык.',
+          meta: ['backend', 'ML', 'automation']
+        },
+        en: {
+          subtitle: 'Core language for AI, backend and automation',
+          desc: 'I use it for most of the stack: services, ML scripts, data processing, integrations and fast prototypes. This is my main working language.',
+          meta: ['backend', 'ML', 'automation']
+        }
+      },
+      'llm-rag': { ru: { subtitle: 'Поиск и ответы по базе знаний', desc: 'Связывает языковую модель с поиском по документам, чтобы отвечать не «из головы», а по фактам из базы знаний.', meta: ['поиск', 'цитаты', 'чат-боты'] }, en: { subtitle: 'Search plus grounded answers', desc: 'Connects a language model to document search so answers come from the knowledge base, not from thin air.', meta: ['search', 'citations', 'chatbots'] } },
+      'prompt-engineering': { ru: { subtitle: 'Управление поведением модели через инструкции', desc: 'Помогает задавать модели роль, формат ответа и ограничения, чтобы она работала стабильно и предсказуемо.', meta: ['инструкции', 'format', 'guardrails'] }, en: { subtitle: 'Control model behavior with instructions', desc: 'Helps define role, answer format and constraints so the model behaves predictably.', meta: ['instructions', 'format', 'guardrails'] } },
+      'lora-qlora': { ru: { subtitle: 'Дешёвое дообучение больших моделей', desc: 'Адаптирую базовую LLM под домен заказчика без полного fine-tune: быстрее, дешевле и помещается в одну видеокарту.', meta: ['fine-tuning', 'low VRAM', 'domain adaptation'] }, en: { subtitle: 'Cheap fine-tuning for large models', desc: 'Adapts a base LLM to the client domain without full fine-tuning: faster, cheaper and fits into one GPU.', meta: ['fine-tuning', 'low VRAM', 'domain adaptation'] } },
+      fastapi: { ru: { subtitle: 'Быстрый backend для AI-сервисов', desc: 'Использую для REST-API, стриминга, вебхуков и лёгких продакшен-сервисов под LLM-процессы.', meta: ['REST', 'streaming', 'microservices'] }, en: { subtitle: 'Fast backend for AI services', desc: 'Used for REST APIs, streaming, webhooks and lightweight production services around LLM workflows.', meta: ['REST', 'streaming', 'microservices'] } },
+      ocr: { ru: { subtitle: 'Извлечение текста из сканов и PDF', desc: 'Распознаёт документы, таблички и сканы. В моих проектах идёт вместе с предобработкой и LLM-постобработкой.', meta: ['PaddleOCR', 'Tesseract', 'PDF'] }, en: { subtitle: 'Text extraction from scans and PDFs', desc: 'Recognizes documents, tables and scans. In my projects it is combined with image pre-processing and LLM post-processing.', meta: ['PaddleOCR', 'Tesseract', 'PDF'] } },
+      'rest-websockets': { ru: { subtitle: 'Синхронный и стриминговый обмен с фронтом', desc: 'REST использую для обычных запросов, WebSockets — для живого стриминга ответов и событий в интерфейс.', meta: ['API', 'streaming UI', 'events'] }, en: { subtitle: 'Sync and streaming communication', desc: 'REST is for standard requests, WebSockets for live streaming responses and UI events.', meta: ['API', 'streaming UI', 'events'] } },
+      linux: { ru: { subtitle: 'База для серверов и деплоя', desc: 'Комфортно работаю в Linux: сервера, контейнеры, фоновые процессы, логирование и автоматизация.', meta: ['servers', 'CLI', 'ops'] }, en: { subtitle: 'Base for servers and deployment', desc: 'Comfortable in Linux: servers, containers, background jobs, logging and automation.', meta: ['servers', 'CLI', 'ops'] } },
+      postgresql: { ru: { subtitle: 'Основная реляционная БД', desc: 'Хранение метаданных, статусов, логов, пользователей и бизнес-данных. Использую индексы, триггеры и нормальную схему.', meta: ['SQL', 'indexes', 'transactions'] }, en: { subtitle: 'Primary relational database', desc: 'Stores metadata, statuses, logs, users and business data. I use indexes, triggers and a clean schema.', meta: ['SQL', 'indexes', 'transactions'] } },
+      langchain: { ru: { subtitle: 'Оркестрация LLM-пайплайнов', desc: 'Собирает цепочки вызовов, retrieval и инструменты в единый сценарий для чат-ботов и AI-ассистентов.', meta: ['pipelines', 'tools', 'RAG'] }, en: { subtitle: 'Orchestrates LLM pipelines', desc: 'Combines model calls, retrieval and tools into one scenario for chatbots and AI assistants.', meta: ['pipelines', 'tools', 'RAG'] } },
+      git: { ru: { subtitle: 'Версионирование кода и командная работа', desc: 'Основа нормальной разработки: ветки, ревью, история изменений, быстрый откат и совместная работа.', meta: ['branches', 'review', 'rollback'] }, en: { subtitle: 'Version control and collaboration', desc: 'The basis of sane development: branches, reviews, change history, fast rollback and teamwork.', meta: ['branches', 'review', 'rollback'] } },
+      pytorch: { ru: { subtitle: 'Глубокое обучение и эксперименты', desc: 'Использую для обучения моделей, инференса, кастомных лоссов и работы с нейросетями в целом.', meta: ['training', 'inference', 'research'] }, en: { subtitle: 'Deep learning and experiments', desc: 'Used for training models, inference, custom losses and neural network work in general.', meta: ['training', 'inference', 'research'] } },
+      tensorflow: { ru: { subtitle: 'Старый, но рабочий стек для DL', desc: 'Полезен там, где проект уже на TF или нужны готовые экосистемы и модели без переписывания.', meta: ['legacy', 'models', 'ecosystem'] }, en: { subtitle: 'A mature DL stack', desc: 'Useful when a project already lives in TensorFlow or needs the ecosystem without a rewrite.', meta: ['legacy', 'models', 'ecosystem'] } },
+      huggingface: { ru: { subtitle: 'Модели, датасеты и токенизаторы', desc: 'Беру готовые веса, модели и датасеты для дообучения, оценки и быстрой сборки AI-функций.', meta: ['models', 'datasets', 'tokenizers'] }, en: { subtitle: 'Models, datasets and tokenizers', desc: 'I use pretrained weights, datasets and tokenizers for fine-tuning, evaluation and fast AI feature delivery.', meta: ['models', 'datasets', 'tokenizers'] } },
+      ollama: { ru: { subtitle: 'Локальный запуск моделей', desc: 'Подходит для офлайн-LLM, тестов и прототипов, когда нужен локальный контур без внешнего API.', meta: ['local LLM', 'offline', 'privacy'] }, en: { subtitle: 'Local model runtime', desc: 'Good for offline LLMs, tests and prototypes when you need a local stack with no external API.', meta: ['local LLM', 'offline', 'privacy'] } },
+      'agent-frameworks': { ru: { subtitle: 'Сборка графов агентов', desc: 'LangGraph, AutoGen и CrewAI помогают строить сценарии с ролями, инструментами и контролем качества.', meta: ['planner', 'tools', 'critic'] }, en: { subtitle: 'Agent graph frameworks', desc: 'LangGraph, AutoGen and CrewAI help build role-based flows with tools and quality control.', meta: ['planner', 'tools', 'critic'] } },
+      'multi-agent': { ru: { subtitle: 'Несколько агентов вместо одной большой LLM', desc: 'Разделяю задачу на роли: планирование, поиск, написание, проверка. Это даёт стабильнее качество.', meta: ['planner', 'researcher', 'writer'] }, en: { subtitle: 'Multiple agents instead of one big LLM', desc: 'I split a task into roles: planning, retrieval, writing and checking. This gives more stable quality.', meta: ['planner', 'researcher', 'writer'] } },
+      'vector-db': { ru: { subtitle: 'Хранилище эмбеддингов и семантический поиск', desc: 'Qdrant, FAISS и Chroma использую для поиска по смыслу, retrieval и быстрой работы с embedding-данными.', meta: ['embeddings', 'ANN', 'retrieval'] }, en: { subtitle: 'Embedding storage and semantic search', desc: 'Qdrant, FAISS and Chroma power semantic search, retrieval and embedding-based workflows.', meta: ['embeddings', 'ANN', 'retrieval'] } },
+      'sentence-transformers': { ru: { subtitle: 'Эмбеддинги для текстового поиска', desc: 'Готовые и свои текстовые эмбеддинги для similarity search, кластеризации и RAG.', meta: ['similarity', 'clustering', 'RAG'] }, en: { subtitle: 'Text embeddings for search', desc: 'Pretrained and custom text embeddings for similarity search, clustering and RAG.', meta: ['similarity', 'clustering', 'RAG'] } },
+      'vllm-models': { ru: { subtitle: 'Сервинг и локальные LLM', desc: 'vLLM помогает быстро отдавать ответы, а GigaChat, LLaMA и DeepSeek — как базовые модели в разных сценариях.', meta: ['serving', 'local inference', 'LLM'] }, en: { subtitle: 'Serving and local LLMs', desc: 'vLLM helps serve fast responses, while GigaChat, LLaMA and DeepSeek are the base models I use in different scenarios.', meta: ['serving', 'local inference', 'LLM'] } },
+      'whisper-tts': { ru: { subtitle: 'Голосовой AI: распознавание и синтез', desc: 'Whisper распознаёт речь, TTS озвучивает ответ. Вместе нужны для голосовых ассистентов и колл-центров.', meta: ['STT', 'TTS', 'voice bot'] }, en: { subtitle: 'Voice AI: speech recognition and synthesis', desc: 'Whisper turns speech into text, TTS speaks back. Together they power voice assistants and call-center flows.', meta: ['STT', 'TTS', 'voice bot'] } },
+      'opencv-yolo': { ru: { subtitle: 'Компьютерное зрение и детекция объектов', desc: 'OpenCV для предобработки изображений, YOLO для детекции, CV для задач с картинками и видео.', meta: ['vision', 'detection', 'images'] }, en: { subtitle: 'Computer vision and object detection', desc: 'OpenCV for image pre-processing, YOLO for detection, CV for tasks with images and video.', meta: ['vision', 'detection', 'images'] } },
+      mlops: { ru: { subtitle: 'Жизненный цикл ML-моделей', desc: 'MLflow и W&B помогают отслеживать эксперименты, версии моделей и метрики, чтобы всё было воспроизводимо.', meta: ['experiments', 'tracking', 'versioning'] }, en: { subtitle: 'ML model lifecycle', desc: 'MLflow and W&B help track experiments, model versions and metrics so everything stays reproducible.', meta: ['experiments', 'tracking', 'versioning'] } },
+      automation: { ru: { subtitle: 'Связка сервисов без ручной рутины', desc: 'n8n и Make использую для быстрых интеграций, уведомлений и склейки бизнес-процессов без лишнего кода.', meta: ['workflows', 'integrations', 'no-code'] }, en: { subtitle: 'Connect services without manual work', desc: 'n8n and Make are used for fast integrations, notifications and stitching business processes together without extra code.', meta: ['workflows', 'integrations', 'no-code'] } },
+      'telegram-bots': { ru: { subtitle: 'Удобный интерфейс для внутренних и внешних ботов', desc: 'Telegram-боты подходят для уведомлений, опросов, внутренних помощников и простого AI-интерфейса.', meta: ['notifications', 'assistant', 'chat UI'] }, en: { subtitle: 'A convenient bot interface', desc: 'Telegram bots are great for notifications, surveys, internal helpers and simple AI interfaces.', meta: ['notifications', 'assistant', 'chat UI'] } },
+      numpy: { ru: { subtitle: 'База для численных вычислений', desc: 'NumPy нужен для массивов, матричных операций и всего, где требуется быстрый векторный расчёт.', meta: ['arrays', 'math', 'performance'] }, en: { subtitle: 'Core for numerical computing', desc: 'NumPy is used for arrays, matrix operations and anything that needs fast vector math.', meta: ['arrays', 'math', 'performance'] } },
+      pandas: { ru: { subtitle: 'Таблицы, очистка и анализ данных', desc: 'Pandas использую для загрузки, фильтрации, агрегации и подготовки датасетов и отчётов.', meta: ['tables', 'ETL', 'analysis'] }, en: { subtitle: 'Tables, cleaning and analysis', desc: 'Pandas is used for loading, filtering, aggregating and preparing datasets and reports.', meta: ['tables', 'ETL', 'analysis'] } },
+      flask: { ru: { subtitle: 'Лёгкий Python backend', desc: 'Подходит для небольших сервисов, где нужен простой API без тяжёлого фреймворка.', meta: ['microservice', 'simple API', 'legacy'] }, en: { subtitle: 'Lightweight Python backend', desc: 'Good for small services where you need a simple API without a heavy framework.', meta: ['microservice', 'simple API', 'legacy'] } },
+      django: { ru: { subtitle: 'Полноценный веб-фреймворк', desc: 'Использую там, где нужны админка, ORM, пользователи и быстрое создание прикладного веб-сервиса.', meta: ['ORM', 'admin', 'web app'] }, en: { subtitle: 'Full web framework', desc: 'Used when a project needs admin, ORM, users and a fast way to build a business web app.', meta: ['ORM', 'admin', 'web app'] } },
+      streamlit: { ru: { subtitle: 'Быстрые AI-дашборды и демо', desc: 'Streamlit помогает быстро собирать интерфейсы для внутренних прототипов, демо и аналитики.', meta: ['dashboards', 'demo', 'internal tools'] }, en: { subtitle: 'Fast AI dashboards and demos', desc: 'Streamlit is great for quickly building interfaces for internal prototypes, demos and analytics.', meta: ['dashboards', 'demo', 'internal tools'] } },
+      '1c': { ru: { subtitle: 'Интеграция с 1С и прикладными процессами', desc: 'Подключаю AI-слой к 1С, чтобы автоматизировать документооборот, классификацию и заполнение карточек.', meta: ['integrations', 'documents', 'ERP'] }, en: { subtitle: 'Integration with 1C and business processes', desc: 'I connect an AI layer to 1C to automate document workflow, classification and card filling.', meta: ['integrations', 'documents', 'ERP'] } },
+      docker: { ru: { subtitle: 'Контейнеризация сервисов', desc: 'Упаковка приложения и зависимостей в контейнер, чтобы запускался одинаково на любой машине и сервере.', meta: ['containers', 'deploy', 'reproducible'] }, en: { subtitle: 'Containerization of services', desc: 'Packages the app and its dependencies so it runs the same on any machine and server.', meta: ['containers', 'deploy', 'reproducible'] } },
+      kubernetes: { ru: { subtitle: 'Оркестрация контейнеров', desc: 'Нужен, когда сервисов много и ими надо управлять, масштабировать и перезапускать автоматически.', meta: ['orchestration', 'scaling', 'cluster'] }, en: { subtitle: 'Container orchestration', desc: 'Needed when you have many services and want to manage, scale and restart them automatically.', meta: ['orchestration', 'scaling', 'cluster'] } },
+      airflow: { ru: { subtitle: 'Планировщик пайплайнов', desc: 'Apache Airflow удобен для ETL, регулярных джоб и сложных цепочек задач по расписанию.', meta: ['ETL', 'scheduling', 'pipelines'] }, en: { subtitle: 'Pipeline scheduler', desc: 'Apache Airflow is handy for ETL, recurring jobs and complex scheduled workflows.', meta: ['ETL', 'scheduling', 'pipelines'] } },
+      'onnx-tensorrt': { ru: { subtitle: 'Ускорение инференса', desc: 'ONNX и TensorRT нужны, когда модель надо выжать по скорости и запускать максимально эффективно.', meta: ['optimization', 'latency', 'GPU'] }, en: { subtitle: 'Inference acceleration', desc: 'ONNX and TensorRT are used when a model needs to run as fast and efficiently as possible.', meta: ['optimization', 'latency', 'GPU'] } },
+      'reinforcement-learning': { ru: { subtitle: 'Обучение через награду', desc: 'Подходит для задач, где система учится на reward-сигнале, а не на готовых метках.', meta: ['reward', 'policy', 'experiments'] }, en: { subtitle: 'Learning from rewards', desc: 'Useful when the system learns from a reward signal instead of fixed labels.', meta: ['reward', 'policy', 'experiments'] } }
+    };
+
+    function initTechModal() {
+      const modal = document.getElementById('techModal');
+      const closeBtn = document.getElementById('techCloseBtn');
+      const titleEl = document.getElementById('techModalTitle');
+      const subtitleEl = document.getElementById('techModalSubtitle');
+      const descEl = document.getElementById('techModalDesc');
+      const metaEl = document.getElementById('techModalMeta');
+      if (!modal || !closeBtn || !titleEl || !subtitleEl || !descEl || !metaEl) return;
+
+      let activeTech = null;
+
+      const renderTech = (techId, label) => {
+        const lang = window.__currentLang || 'ru';
+        const pack = techCatalog[techId] || techCatalog.python;
+        const view = pack[lang] || pack.ru;
+        titleEl.textContent = view.title || label || techId;
+        subtitleEl.textContent = view.subtitle || '';
+        descEl.textContent = view.desc || '';
+        metaEl.innerHTML = '';
+        (view.meta || []).forEach((item) => {
+          const chip = document.createElement('span');
+          chip.className = 'tech-chip';
+          chip.textContent = item;
+          metaEl.appendChild(chip);
+        });
+        activeTech = techId;
+      };
+
+      const openTech = (techId, label) => {
+        renderTech(techId, label);
+        modal.classList.add('visible');
+        document.body.classList.add('photo-zoom-lock');
+      };
+
+      const closeTech = () => {
+        modal.classList.remove('visible');
+        document.body.classList.remove('photo-zoom-lock');
+      };
+
+      document.querySelectorAll('.skill[data-tech]').forEach((skill) => {
+        skill.setAttribute('role', 'button');
+        skill.setAttribute('tabindex', '0');
+        skill.setAttribute('aria-label', `Open explanation for ${skill.textContent.trim()}`);
+        skill.addEventListener('click', () => openTech(skill.dataset.tech, skill.textContent.trim()));
+        skill.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openTech(skill.dataset.tech, skill.textContent.trim());
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeTech);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeTech();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('visible')) {
+          closeTech();
+        }
+      });
+
+      window.__renderTechModal = () => {
+        if (modal.classList.contains('visible') && activeTech) {
+          renderTech(activeTech);
+        }
+      };
+    }
+
     photoModalImg.src = avatarImage.src;
     applyLanguage(currentLang);
+    initTechModal();
 
     const openPhoto = () => {
       photoOverlay.classList.add('visible');
