@@ -348,12 +348,20 @@
       color: #0b1020;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       border-color: transparent;
-      font-weight: 600;
+      font-weight: 700;
+      position: relative;
+      box-shadow: 0 6px 22px rgba(118, 169, 255, 0.35);
+      animation: codePulse 2.6s ease-in-out infinite;
     }
     body.light .link-accent { color: #0b1020; }
     .link-accent:hover {
       filter: brightness(1.08);
-      box-shadow: 0 10px 26px rgba(118, 169, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(118, 169, 255, 0.5);
+    }
+    @keyframes codePulse {
+      0%, 100% { box-shadow: 0 6px 22px rgba(118, 169, 255, 0.35); }
+      50%      { box-shadow: 0 6px 30px rgba(145, 240, 211, 0.55); }
     }
 
     /* ===== Code modal ===== */
@@ -363,15 +371,15 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: rgba(5, 8, 18, 0.78);
-      backdrop-filter: blur(10px);
+      background: rgba(5, 8, 18, 0.82);
+      backdrop-filter: blur(12px);
       z-index: 70;
       padding: 24px;
     }
     .code-modal.visible { display: flex; }
     .code-modal-inner {
-      width: min(960px, 100%);
-      max-height: 88vh;
+      width: min(1080px, 100%);
+      max-height: 90vh;
       background: linear-gradient(160deg, #0f1730 0%, #131c39 100%);
       border: 1px solid rgba(118, 169, 255, 0.35);
       border-radius: 16px;
@@ -391,7 +399,7 @@
     }
     .code-modal-head h3 {
       margin: 0;
-      font-size: 18px;
+      font-size: 19px;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       -webkit-background-clip: text;
       background-clip: text;
@@ -448,30 +456,69 @@
       border-bottom-color: var(--accent);
     }
     .code-body {
-      padding: 16px 22px 22px;
+      padding: 18px 22px 22px;
       overflow: auto;
       flex: 1;
     }
-    .code-caption {
-      font-size: 13.5px;
-      color: var(--muted);
-      margin: 0 0 12px;
-      line-height: 1.55;
-      padding: 10px 12px;
+    .code-story {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .code-story-item {
       background: rgba(118, 169, 255, 0.08);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0;
+      border: 1px solid rgba(118, 169, 255, 0.18);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .code-story-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .code-story-item:nth-child(2) .code-story-label { color: var(--accent-2); }
+    .code-story-item:nth-child(3) .code-story-label {
+      color: #ffd27a;
+    }
+    .code-story-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      margin: 0;
+    }
+    .code-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .code-stack span {
+      font-size: 11.5px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
     }
     .code-body pre {
       margin: 0;
       border-radius: 10px;
-      font-size: 13px;
-      max-height: 52vh;
+      font-size: 12.5px;
+      max-height: 48vh;
       overflow: auto;
     }
-    .code-body pre code { font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace; }
+    .code-body pre code { font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace; line-height: 1.55; }
+    @media (max-width: 720px) {
+      .code-story { grid-template-columns: 1fr; }
+    }
     body.light .code-modal-inner { background: linear-gradient(160deg, #1a2547 0%, #0f1832 100%); color: #ebf0ff; }
-    body.light .code-caption { color: #d7e0fb; }
+    body.light .code-story-text { color: #ebf0ff; }
+    body.light .code-stack span { color: #cbd5ff; }
 
     .section-title {
       margin: 0 0 14px;
@@ -639,7 +686,7 @@
       }
       .bg-blob, .stars, .photo-overlay, .photo-modal, .toolbar,
       .carousel-nav, .carousel-dots, .carousel-progress,
-      #themeToggle, #pdfBtn, #langToggle, #codeShowcaseBtn, .code-modal,
+      #themeToggle, #langToggle, #codeShowcaseBtn, .code-modal,
       .lang-toggle, .icon-btn { display: none !important; }
       .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
       section, article, div, p, ul, li, h1, h2, h3, h4, h5, span {
@@ -1090,7 +1137,7 @@
     <div class="code-modal-inner">
       <div class="code-modal-head">
         <h3 id="codeModalTitle" data-i18n="code_modal_title">Фрагменты кода из реальных проектов</h3>
-        <p data-i18n="code_modal_sub">Исходники конфиденциальны — показываю переписанные, обезличенные куски с самыми интересными моментами.</p>
+        <p data-i18n="code_modal_sub">Исходники конфиденциальны — показываю переписанные, обезличенные куски с пояснениями: что за задача бизнеса, как решено и какой результат.</p>
         <button class="code-close-btn" id="codeCloseBtn" type="button" aria-label="Закрыть">×</button>
       </div>
       <div class="code-tabs" id="codeTabs" role="tablist">
@@ -1098,9 +1145,25 @@
         <button class="code-tab" type="button" data-code="ocr" data-i18n="code_tab_ocr">OCR-конвейер</button>
         <button class="code-tab" type="button" data-code="agent" data-i18n="code_tab_agent">Граф мульти-агентов</button>
         <button class="code-tab" type="button" data-code="kp" data-i18n="code_tab_kp">Стриминг КП</button>
+        <button class="code-tab" type="button" data-code="lora" data-i18n="code_tab_lora">Дообучение LoRA</button>
+        <button class="code-tab" type="button" data-code="voice" data-i18n="code_tab_voice">Голосовой ассистент</button>
       </div>
       <div class="code-body">
-        <p class="code-caption" id="codeCaption" data-i18n="code_cap_rag"></p>
+        <div class="code-story">
+          <div class="code-story-item">
+            <div class="code-story-label" data-i18n="code_lbl_problem">Задача бизнеса</div>
+            <p class="code-story-text" id="codeProblem"></p>
+          </div>
+          <div class="code-story-item">
+            <div class="code-story-label" data-i18n="code_lbl_solution">Как я это решил</div>
+            <p class="code-story-text" id="codeSolution"></p>
+          </div>
+          <div class="code-story-item">
+            <div class="code-story-label" data-i18n="code_lbl_result">Результат</div>
+            <p class="code-story-text" id="codeResult"></p>
+          </div>
+        </div>
+        <div class="code-stack" id="codeStack"></div>
         <pre><code class="language-python" id="codeSample"></code></pre>
       </div>
     </div>
@@ -1116,7 +1179,6 @@
           <h1 data-i18n="name">Егор Селькин</h1>
           <div class="toolbar">
             <button class="icon-btn" id="themeToggle" type="button" aria-label="Переключить тему">☽</button>
-            <button class="icon-btn" id="pdfBtn" type="button" aria-label="Скачать PDF" data-i18n="pdf_btn">⤓ PDF</button>
             <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English">EN</button>
           </div>
         </div>
@@ -1633,16 +1695,35 @@
         role: 'AI/ML-инженер · системы в проде на 2.5 млн файлов/нед · LLM · RAG · OCR',
         code_btn: '⟨/⟩ Фрагменты кода',
         code_modal_title: 'Фрагменты кода из реальных проектов',
-        code_modal_sub: 'Исходники конфиденциальны — показываю переписанные, обезличенные куски с самыми интересными моментами.',
+        code_modal_sub: 'Исходники конфиденциальны — показываю переписанные, обезличенные куски с пояснениями: что за задача бизнеса, как решено и какой результат.',
         code_close: 'Закрыть',
+        code_lbl_problem: 'Задача бизнеса',
+        code_lbl_solution: 'Как я это решил',
+        code_lbl_result: 'Результат',
         code_tab_rag: 'Гибридный поиск RAG',
         code_tab_ocr: 'OCR-конвейер',
         code_tab_agent: 'Граф мульти-агентов',
         code_tab_kp: 'Стриминг КП',
-        code_cap_rag: 'Dense (Qdrant) + BM25, слияние через RRF, финальный реранкер. На базе 50 000+ документов даёт Top-1 88% и ответ за 2–4 сек.',
-        code_cap_ocr: 'Грязные сканы (низкий dpi, перекосы). PaddleOCR + LLM-постобработка: исправляет «0/O», «1/l», восстанавливает реквизиты. Точность 95%+.',
-        code_cap_agent: 'LangGraph-стиль: planner → researcher → writer → critic. Критик возвращает в writer, пока score < 0.8. 90% задач закрываются без человека.',
-        code_cap_kp: 'FastAPI + SSE-стриминг. RAG по 200+ кейсам, генерация КП по секциям. Сокращение времени с 2 ч до 4 мин (×30), конверсия +18%.',
+        code_tab_lora: 'Дообучение LoRA',
+        code_tab_voice: 'Голосовой ассистент',
+        rag_problem: 'Сотрудники тратили по 30–40 минут на поиск нужного пункта среди 50 000+ внутренних документов. Готовые поисковики либо «не понимают смысл», либо проваливаются на номерах договоров и аббревиатурах.',
+        rag_solution: 'Сделал гибридный поиск: семантический по смыслу + классический по словам, слил два ранкинга через RRF и пропустил через cross-encoder. Получился поиск, который одинаково хорошо находит и «договоры аренды 2024 года», и «№ ГК-2024/17».',
+        rag_result: 'Top-1 точность выросла с ~62% до 88%. Ответ за 2–4 сек. Всё крутится локально, без OpenAI — нулевая стоимость API и нулевая утечка данных.',
+        ocr_problem: 'Поступали тысячи сканов договоров и приказов: перекошенные, грязные, низкий DPI. Чистый OCR делал по 5–6 ошибок на страницу — приходилось всё перепроверять вручную (~7 минут на документ).',
+        ocr_solution: 'Собрал трёхступенчатый конвейер: предобработка изображения → PaddleOCR → LLM-постобработка, которая «перечитывает» текст с пониманием контекста и исправляет типичные OCR-ошибки вроде «И→Н» или «0→O».',
+        ocr_result: 'Точность поднялась с ~78% до 95%+. Один документ обрабатывается за ~3 секунды вместо ~7 минут вручную. Пропускная способность отдела выросла кратно.',
+        agent_problem: 'Аналитикам надо было готовить сложные отчёты по 2–3 дня: собрать факты, написать, перепроверить. Одна большая LLM на такой задаче галлюцинирует и теряет нить.',
+        agent_solution: 'Построил граф из 4 ролей: planner планирует, researcher собирает факты через RAG, writer пишет, critic ставит оценку и возвращает на доработку, пока качество не дотянет. Каждый агент маленький и специализированный — работает надёжнее.',
+        agent_result: '90% задач закрываются без вмешательства человека. Среднее время отчёта — ~40 минут вместо 2–3 дней (×50). Critic срабатывает в среднем 1.4 раза — модели хорошо стараются с первого захода.',
+        kp_problem: 'Менеджеры B2B-отдела тратили ~2 часа на одно коммерческое предложение. При этом тексты выходили шаблонными, конверсия плавала.',
+        kp_solution: 'Сделал генератор КП с RAG по 200+ выигранным сделкам той же отрасли — модель учится на победах. Стриминг через SSE: КП пишется по секциям прямо в браузере, менеджер может вмешаться в любой момент.',
+        kp_result: 'Время на КП: ~4 минуты вместо ~2 часов (×30). Конверсия после внедрения +18%. Менеджер обрабатывает в 5–8 раз больше клиентов в день.',
+        lora_problem: 'Открытая LLM пишет в «общем» стиле и не знает корпоративных шаблонов. Полное дообучение модели на 8 млрд параметров требует 40+ ГБ видеопамяти — это перебор.',
+        lora_solution: 'Применил LoRA с 4-битным квантованием: основная модель замораживается в 4 битах, обучаются только маленькие адаптеры (~0.5% от всех параметров). Дообучение влезает в одну RTX 3090.',
+        lora_result: 'Размер артефакта — 47 МБ (вместо 14 ГБ), можно класть в git. Время дообучения — ~6 часов. Редактирование сгенерированных писем сократилось с 60% до 12%.',
+        voice_problem: 'Голосовой ассистент в колл-центре заставлял клиента ждать тишины по 30+ секунд после каждой фразы. Это убивало CSAT и заставляло переключаться на оператора.',
+        voice_solution: 'Сделал стриминг всего стека: пока человек ещё говорит — Whisper уже распознаёт начало фразы, пока LLM пишет ответ — TTS уже озвучивает готовые куски. VAD ловит конец фразы за 700 мс.',
+        voice_result: 'Среднее ожидание ответа упало с 30 до 10 секунд (×3). CSAT остался на уровне живого оператора. ~80% звонков закрывается без человека.',
         pill_city: 'Москва',
         pill_ai_years: '3+ года в ИИ',
         pill_english: 'Английский: B2',
@@ -1791,16 +1872,35 @@
         role: 'AI/ML Engineer · production systems on 2.5M files/week · LLM · RAG · OCR',
         code_btn: '⟨/⟩ Code snippets',
         code_modal_title: 'Code snippets from real projects',
-        code_modal_sub: 'Source is confidential — showing rewritten, anonymized fragments with the most interesting bits.',
+        code_modal_sub: 'Source is confidential — showing rewritten, anonymized fragments with plain-English notes: business problem, my approach, the outcome.',
         code_close: 'Close',
+        code_lbl_problem: 'Business problem',
+        code_lbl_solution: 'How I solved it',
+        code_lbl_result: 'Outcome',
         code_tab_rag: 'Hybrid RAG search',
         code_tab_ocr: 'OCR pipeline',
         code_tab_agent: 'Multi-agent graph',
         code_tab_kp: 'Proposal streaming',
-        code_cap_rag: 'Dense (Qdrant) + BM25, RRF fusion, cross-encoder reranker. On 50K+ docs delivers Top-1 88% in 2–4 sec.',
-        code_cap_ocr: 'Dirty scans (low dpi, skew). PaddleOCR + LLM post-processing: fixes "0/O", "1/l", restores fields. 95%+ accuracy.',
-        code_cap_agent: 'LangGraph-style: planner → researcher → writer → critic. Critic loops back to writer until score ≥ 0.8. 90% of tasks fully autonomous.',
-        code_cap_kp: 'FastAPI + SSE streaming. RAG over 200+ cases, section-by-section generation. Time from 2h to 4min (×30), conversion +18%.',
+        code_tab_lora: 'LoRA fine-tuning',
+        code_tab_voice: 'Voice assistant',
+        rag_problem: 'Employees spent 30–40 minutes searching the right clause across 50K+ internal docs. Off-the-shelf search either misses semantic meaning or fails on contract numbers and acronyms.',
+        rag_solution: 'Built hybrid search: semantic + lexical, fused via RRF, then re-scored by a cross-encoder. It finds both "lease agreements 2024" and exact codes like "GK-2024/17".',
+        rag_result: 'Top-1 jumped from ~62% to 88%. Answers in 2–4 sec. Fully on-prem — zero API cost, zero data leakage risk.',
+        ocr_problem: 'Thousands of contract/decree scans came in skewed, noisy, low-DPI. Plain OCR averaged 5–6 errors per page — every document needed manual review (~7 min each).',
+        ocr_solution: 'Three-stage pipeline: image pre-processing → PaddleOCR → LLM post-processing that "re-reads" the text in context and fixes typical OCR mix-ups like "I↔H", "0↔O".',
+        ocr_result: 'Accuracy rose from ~78% to 95%+. One document in ~3 seconds vs ~7 minutes manually. Team throughput grew several times over.',
+        agent_problem: 'Analysts spent 2–3 days per complex report: gather facts, draft, double-check. A single big LLM on such tasks hallucinates and loses the thread.',
+        agent_solution: 'Built a 4-role graph: planner plans, researcher pulls facts via RAG, writer drafts, critic scores and loops back until quality is high enough. Each agent is small and specialized.',
+        agent_result: '90% of tasks ship without human touch. Mean report time: ~40 min vs 2–3 days (×50). Critic averages 1.4 iterations — models nail it on first try most of the time.',
+        kp_problem: 'B2B managers spent ~2 hours on every proposal. Texts came out template-y, conversion fluctuated.',
+        kp_solution: 'Built a proposal generator with RAG over 200+ won deals from the same industry — the model learns from wins. SSE streaming so the doc writes section-by-section live in the browser.',
+        kp_result: 'Proposal time: ~4 min vs ~2 h (×30). Conversion +18% after rollout. Managers handle 5–8× more clients per day.',
+        lora_problem: 'Open LLMs write in a generic style and do not know corporate templates. Full fine-tuning of an 8B model needs 40+ GB of VRAM — way too much.',
+        lora_solution: 'Used LoRA + 4-bit quantization: base model frozen in 4-bit, only small adapters (~0.5% of params) get trained. The whole run fits a single RTX 3090.',
+        lora_result: 'Adapter size — 47 MB (vs 14 GB), git-friendly. Training time — ~6 hours. Edit rate on generated letters dropped from 60% to 12%.',
+        voice_problem: 'Call-center voice assistant left customers waiting 30+ sec of silence after each phrase. CSAT tanked, calls escalated to human operators.',
+        voice_solution: 'Streamed the entire stack: Whisper transcribes while the user is still talking, TTS speaks while the LLM is still writing. VAD detects end-of-phrase in 700 ms.',
+        voice_result: 'Mean wait time dropped from 30 to 10 sec (×3). CSAT stayed at the human-operator baseline. ~80% of calls resolved without an agent.',
         pill_city: 'Moscow',
         pill_ai_years: '3+ years in AI',
         pill_english: 'English: B2',
@@ -2041,8 +2141,7 @@
       applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
     });
 
-    /* ===== PDF / Print ===== */
-    document.getElementById('pdfBtn').addEventListener('click', () => window.print());
+    /* ===== PDF / Print removed ===== */
 
     /* ===== Projects carousel ===== */
     (function initCarousel() {
@@ -2168,97 +2267,441 @@
       const modal = document.getElementById('codeModal');
       const closeBtn = document.getElementById('codeCloseBtn');
       const tabsBox = document.getElementById('codeTabs');
-      const captionEl = document.getElementById('codeCaption');
+      const problemEl = document.getElementById('codeProblem');
+      const solutionEl = document.getElementById('codeSolution');
+      const resultEl = document.getElementById('codeResult');
+      const stackEl = document.getElementById('codeStack');
       const codeEl = document.getElementById('codeSample');
       if (!btn || !modal) return;
 
       const snippets = {
-        rag: { capKey: 'code_cap_rag', code:
-`async def hybrid_search(query: str, k: int = 8) -> list[Chunk]:
-    # 1. Dense-поиск по эмбеддингам (Qdrant, cosine)
-    q_vec = await embedder.encode(query)
-    dense = await qdrant.search(q_vec, limit=k * 3)
+        rag: {
+          stack: ['Python', 'Qdrant', 'BM25', 'Cross-Encoder', 'LangChain', 'asyncio'],
+          code:
+`# ────────────────────────────────────────────────────────────────
+# ГИБРИДНЫЙ ПОИСК RAG — почему два метода вместо одного?
+#
+# Векторный поиск (Qdrant) хорошо понимает СМЫСЛ запроса, но
+# часто промахивается по точным терминам: артикулам, номерам
+# договоров, аббревиатурам ("№ ГК-2024/17", "ИНН", "ОКВЭД").
+#
+# BM25 — классический поиск по словам — наоборот, идеально
+# находит точные совпадения, но не понимает синонимов.
+#
+# Решение: запускаем оба, мерджим результаты через RRF
+# и пропускаем через cross-encoder (он "перечитывает" пары
+# вопрос-документ и выставляет финальный балл).
+# ────────────────────────────────────────────────────────────────
 
-    # 2. Sparse-поиск BM25 — ловит редкие термины и аббревиатуры
+async def hybrid_search(query: str, k: int = 8) -> list[Chunk]:
+    # 1️⃣  Семантический поиск: запрос -> вектор -> ближайшие документы
+    q_vec = await embedder.encode(query)
+    dense = await qdrant.search(
+        collection="docs",
+        vector=q_vec,
+        limit=k * 3,           # берём с запасом для последующей фильтрации
+        with_payload=True,
+    )
+
+    # 2️⃣  Лексический поиск BM25 — ловит точные термины и номера
     sparse = bm25_index.search(query, top_k=k * 3)
 
-    # 3. Reciprocal Rank Fusion — честное слияние двух ранкингов
-    fused = reciprocal_rank_fusion([dense, sparse], k=60)
+    # 3️⃣  Reciprocal Rank Fusion — честно сливаем два ранкинга
+    #     Документ, оказавшийся в топе обоих списков, получает приоритет
+    fused = reciprocal_rank_fusion(
+        rankings=[dense, sparse],
+        k=60,                   # сглаживающий параметр (стандарт)
+    )
 
-    # 4. Cross-encoder реранкер — финальные top-k по релевантности
+    # 4️⃣  Cross-encoder реранкер — последнее, самое точное "сито"
+    #     В отличие от embedder, он смотрит на пару (запрос, документ)
+    #     одновременно и даёт самый качественный финальный скор
     reranked = await reranker.rerank(query, fused, top_k=k)
+
+    # 5️⃣  Аудит: логируем "почему именно эти документы"
+    log_retrieval(query, reranked, scores=[c.score for c in reranked])
+
     return reranked
 
-# На базе 50 000+ документов: Top-1 = 88%, ответ за 2-4 сек.`
-        },
-        ocr: { capKey: 'code_cap_ocr', code:
-`def ocr_document(pdf_path: Path) -> Document:
-    pages = []
-    for img in pdf_to_images(pdf_path, dpi=300):
-        img = deskew(img)              # выравнивание перекосов
-        img = denoise(img)             # удаление шума и фоновых артефактов
-        raw = paddle.ocr(img, det=True, rec=True, cls=True)
 
-        # LLM-постобработка: исправляем "0/O", "1/l/I",
-        # склейки строк, восстанавливаем структуру таблиц
+def reciprocal_rank_fusion(rankings, k=60):
+    """Документ X получает балл = sum(1 / (k + rank_i(X))) по всем источникам."""
+    scores = defaultdict(float)
+    for ranking in rankings:
+        for rank, doc in enumerate(ranking):
+            scores[doc.id] += 1.0 / (k + rank)
+    return sorted(all_docs, key=lambda d: scores[d.id], reverse=True)
+
+
+# 📊 Результат на проде:
+#     • База:           50 000+ документов
+#     • Top-1 точность: 88% (раньше было ~62% на чистом векторном)
+#     • Латентность:    2–4 секунды на ответ
+#     • Стоимость:      $0 (всё локально, без OpenAI)`
+        },
+
+        ocr: {
+          stack: ['Python', 'PaddleOCR', 'OpenCV', 'LLM', 'Pydantic'],
+          code:
+`# ────────────────────────────────────────────────────────────────
+# OCR ДОКУМЕНТОВ — почему просто PaddleOCR недостаточно?
+#
+# Сканы официальных документов часто грязные: перекошены,
+# с пятнами, низким DPI. Чистый OCR выдаёт ошибки вида:
+#   "Д0г0вор №l23" вместо "Договор №123"
+#   "ИНН 770l2З4567"  вместо "ИНН 7701234567"
+#
+# Решение: трёхступенчатый конвейер.
+#   1) Предобработка изображения (выровнять, очистить)
+#   2) Сам OCR (PaddleOCR — он лучший на кириллице)
+#   3) LLM-постобработка — модель "перечитывает" текст
+#      и исправляет типичные OCR-ошибки в контексте.
+# ────────────────────────────────────────────────────────────────
+
+def ocr_document(pdf_path: Path) -> Document:
+    pages = []
+
+    for page_num, img in enumerate(pdf_to_images(pdf_path, dpi=300)):
+        # ── Шаг 1: предобработка изображения ─────────────────────
+        img = deskew(img)              # выравнивание перекосов (>1° = беда)
+        img = denoise(img)             # удаление шума, пятен, фоновых артефактов
+        img = enhance_contrast(img)    # вытягивание тусклых сканов
+
+        # ── Шаг 2: основной OCR-проход ───────────────────────────
+        raw = paddle.ocr(
+            img,
+            det=True,    # детекция текстовых блоков
+            rec=True,    # распознавание символов
+            cls=True,    # классификация поворота (180°/0°)
+        )
+
+        # ── Шаг 3: LLM-постобработка ─────────────────────────────
+        # Модель видит весь текст + знает, что это за документ,
+        # и исправляет ошибки в правильном контексте.
+        # Пример: "ИHH 77O1" -> "ИНН 7701" (Н vs H, O vs 0)
         text = llm.fix(
             raw.text,
             context="официальный документ, ГОСТ-форматирование",
-            schema=DOC_SCHEMA,
+            schema=DOC_SCHEMA,         # Pydantic-схема ожидаемых полей
+            rules=[
+                "Не выдумывай факты — только исправляй очевидные опечатки",
+                "Если поле нечитаемо — оставь [NEEDS_REVIEW]",
+                "Сохраняй структуру: заголовки, таблицы, нумерацию",
+            ],
         )
-        pages.append(Page(text=text, confidence=raw.score))
 
-    return Document(pages=pages, extracted_at=datetime.utcnow())
+        # Сохраняем уверенность OCR — для последующего ручного аудита
+        pages.append(Page(
+            text=text,
+            confidence=raw.score,
+            needs_review=raw.score < 0.85,
+        ))
 
-# Точность извлечения: 95%+. Один документ: ~3 сек вместо ~7 минут вручную.`
+    return Document(
+        pages=pages,
+        extracted_at=datetime.utcnow(),
+        pipeline_version="paddle-3.0 + llm-fix",
+    )
+
+
+# 📊 Результат на проде:
+#     • Точность извлечения: 95%+ (без LLM-постобработки было ~78%)
+#     • Скорость:           ~3 сек/документ (вместо ~7 минут вручную)
+#     • Сценарий:           50 000+ документов в обработке`
         },
-        agent: { capKey: 'code_cap_agent', code:
-`# Граф: planner -> researcher -> writer -> critic
-# critic возвращает в writer, пока score < 0.8
-workflow = StateGraph(AgentState)
-workflow.add_node("planner",    plan_steps)
-workflow.add_node("researcher", retrieve_facts)
-workflow.add_node("writer",     compose_answer)
-workflow.add_node("critic",     self_review)
 
+        agent: {
+          stack: ['Python', 'LangGraph', 'LLM', 'Pydantic', 'asyncio'],
+          code:
+`# ────────────────────────────────────────────────────────────────
+# МУЛЬТИ-АГЕНТ С САМОКРИТИКОЙ — зачем 4 модели вместо одной?
+#
+# Одна большая LLM на сложной задаче часто галлюцинирует или
+# теряет нить. Если разделить роли — каждая делает свою часть
+# хорошо: planner думает стратегически, researcher собирает
+# факты, writer пишет, critic перепроверяет.
+#
+# Главная фишка: critic умеет ВЕРНУТЬ работу writer'у с
+# конкретными замечаниями, пока качество не дотянет до 0.8.
+# Это работает как маленькая редакция в голове.
+# ────────────────────────────────────────────────────────────────
+
+from langgraph.graph import StateGraph, END
+
+class AgentState(BaseModel):
+    task:    str
+    plan:    list[str] = []
+    facts:   list[Fact] = []
+    answer:  str = ""
+    score:   float = 0.0
+    iters:   int = 0
+    history: list[str] = []   # для аудита решений
+
+# ── Определяем узлы графа (каждый — отдельный агент) ───────
+workflow = StateGraph(AgentState)
+workflow.add_node("planner",    plan_steps)      # разбивает задачу на шаги
+workflow.add_node("researcher", retrieve_facts)  # RAG + веб-поиск
+workflow.add_node("writer",     compose_answer)  # пишет финальный текст
+workflow.add_node("critic",     self_review)     # ставит оценку 0..1
+
+# ── Линейный поток: planner -> researcher -> writer -> critic ──
 workflow.add_edge("planner",    "researcher")
 workflow.add_edge("researcher", "writer")
 workflow.add_edge("writer",     "critic")
 
+# ── КЛЮЧЕВАЯ ЛОГИКА: critic решает — закончили или переписать ──
+# Если оценка < 0.8 И сделано меньше 3 итераций -> вернуть в writer
+# Иначе -> финализировать ответ
 workflow.add_conditional_edges(
     "critic",
     lambda s: "writer" if s.score < 0.8 and s.iters < 3 else END,
     {"writer": "writer", END: END},
 )
 
+workflow.set_entry_point("planner")
+
+# ── Компилируем граф с памятью (для долгих диалогов) ───────
 agent = workflow.compile(checkpointer=memory_saver)
 
-# 90% задач закрывается без вмешательства человека.`
+
+# ─── Пример того, что делает critic ────────────────────────
+async def self_review(state: AgentState) -> AgentState:
+    review = await llm.ainvoke(REVIEW_PROMPT.format(
+        task=state.task,
+        answer=state.answer,
+        facts=state.facts,
+    ))
+    state.score = review.score
+    state.iters += 1
+    state.history.append(f"iter {state.iters}: score={review.score:.2f}")
+
+    if review.score < 0.8:
+        # Передаём writer'у конкретные замечания, а не "сделай лучше"
+        state.task = f"{state.task}\\n\\nЗамечания критика: {review.notes}"
+    return state
+
+
+# 📊 Результат на проде:
+#     • 90% задач закрываются без вмешательства человека
+#     • Среднее количество итераций: 1.4 (critic срабатывает редко)
+#     • Время отчёта:  ~40 минут вместо 2–3 дней вручную (×50)`
         },
-        kp: { capKey: 'code_cap_kp', code:
-`@router.post("/proposal/generate")
+
+        kp: {
+          stack: ['FastAPI', 'SSE', 'LLM', 'RAG', 'Pydantic'],
+          code:
+`# ────────────────────────────────────────────────────────────────
+# ГЕНЕРАЦИЯ КОММЕРЧЕСКИХ ПРЕДЛОЖЕНИЙ СО СТРИМИНГОМ
+#
+# Проблема: менеджер тратит 2 часа на одно КП. Хочется ×30 быстрее.
+# Но просто "сгенерируй КП" даёт шаблонные тексты — клиент их видит.
+#
+# Решение:
+#   1) Подтягиваем профиль клиента из CRM (отрасль, размер, история)
+#   2) RAG по 200+ выигранным КП той же отрасли — учимся на победах
+#   3) Генерируем КП по секциям: проблема -> решение -> ROI -> цена
+#   4) Стримим токены через Server-Sent Events — менеджер видит
+#      КП по мере написания, может вмешаться в любой момент
+# ────────────────────────────────────────────────────────────────
+
+@router.post("/proposal/generate")
 async def generate_proposal(req: ProposalReq) -> StreamingResponse:
-    # 1. Профиль клиента из CRM (отрасль, размер, история)
+    # ── 1. Контекст о клиенте: кто он и что у нас с ним было ──
     client = await crm.fetch(req.client_id)
 
-    # 2. RAG по 200+ успешным кейсам — релевантные истории
+    # ── 2. RAG по похожим выигранным сделкам ──────────────────
+    # Фильтруем по отрасли и outcome="won" — учимся только на успехах
     cases = await rag.search(
-        req.brief,
-        filters={"industry": client.industry, "outcome": "won"},
+        query=req.brief,
+        filters={
+            "industry": client.industry,
+            "company_size": client.size_bucket,
+            "outcome": "won",
+        },
         top_k=5,
     )
 
-    # 3. Стримим КП по секциям: problem -> solution -> ROI -> price
+    # ── 3. Стримим КП по секциям через SSE ────────────────────
     async def stream():
-        async for token in llm.astream(
-            template=KP_TEMPLATE,
-            ctx={"client": client, "brief": req.brief, "cases": cases},
-        ):
-            yield f"data: {json.dumps({'token': token})}\\n\\n"
+        # Шапка: даём фронту знать, что началось
+        yield sse({"event": "start", "client": client.name})
+
+        # Генерируем строго по секциям — иначе LLM "плывёт"
+        for section in ["problem", "solution", "value", "roi", "price", "next_steps"]:
+            yield sse({"event": "section_start", "section": section})
+
+            async for token in llm.astream(
+                template=KP_TEMPLATES[section],
+                ctx={
+                    "client": client,
+                    "brief": req.brief,
+                    "winning_cases": cases,
+                    "tone": "уверенный, без воды",
+                },
+            ):
+                yield sse({"event": "token", "text": token})
+
+            yield sse({"event": "section_end", "section": section})
+
+        yield sse({"event": "done"})
 
     return StreamingResponse(stream(), media_type="text/event-stream")
 
-# КП за ~4 мин вместо ~2 ч. Конверсия после внедрения +18%.`
+
+def sse(payload: dict) -> str:
+    """Helper: оборачивает JSON в SSE-формат."""
+    return f"data: {json.dumps(payload, ensure_ascii=False)}\\n\\n"
+
+
+# 📊 Результат на проде:
+#     • Время КП: ~4 минуты вместо ~2 часов (×30)
+#     • Конверсия после внедрения: +18%
+#     • Менеджер обрабатывает в 5–8 раз больше клиентов в день`
+        },
+
+        lora: {
+          stack: ['Python', 'PyTorch', 'PEFT', 'HuggingFace', 'bitsandbytes'],
+          code:
+`# ────────────────────────────────────────────────────────────────
+# LORA-ДООБУЧЕНИЕ — как научить модель корпоративному языку
+#
+# Проблема: открытая LLM пишет в "общем" стиле, не знает
+# корпоративных терминов, шаблонов писем, правил оформления.
+#
+# Полное дообучение модели на 7 миллиардов параметров требует
+# 40+ ГБ видеопамяти и стоит как новый автомобиль. Это перебор.
+#
+# Решение — LoRA + 4-битное квантование:
+#   • замораживаем основную модель (она остаётся в 4-бит)
+#   • добавляем маленькие "адаптеры" (~50 МБ вместо 14 ГБ)
+#   • обучаем только их
+# Итог: дообучение влезает в одну RTX 3090 (24 ГБ).
+# ────────────────────────────────────────────────────────────────
+
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from trl import SFTTrainer
+
+# ── 1. Загружаем базовую модель сразу в 4-битном виде ──────
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,                       # 14 ГБ -> 4 ГБ VRAM
+    bnb_4bit_quant_type="nf4",               # формат, лучше всего сохраняющий качество
+    bnb_4bit_compute_dtype=torch.bfloat16,   # вычисления в bf16
+    bnb_4bit_use_double_quant=True,          # ещё немного экономии памяти
+)
+
+base_model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-3-8B",
+    quantization_config=bnb_config,
+    device_map="auto",
+)
+base_model = prepare_model_for_kbit_training(base_model)
+
+# ── 2. Конфигурируем LoRA-адаптеры ──────────────────────────
+# Грубо: обучаем низкоранговые "поправки" к матрицам внимания.
+# Веса основной модели не трогаем — экономия памяти ×30.
+lora_config = LoraConfig(
+    r=16,                # ранг адаптера (баланс ёмкости и размера)
+    lora_alpha=32,       # коэффициент масштабирования
+    target_modules=[     # к каким слоям прикрепляем адаптеры
+        "q_proj", "k_proj", "v_proj", "o_proj",
+        "gate_proj", "up_proj", "down_proj",
+    ],
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM",
+)
+
+model = get_peft_model(base_model, lora_config)
+model.print_trainable_parameters()
+# trainable: 41,943,040 || all: 8,072,204,288 || trainable%: 0.52%
+# Обучаем всего ~0.5% параметров!
+
+# ── 3. Запускаем обучение на корпоративных данных ──────────
+trainer = SFTTrainer(
+    model=model,
+    train_dataset=corporate_corpus,   # 12k примеров: письма, отчёты, КП
+    args=TrainingArguments(
+        per_device_train_batch_size=4,
+        gradient_accumulation_steps=4,
+        num_train_epochs=3,
+        learning_rate=2e-4,
+        bf16=True,
+        logging_steps=20,
+        save_strategy="epoch",
+        output_dir="./lora-corp",
+    ),
+    max_seq_length=2048,
+)
+trainer.train()
+
+# ── 4. Сохраняем только адаптер (~50 МБ вместо 14 ГБ) ──────
+model.save_pretrained("./lora-corp/final")
+
+
+# 📊 Результат на проде:
+#     • Время дообучения:  ~6 часов на одной RTX 3090
+#     • Размер артефакта:  47 МБ (можно класть в git)
+#     • Качество писем:    редактирование сократилось с 60% до 12%`
+        },
+
+        voice: {
+          stack: ['Python', 'Whisper', 'VAD', 'LLM', 'TTS', 'WebSocket'],
+          code:
+`# ────────────────────────────────────────────────────────────────
+# ГОЛОСОВОЙ АССИСТЕНТ — как сократить ожидание в 3 раза
+#
+# Классическая схема: записал всю фразу -> распознал ->
+# подумал -> синтезировал -> ответил. Звучит просто, но
+# пользователь ждёт 30+ секунд тишины.
+#
+# Идея: стримить ВСЁ. Пока человек ещё говорит — мы уже
+# распознаём начало фразы; пока LLM пишет ответ — мы уже
+# озвучиваем готовые куски. Параллелизм всего стека.
+# ────────────────────────────────────────────────────────────────
+
+async def voice_pipeline(ws: WebSocket):
+    # VAD = Voice Activity Detection — слышит, когда человек говорит
+    vad = SileroVAD(threshold=0.5)
+    transcript_buffer = []
+
+    async for audio_chunk in ws.iter_bytes():
+        # ── 1. VAD проверяет: это речь или тишина? ────────────
+        if not vad.is_speech(audio_chunk):
+            if vad.silence_duration > 0.7:   # пауза 700мс = конец фразы
+                # ── 2. Распознаём накопленный кусок (стримом) ──
+                #     Whisper умеет работать с короткими отрезками
+                text = await whisper.transcribe_stream(transcript_buffer)
+                transcript_buffer.clear()
+
+                # ── 3. ПАРАЛЛЕЛЬНО: LLM думает + TTS озвучивает ──
+                #     Каждый готовый кусок предложения сразу идёт в TTS
+                async for sentence in llm_stream_by_sentences(text):
+                    # запускаем синтез, не дожидаясь следующего предложения
+                    audio = await tts.synthesize(sentence, voice="ru-female")
+                    await ws.send_bytes(audio)
+            continue
+
+        transcript_buffer.append(audio_chunk)
+
+
+async def llm_stream_by_sentences(prompt: str):
+    """Стримит LLM и режет на предложения, чтобы TTS начинал раньше."""
+    buffer = ""
+    async for token in llm.astream(prompt):
+        buffer += token
+        # Как только встретили конец предложения — отдаём его на синтез
+        if match := SENTENCE_END.search(buffer):
+            yield buffer[:match.end()]
+            buffer = buffer[match.end():]
+    if buffer:
+        yield buffer
+
+
+# 📊 Результат на проде:
+#     • Среднее ожидание ответа: 30 сек -> 10 сек (×3)
+#     • CSAT после внедрения:    остался на уровне живого оператора
+#     • Покрытие:                ~80% звонков закрывается без человека`
         },
       };
 
@@ -2268,7 +2711,15 @@ async def generate_proposal(req: ProposalReq) -> StreamingResponse:
         const data = snippets[current];
         if (!data) return;
         const dict = (window.__translations && window.__translations[window.__currentLang || 'ru']) || {};
-        captionEl.textContent = dict[data.capKey] || captionEl.getAttribute('data-fallback-' + current) || '';
+        problemEl.textContent  = dict[current + '_problem']  || '';
+        solutionEl.textContent = dict[current + '_solution'] || '';
+        resultEl.textContent   = dict[current + '_result']   || '';
+        stackEl.innerHTML = '';
+        data.stack.forEach((s) => {
+          const chip = document.createElement('span');
+          chip.textContent = s;
+          stackEl.appendChild(chip);
+        });
         codeEl.textContent = data.code;
         if (window.Prism) {
           delete codeEl.dataset.highlighted;
@@ -2282,10 +2733,6 @@ async def generate_proposal(req: ProposalReq) -> StreamingResponse:
         tabsBox.querySelectorAll('.code-tab').forEach((t) => t.classList.remove('active'));
         tab.classList.add('active');
         current = tab.dataset.code;
-        captionEl.setAttribute('data-i18n', 'code_cap_' + current);
-        if (typeof applyLanguage === 'function' && window.__currentLang) {
-          // refresh translations on caption
-        }
         render();
       });
 
