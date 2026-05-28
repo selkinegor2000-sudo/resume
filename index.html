@@ -1266,7 +1266,7 @@
     </div>
   </div>
 
-  <div class="tech-modal" id="techModal" role="dialog" aria-modal="true" aria-labelledby="techModalTitle">
+  <div class="tech-modal" id="techModal" role="dialog" aria-modal="true" aria-labelledby="techModalTitle" hidden>
     <div class="tech-modal-inner">
       <div class="tech-modal-head">
         <h3 id="techModalTitle">Python</h3>
@@ -2279,12 +2279,14 @@
 
       const openTech = (techId, label) => {
         renderTech(techId, label);
+        modal.hidden = false;
         modal.classList.add('visible');
         document.body.classList.add('photo-zoom-lock');
       };
 
       const closeTech = () => {
         modal.classList.remove('visible');
+        modal.hidden = true;
         document.body.classList.remove('photo-zoom-lock');
       };
 
