@@ -508,15 +508,14 @@
         background: #ffffff !important;
         box-shadow: none !important;
         border: 1px solid #d6dbe6 !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
-        margin-bottom: 10px !important;
+        margin-bottom: 8px !important;
+        padding: 12px !important;
         opacity: 1 !important;
         transform: none !important;
       }
       .hero {
         display: block !important;
-        padding: 14px !important;
+        padding: 12px !important;
       }
       .hero-top {
         display: block !important;
@@ -566,7 +565,8 @@
       .slide {
         flex: none !important;
         width: 100% !important;
-        margin-bottom: 10px !important;
+        margin-bottom: 8px !important;
+        padding: 10px !important;
         background: #ffffff !important;
         border: 1px solid #d6dbe6 !important;
         break-inside: avoid;
@@ -992,13 +992,13 @@
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/fastapi/76a9ff" alt="" loading="lazy" />FastAPI</span>
           <span class="skill">OCR · PaddleOCR · Tesseract</span>
           <span class="skill">REST API · WebSockets</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/linux/76a9ff" alt="" loading="lazy" />Linux</span>
         </div>
       </div>
 
       <div class="tier tier-advanced">
         <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_advanced">Advanced · уверенно в боевых задачах</span></h4>
         <div class="skills">
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/linux/76a9ff" alt="" loading="lazy" />Linux</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/postgresql/76a9ff" alt="" loading="lazy" />PostgreSQL</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/langchain/76a9ff" alt="" loading="lazy" />LangChain</span>
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/git/76a9ff" alt="" loading="lazy" />Git</span>
@@ -1909,10 +1909,8 @@
       };
       const stop = () => { clearInterval(autoTimer); autoTimer = null; pauseProgress(); };
       const restart = () => { stop(); start(); };
-      root.addEventListener('mouseenter', stop);
-      root.addEventListener('mouseleave', start);
-      root.addEventListener('focusin', stop);
-      root.addEventListener('focusout', start);
+      // Progress and autoplay run independently of hover — do not pause on mouse interaction.
+      // Only pause when tab is hidden (to avoid drift) and when user manually switches slides.
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) stop(); else start();
       });
