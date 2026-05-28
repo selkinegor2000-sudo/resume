@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Егор Селькин — Резюме</title>
-  <meta name="description" content="Резюме Егора Селькина — ML-инженер, разработка AI/LLM-решений." />
+  <title>Егор Селькин — AI/ML-инженер</title>
+  <meta name="description" content="Резюме Егора Селькина — AI/ML-инженер, 3+ года в ИИ: LLM, RAG, OCR, AI-автоматизация бизнеса." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Егор Селькин — AI/ML-инженер" />
+  <meta property="og:description" content="3+ года в ИИ: LLM, RAG, OCR, AI-агенты, автоматизация бизнеса." />
+  <meta property="og:url" content="https://selkinegor2000-sudo.github.io/resume/" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
       --bg: #0b1020;
@@ -510,6 +516,208 @@
         color: #0b4ab6;
       }
     }
+
+    /* ===== Toolbar (lang + theme + pdf) ===== */
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(18, 26, 49, 0.85);
+      color: var(--text);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn:hover {
+      border-color: rgba(118, 169, 255, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* ===== Carousel ===== */
+    .carousel {
+      position: relative;
+      margin-top: 6px;
+    }
+
+    .carousel-viewport {
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+      will-change: transform;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      box-sizing: border-box;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(140deg, rgba(118, 169, 255, 0.08), rgba(145, 240, 211, 0.05));
+      min-height: 240px;
+    }
+
+    .slide-head {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .slide-title {
+      margin: 0;
+      font-size: 17px;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .slide-tag {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .slide-block h5 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .slide-block ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #d8e1ff;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .slide-block ul li { margin-bottom: 4px; }
+
+    .slide-stack {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .slide-stack span {
+      font-size: 12px;
+      color: #dce5ff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(118, 169, 255, 0.1);
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      gap: 10px;
+    }
+
+    .carousel-btn {
+      border: 1px solid var(--line);
+      background: rgba(18, 26, 49, 0.85);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+      border-color: rgba(145, 240, 211, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: linear-gradient(140deg, var(--accent), var(--accent-2));
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 640px) {
+      .slide-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Light theme ===== */
+    body.light {
+      --bg: #f4f6fb;
+      --bg-soft: #ffffff;
+      --card: rgba(255, 255, 255, 0.92);
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #0ea5e9;
+      --line: rgba(15, 23, 42, 0.14);
+      --shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+      background: radial-gradient(circle at 20% 20%, #e0e7ff 0%, #f4f6fb 36%),
+                  radial-gradient(circle at 80% 0%, #cffafe 0%, transparent 36%),
+                  linear-gradient(135deg, #ffffff 0%, #f4f6fb 100%);
+    }
+
+    body.light .bg-blob { opacity: 0.18; }
+    body.light .star { opacity: 0.25; mix-blend-mode: multiply; background: rgba(37, 99, 235, 0.55); box-shadow: 0 0 12px rgba(37, 99, 235, 0.35); }
+    body.light .skill { background: rgba(37, 99, 235, 0.08); color: #1e293b; }
+    body.light .slide { background: linear-gradient(140deg, rgba(37, 99, 235, 0.06), rgba(14, 165, 233, 0.04)); }
+    body.light .slide-stack span { background: rgba(37, 99, 235, 0.08); color: #1e293b; border-color: rgba(15, 23, 42, 0.12); }
+    body.light .slide-block ul { color: #1e293b; }
+    body.light .icon-btn,
+    body.light .lang-toggle,
+    body.light .carousel-btn { background: #ffffff; color: #0f172a; }
+    body.light .job p { color: #1e293b; }
   </style>
 </head>
 <body>
@@ -550,12 +758,17 @@
       <div>
         <div class="hero-top">
           <h1 data-i18n="name">Егор Селькин</h1>
-          <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English">EN</button>
+          <div class="toolbar">
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="Переключить тему">☽</button>
+            <button class="icon-btn" id="pdfBtn" type="button" aria-label="Скачать PDF" data-i18n="pdf_btn">⤓ PDF</button>
+            <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English">EN</button>
+          </div>
         </div>
-        <div class="role" data-i18n="role">Разработчик (ML-инженер)</div>
+        <div class="role" data-i18n="role">AI/ML-инженер · LLM · RAG · OCR · AI-автоматизация</div>
 
         <div class="meta">
           <span class="pill" data-i18n="pill_city">Москва</span>
+          <span class="pill" data-i18n="pill_ai_years">3+ года в ИИ</span>
           <span class="pill" data-i18n="pill_english">Английский: B2</span>
           <span class="pill" data-i18n="pill_open">Открыт к AI/LLM-проектам</span>
         </div>
@@ -567,6 +780,17 @@
           <a class="link" href="https://t.me/allinswag" target="_blank" rel="noopener">Telegram</a>
         </div>
       </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="about_title">Обо мне</h2>
+      <p class="text-muted" data-i18n="about_desc">
+        Более 3 лет работаю в области искусственного интеллекта: от классического ML и компьютерного зрения
+        до современных LLM, RAG-систем и AI-агентов. Специализируюсь на внедрении ИИ в реальные бизнес-процессы:
+        автоматизация документооборота, OCR и извлечение данных из изображений/PDF, дообучение моделей под
+        прикладные задачи, AI-ассистенты и обучающие платформы. Помимо работы в компаниях, самостоятельно
+        реализовал десятки проектов «под ключ» — от прототипа до продакшена.
+      </p>
     </section>
 
     <section class="card reveal">
@@ -614,6 +838,25 @@
         <span class="skill">TensorRT</span>
         <span class="skill">Kubernetes</span>
         <span class="skill">Apache Airflow</span>
+        <span class="skill">AI Agents</span>
+        <span class="skill">Multi-agent Systems</span>
+        <span class="skill">AutoGen</span>
+        <span class="skill">CrewAI</span>
+        <span class="skill">OCR (PaddleOCR / Tesseract)</span>
+        <span class="skill">Document AI</span>
+        <span class="skill">Computer Vision</span>
+        <span class="skill">YOLO</span>
+        <span class="skill">Whisper / Speech-to-Text</span>
+        <span class="skill">Hugging Face</span>
+        <span class="skill">Sentence Transformers</span>
+        <span class="skill">Chroma / Weaviate</span>
+        <span class="skill">n8n / Make</span>
+        <span class="skill">AI-автоматизация бизнеса</span>
+        <span class="skill">Telegram Bots</span>
+        <span class="skill">REST API</span>
+        <span class="skill">WebSockets</span>
+        <span class="skill">Linux</span>
+        <span class="skill">Git</span>
       </div>
     </section>
 
@@ -627,10 +870,11 @@
           </div>
           <div class="job-company" data-i18n="job1_company">ФГУП «ГУСС»</div>
           <p data-i18n="job1_desc">
-            Разработка решений на базе LLMs, дообучение и настройка моделей под прикладные задачи.
-            Создание систем извлечения и анализа текста из низкокачественных изображений и PDF.
-            Интеграция LLM-инфраструктуры в рабочие процессы компании для автоматизации документооборота,
-            регулярная очистка и оптимизация корпоративных файлов.
+            • Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70%.<br>
+            • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+.<br>
+            • Дообучил (LoRA / QLoRA) модели под корпоративную лексику и шаблоны документов, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain).<br>
+            • Внедрил MLOps-практики: контейнеризация (Docker), CI/CD, мониторинг моделей (MLflow), versioning датасетов.<br>
+            • Разработал AI-агентов для рутинных задач: классификация входящих документов, авто-резюмирование, извлечение реквизитов.
           </p>
         </article>
 
@@ -641,11 +885,184 @@
           </div>
           <div class="job-company" data-i18n="job2_company">ФГУП Глав НИВЦ Управления делами Президента РФ</div>
           <p data-i18n="job2_desc">
-            Автоматизация ключевых бизнес-процессов, мониторинг и аналитика метрик.
-            Оптимизация корпоративного форума и повышение вовлеченности сотрудников.
-            Участие в тестировании и разработке ПО, внедрение методик повышения надежности ИТ-решений.
+            • Автоматизировал ключевые бизнес-процессы с использованием Python и ML-моделей — экономия десятков человеко-часов в неделю.<br>
+            • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства.<br>
+            • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости пользователей.<br>
+            • Участвовал в тестировании и разработке внутреннего ПО, внедрял методики повышения надёжности ИТ-решений.
           </p>
         </article>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="projects_title">Личные проекты</h2>
+      <p class="text-muted" data-i18n="projects_intro" style="margin-bottom:14px;">
+        Параллельно с работой в компаниях реализовал множество AI-систем «под ключ». Проекты конфиденциальны —
+        показываю описание систем, что они делали и какие результаты дали.
+      </p>
+
+      <div class="carousel" id="projCarousel" aria-roledescription="carousel">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide1_title">AI-обучающая платформа</h3>
+                <span class="slide-tag" data-i18n="slide1_tag">EdTech · 2023—настоящее время</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide1_w1">AI-тьютор в диалоге с учеником</li>
+                    <li data-i18n="slide1_w2">Авто-генерация заданий и тестов через LLM</li>
+                    <li data-i18n="slide1_w3">Голосовые уроки (Whisper + TTS)</li>
+                    <li data-i18n="slide1_w4">Персонализация траектории обучения</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide1_i1">Проверка домашки быстрее в ~10×</li>
+                    <li data-i18n="slide1_i2">Нагрузка на преподавателей — меньше на 60%</li>
+                    <li data-i18n="slide1_i3">Адаптивная сложность под каждого ученика</li>
+                    <li data-i18n="slide1_i4">Рост вовлечённости и ретеншна</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>LLM</span><span>Whisper</span><span>TTS</span><span>RAG</span><span>FastAPI</span><span>PostgreSQL</span><span>React</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide2_title">Интеллектуальный документооборот</h3>
+                <span class="slide-tag" data-i18n="slide2_tag">DocAI · OCR + LLM · 2024—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide2_w1">OCR низкокачественных сканов и PDF</li>
+                    <li data-i18n="slide2_w2">Извлечение реквизитов и таблиц LLM</li>
+                    <li data-i18n="slide2_w3">Классификация и маршрутизация документов</li>
+                    <li data-i18n="slide2_w4">Дообучение LoRA/QLoRA под домен клиента</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide2_i1">Ручная обработка сокращена на ~70%</li>
+                    <li data-i18n="slide2_i2">Точность извлечения — 95%+</li>
+                    <li data-i18n="slide2_i3">Среднее время обработки дока — секунды вместо минут</li>
+                    <li data-i18n="slide2_i4">RAG-поиск по внутренней базе знаний</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>PaddleOCR</span><span>Tesseract</span><span>LLaMA</span><span>DeepSeek</span><span>LoRA</span><span>Qdrant</span><span>LangChain</span><span>Docker</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide3_title">AI-автоматизация бизнес-процессов</h3>
+                <span class="slide-tag" data-i18n="slide3_tag">B2B · автоматизация · 2023—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide3_w1">AI-ассистент продаж и поддержки</li>
+                    <li data-i18n="slide3_w2">Генерация КП, смет и отчётов</li>
+                    <li data-i18n="slide3_w3">Интеграция LLM с CRM и 1С</li>
+                    <li data-i18n="slide3_w4">Сквозные пайплайны на n8n/Make</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide3_i1">Скорость подготовки КП — минуты вместо часов</li>
+                    <li data-i18n="slide3_i2">Первая линия поддержки автоматизирована</li>
+                    <li data-i18n="slide3_i3">Экономия десятков чел/часов в неделю</li>
+                    <li data-i18n="slide3_i4">Рост конверсии входящих заявок</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>GigaChat</span><span>LangChain</span><span>n8n</span><span>1С</span><span>Telegram Bot API</span><span>FastAPI</span><span>PostgreSQL</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide4_title">Мульти-агентная AI-система</h3>
+                <span class="slide-tag" data-i18n="slide4_tag">AI Agents · 2024—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide4_w1">Команда автономных агентов (LangGraph)</li>
+                    <li data-i18n="slide4_w2">Авто-исследование и сбор данных</li>
+                    <li data-i18n="slide4_w3">Tool use: function calling и MCP</li>
+                    <li data-i18n="slide4_w4">Многошаговые задачи без человека</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide4_i1">Отчёты, которые раньше готовились днями, готовы за часы</li>
+                    <li data-i18n="slide4_i2">Полностью автономные рутины</li>
+                    <li data-i18n="slide4_i3">Гибкая архитектура под новые инструменты</li>
+                    <li data-i18n="slide4_i4">Прозрачные логи решений агентов</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>LangGraph</span><span>AutoGen</span><span>CrewAI</span><span>OpenAI</span><span>MCP</span><span>Redis</span><span>vLLM</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide5_title">RAG-ассистент по внутренней базе</h3>
+                <span class="slide-tag" data-i18n="slide5_tag">Knowledge Base · RAG · 2024—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide5_w1">Поиск по тысячам внутренних документов</li>
+                    <li data-i18n="slide5_w2">Гибридный retrieval (BM25 + vector)</li>
+                    <li data-i18n="slide5_w3">Ответы с цитатами и ссылками на источник</li>
+                    <li data-i18n="slide5_w4">Re-ranking и guardrails против галлюцинаций</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide5_i1">Поиск ответа — секунды вместо часов</li>
+                    <li data-i18n="slide5_i2">Меньше нагрузки на экспертов</li>
+                    <li data-i18n="slide5_i3">Единая точка входа в знания компании</li>
+                    <li data-i18n="slide5_i4">Ответы с проверяемыми источниками</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>RAG</span><span>Sentence Transformers</span><span>FAISS</span><span>Qdrant</span><span>BM25</span><span>LangChain</span><span>FastAPI</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="carPrev" type="button" aria-label="Предыдущий проект">←</button>
+          <div class="carousel-dots" id="carDots" role="tablist"></div>
+          <button class="carousel-btn" id="carNext" type="button" aria-label="Следующий проект">→</button>
+        </div>
       </div>
     </section>
 
@@ -682,7 +1099,7 @@
 
         <div class="simple-item">
           <h4 data-i18n="hobby_title">Увлечения</h4>
-          <p class="text-muted" data-i18n="hobby_desc">Разработка AI-агентов и приложений на базе LLM.</p>
+          <p class="text-muted" data-i18n="hobby_desc">Разработка AI-агентов и приложений на базе LLM, исследование новых архитектур моделей, open-source ИИ-проекты.</p>
         </div>
       </div>
     </section>
@@ -715,23 +1132,81 @@
 
     const translations = {
       ru: {
-        page_title: 'Егор Селькин — Резюме',
-        page_desc: 'Резюме Егора Селькина — ML-инженер, разработка AI/LLM-решений.',
+        page_title: 'Егор Селькин — AI/ML-инженер',
+        page_desc: 'Резюме Егора Селькина — AI/ML-инженер, 3+ года в ИИ: LLM, RAG, OCR, AI-автоматизация бизнеса.',
         name: 'Егор Селькин',
-        role: 'Разработчик (ML-инженер)',
+        role: 'AI/ML-инженер · LLM · RAG · OCR · AI-автоматизация',
         pill_city: 'Москва',
+        pill_ai_years: '3+ года в ИИ',
         pill_english: 'Английский: B2',
         pill_open: 'Открыт к AI/LLM-проектам',
+        about_title: 'Обо мне',
+        about_desc: 'Более 3 лет работаю в области искусственного интеллекта: от классического ML и компьютерного зрения до современных LLM, RAG-систем и AI-агентов. Специализируюсь на внедрении ИИ в реальные бизнес-процессы: автоматизация документооборота, OCR и извлечение данных из изображений/PDF, дообучение моделей под прикладные задачи, AI-ассистенты и обучающие платформы. Помимо работы в компаниях, самостоятельно реализовал десятки проектов «под ключ» — от прототипа до продакшена.',
         skills_title: 'Навыки',
         experience_title: 'Опыт работы',
-        job1_title: 'Разработчик (ML-инженер)',
+        job1_title: 'AI/ML-инженер',
         job1_date: 'Ноябрь 2025 — настоящее время',
         job1_company: 'ФГУП «ГУСС»',
-        job1_desc: 'Разработка решений на базе LLMs, дообучение и настройка моделей под прикладные задачи. Создание систем извлечения и анализа текста из низкокачественных изображений и PDF. Интеграция LLM-инфраструктуры в рабочие процессы компании для автоматизации документооборота, регулярная очистка и оптимизация корпоративных файлов.',
+        job1_desc: '• Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70%. • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+. • Дообучил (LoRA / QLoRA) модели под корпоративную лексику и шаблоны документов, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain). • Внедрил MLOps-практики: контейнеризация (Docker), CI/CD, мониторинг моделей (MLflow), versioning датасетов. • Разработал AI-агентов для рутинных задач: классификация входящих документов, авто-резюмирование, извлечение реквизитов.',
         job2_title: 'Программист',
         job2_date: 'Март 2025 — Ноябрь 2025',
         job2_company: 'ФГУП Глав НИВЦ Управления делами Президента РФ',
-        job2_desc: 'Автоматизация ключевых бизнес-процессов, мониторинг и аналитика метрик. Оптимизация корпоративного форума и повышение вовлеченности сотрудников. Участие в тестировании и разработке ПО, внедрение методик повышения надежности ИТ-решений.',
+        job2_desc: '• Автоматизировал ключевые бизнес-процессы с использованием Python и ML-моделей — экономия десятков человеко-часов в неделю. • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства. • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости пользователей. • Участвовал в тестировании и разработке внутреннего ПО, внедрял методики повышения надёжности ИТ-решений.',
+        projects_title: 'Личные проекты',
+        projects_intro: 'Параллельно с работой в компаниях реализовал множество AI-систем «под ключ». Проекты конфиденциальны — показываю описание систем, что они делали и какие результаты дали.',
+        slide_what: 'Что делала система',
+        slide_impact: 'Результаты',
+        slide1_title: 'AI-обучающая платформа',
+        slide1_tag: 'EdTech · 2023—настоящее время',
+        slide1_w1: 'AI-тьютор в диалоге с учеником',
+        slide1_w2: 'Авто-генерация заданий и тестов через LLM',
+        slide1_w3: 'Голосовые уроки (Whisper + TTS)',
+        slide1_w4: 'Персонализация траектории обучения',
+        slide1_i1: 'Проверка домашки быстрее в ~10×',
+        slide1_i2: 'Нагрузка на преподавателей — меньше на 60%',
+        slide1_i3: 'Адаптивная сложность под каждого ученика',
+        slide1_i4: 'Рост вовлечённости и ретеншна',
+        slide2_title: 'Интеллектуальный документооборот',
+        slide2_tag: 'DocAI · OCR + LLM · 2024—настоящее',
+        slide2_w1: 'OCR низкокачественных сканов и PDF',
+        slide2_w2: 'Извлечение реквизитов и таблиц LLM',
+        slide2_w3: 'Классификация и маршрутизация документов',
+        slide2_w4: 'Дообучение LoRA/QLoRA под домен клиента',
+        slide2_i1: 'Ручная обработка сокращена на ~70%',
+        slide2_i2: 'Точность извлечения — 95%+',
+        slide2_i3: 'Среднее время обработки дока — секунды вместо минут',
+        slide2_i4: 'RAG-поиск по внутренней базе знаний',
+        slide3_title: 'AI-автоматизация бизнес-процессов',
+        slide3_tag: 'B2B · автоматизация · 2023—настоящее',
+        slide3_w1: 'AI-ассистент продаж и поддержки',
+        slide3_w2: 'Генерация КП, смет и отчётов',
+        slide3_w3: 'Интеграция LLM с CRM и 1С',
+        slide3_w4: 'Сквозные пайплайны на n8n/Make',
+        slide3_i1: 'Скорость подготовки КП — минуты вместо часов',
+        slide3_i2: 'Первая линия поддержки автоматизирована',
+        slide3_i3: 'Экономия десятков чел/часов в неделю',
+        slide3_i4: 'Рост конверсии входящих заявок',
+        slide4_title: 'Мульти-агентная AI-система',
+        slide4_tag: 'AI Agents · 2024—настоящее',
+        slide4_w1: 'Команда автономных агентов (LangGraph)',
+        slide4_w2: 'Авто-исследование и сбор данных',
+        slide4_w3: 'Tool use: function calling и MCP',
+        slide4_w4: 'Многошаговые задачи без человека',
+        slide4_i1: 'Отчёты, которые раньше готовились днями, готовы за часы',
+        slide4_i2: 'Полностью автономные рутины',
+        slide4_i3: 'Гибкая архитектура под новые инструменты',
+        slide4_i4: 'Прозрачные логи решений агентов',
+        slide5_title: 'RAG-ассистент по внутренней базе',
+        slide5_tag: 'Knowledge Base · RAG · 2024—настоящее',
+        slide5_w1: 'Поиск по тысячам внутренних документов',
+        slide5_w2: 'Гибридный retrieval (BM25 + vector)',
+        slide5_w3: 'Ответы с цитатами и ссылками на источник',
+        slide5_w4: 'Re-ranking и guardrails против галлюцинаций',
+        slide5_i1: 'Поиск ответа — секунды вместо часов',
+        slide5_i2: 'Меньше нагрузки на экспертов',
+        slide5_i3: 'Единая точка входа в знания компании',
+        slide5_i4: 'Ответы с проверяемыми источниками',
+        pdf_btn: '⤓ PDF',
         education_title: 'Образование',
         edu1_title: 'Большие данные и машинное обучение',
         edu1_meta: '2024 — настоящее время',
@@ -746,30 +1221,88 @@
         lang_title: 'Языки',
         lang_desc: 'Русский — родной, Английский — B2.',
         hobby_title: 'Увлечения',
-        hobby_desc: 'Разработка AI-агентов и приложений на базе LLM.',
+        hobby_desc: 'Разработка AI-агентов и приложений на базе LLM, исследование новых архитектур моделей, open-source ИИ-проекты.',
         footer: 'Технологии и ИИ — это не просто тренд, это фундамент будущего, которое мы создаём уже сегодня.',
         photo_open: 'Увеличить фото',
         photo_close: 'Закрыть увеличенное фото',
         photo_alt: 'Увеличенное фото Егора Селькина'
       },
       en: {
-        page_title: 'Egor Selkin — Resume',
-        page_desc: 'Resume of Egor Selkin — ML Engineer, AI/LLM solution development.',
+        page_title: 'Egor Selkin — AI/ML Engineer',
+        page_desc: 'Resume of Egor Selkin — AI/ML Engineer, 3+ years in AI: LLM, RAG, OCR, AI business automation.',
         name: 'Egor Selkin',
-        role: 'Developer (ML Engineer)',
+        role: 'AI/ML Engineer · LLM · RAG · OCR · AI Automation',
         pill_city: 'Moscow',
+        pill_ai_years: '3+ years in AI',
         pill_english: 'English: B2',
         pill_open: 'Open to AI/LLM Projects',
+        about_title: 'About me',
+        about_desc: '3+ years working in AI: from classical ML and computer vision to modern LLMs, RAG systems and AI agents. I specialize in bringing AI into real business processes: document workflow automation, OCR and data extraction from images/PDFs, fine-tuning models for applied tasks, AI assistants and learning platforms. Beyond company work, I have personally delivered dozens of end-to-end projects — from research and prototype to production.',
         skills_title: 'Skills',
         experience_title: 'Work Experience',
-        job1_title: 'Developer (ML Engineer)',
+        job1_title: 'AI/ML Engineer',
         job1_date: 'November 2025 — Present',
         job1_company: 'FSUE "GUSS"',
-        job1_desc: 'Developing LLM-based solutions, fine-tuning and adapting models for applied tasks. Building systems for extracting and analyzing text from low-quality images and PDFs. Integrating LLM infrastructure into company workflows to automate document handling, including regular cleanup and optimization of corporate files.',
+        job1_desc: '• Designed and deployed LLM infrastructure (local models: LLaMA, DeepSeek, GigaChat) for document workflow automation — reduced manual document processing by ~70%. • Built an OCR pipeline for low-quality scans and PDFs (PaddleOCR + LLM post-processing) with 95%+ extraction accuracy. • Fine-tuned models (LoRA / QLoRA) on corporate vocabulary and document templates, built a RAG system over internal knowledge base (Qdrant + LangChain). • Implemented MLOps practices: containerization (Docker), CI/CD, model monitoring (MLflow), dataset versioning. • Developed AI agents for routine tasks: incoming document classification, auto-summarization, entity extraction.',
         job2_title: 'Software Developer',
         job2_date: 'March 2025 — November 2025',
         job2_company: 'FSUE Main Research Computing Center of the Presidential Executive Office',
-        job2_desc: 'Automating key business processes, monitoring and analytics of performance metrics. Optimizing the corporate forum and improving employee engagement. Participating in software testing and development, implementing methods to improve IT solution reliability.',
+        job2_desc: '• Automated key business processes using Python and ML models — saving dozens of person-hours per week. • Implemented monitoring and analytics, built dashboards for management. • Optimized the corporate forum, added AI-driven content recommendations — user engagement growth. • Participated in testing and development of internal software, applied methods to improve IT reliability.',
+        projects_title: 'Personal Projects',
+        projects_intro: 'In parallel with company work, I have personally delivered many end-to-end AI systems. Projects are confidential — I describe what each system did and what results it produced.',
+        slide_what: 'What the system did',
+        slide_impact: 'Impact',
+        slide1_title: 'AI-powered Learning Platform',
+        slide1_tag: 'EdTech · 2023—Present',
+        slide1_w1: 'AI tutor in dialogue with the student',
+        slide1_w2: 'Auto-generation of tasks and tests via LLM',
+        slide1_w3: 'Voice lessons (Whisper + TTS)',
+        slide1_w4: 'Personalized learning trajectory',
+        slide1_i1: 'Homework checking ~10× faster',
+        slide1_i2: 'Teacher workload reduced by 60%',
+        slide1_i3: 'Adaptive difficulty per student',
+        slide1_i4: 'Higher engagement and retention',
+        slide2_title: 'Intelligent Document Workflow',
+        slide2_tag: 'DocAI · OCR + LLM · 2024—Present',
+        slide2_w1: 'OCR of low-quality scans and PDFs',
+        slide2_w2: 'LLM-driven field and table extraction',
+        slide2_w3: 'Document classification and routing',
+        slide2_w4: 'LoRA/QLoRA fine-tuning on client domain',
+        slide2_i1: 'Manual processing reduced by ~70%',
+        slide2_i2: 'Extraction accuracy — 95%+',
+        slide2_i3: 'Per-document time: seconds, not minutes',
+        slide2_i4: 'RAG search over internal knowledge base',
+        slide3_title: 'AI Automation of Business Processes',
+        slide3_tag: 'B2B · Automation · 2023—Present',
+        slide3_w1: 'AI assistant for sales & support',
+        slide3_w2: 'Generation of proposals, estimates, reports',
+        slide3_w3: 'LLM integration with CRM and 1C',
+        slide3_w4: 'End-to-end pipelines on n8n/Make',
+        slide3_i1: 'Proposal preparation — minutes, not hours',
+        slide3_i2: 'First-line support fully automated',
+        slide3_i3: 'Saves dozens of person-hours per week',
+        slide3_i4: 'Higher conversion of incoming leads',
+        slide4_title: 'Multi-agent AI System',
+        slide4_tag: 'AI Agents · 2024—Present',
+        slide4_w1: 'Team of autonomous agents (LangGraph)',
+        slide4_w2: 'Auto-research and data gathering',
+        slide4_w3: 'Tool use: function calling and MCP',
+        slide4_w4: 'Multi-step tasks without human in the loop',
+        slide4_i1: 'Reports that took days are ready in hours',
+        slide4_i2: 'Fully autonomous routines',
+        slide4_i3: 'Flexible architecture for new tools',
+        slide4_i4: 'Transparent agent decision logs',
+        slide5_title: 'RAG Assistant over Internal Knowledge Base',
+        slide5_tag: 'Knowledge Base · RAG · 2024—Present',
+        slide5_w1: 'Search across thousands of internal docs',
+        slide5_w2: 'Hybrid retrieval (BM25 + vector)',
+        slide5_w3: 'Answers with citations to source',
+        slide5_w4: 'Re-ranking and guardrails against hallucinations',
+        slide5_i1: 'Finding an answer — seconds, not hours',
+        slide5_i2: 'Less load on subject-matter experts',
+        slide5_i3: 'Single entry point to company knowledge',
+        slide5_i4: 'Answers with verifiable sources',
+        pdf_btn: '⤓ PDF',
         education_title: 'Education',
         edu1_title: 'Big Data and Machine Learning',
         edu1_meta: '2024 — Present',
@@ -784,7 +1317,7 @@
         lang_title: 'Languages',
         lang_desc: 'Russian — Native, English — B2.',
         hobby_title: 'Interests',
-        hobby_desc: 'Building AI agents and LLM-based applications.',
+        hobby_desc: 'Building AI agents and LLM-based applications, exploring new model architectures, open-source AI projects.',
         footer: 'Technology and AI are not just a trend — they are the foundation of the future we are building today.',
         photo_open: 'Zoom in photo',
         photo_close: 'Close enlarged photo',
@@ -868,6 +1401,93 @@
         closePhoto();
       }
     });
+
+    /* ===== Theme toggle ===== */
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('resume-theme') || 'dark';
+    const applyTheme = (theme) => {
+      document.body.classList.toggle('light', theme === 'light');
+      themeToggle.textContent = theme === 'light' ? '☀' : '☾';
+      localStorage.setItem('resume-theme', theme);
+    };
+    applyTheme(savedTheme);
+    themeToggle.addEventListener('click', () => {
+      applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
+    });
+
+    /* ===== PDF / Print ===== */
+    document.getElementById('pdfBtn').addEventListener('click', () => window.print());
+
+    /* ===== Projects carousel ===== */
+    (function initCarousel() {
+      const root = document.getElementById('projCarousel');
+      if (!root) return;
+      const track = root.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const dotsBox = document.getElementById('carDots');
+      const prevBtn = document.getElementById('carPrev');
+      const nextBtn = document.getElementById('carNext');
+      let index = 0;
+      let autoTimer = null;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.type = 'button';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `Слайд ${i + 1}`);
+        dot.addEventListener('click', () => go(i, true));
+        dotsBox.appendChild(dot);
+      });
+      const dots = Array.from(dotsBox.children);
+
+      const update = () => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      };
+      const go = (i, manual) => {
+        index = (i + slides.length) % slides.length;
+        update();
+        if (manual) restart();
+      };
+      const next = (manual) => go(index + 1, manual);
+      const prev = (manual) => go(index - 1, manual);
+
+      prevBtn.addEventListener('click', () => prev(true));
+      nextBtn.addEventListener('click', () => next(true));
+
+      // Keyboard support when carousel focused
+      root.tabIndex = 0;
+      root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prev(true);
+        if (e.key === 'ArrowRight') next(true);
+      });
+
+      // Touch / swipe
+      let startX = null;
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 50) (dx < 0 ? next(true) : prev(true));
+        startX = null;
+      });
+
+      // Autoplay (pauses on hover)
+      const start = () => { autoTimer = setInterval(() => next(false), 6500); };
+      const stop = () => { clearInterval(autoTimer); autoTimer = null; };
+      const restart = () => { stop(); start(); };
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      root.addEventListener('focusin', stop);
+      root.addEventListener('focusout', start);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else start();
+      });
+
+      update();
+      start();
+    })();
   </script>
 </body>
 </html>
