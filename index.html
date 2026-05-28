@@ -488,33 +488,156 @@
     }
 
     @media print {
-      body {
-        background: #ffffff;
-        color: #111;
+      @page { margin: 12mm; }
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        overflow: visible !important;
       }
-
-      .bg-blob {
-        display: none;
-      }
-
+      .bg-blob, .stars, .photo-overlay, .photo-modal, .toolbar,
+      .carousel-nav, .carousel-dots, #themeToggle, #pdfBtn, #langToggle,
+      .lang-toggle, .icon-btn { display: none !important; }
+      .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
       .card {
-        background: #fff;
-        box-shadow: none;
-        border: 1px solid #ddd;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        border: 1px solid #d6dbe6 !important;
         break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 10px !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
+      h1, h2, h3, h4, h5, p, li, span { color: #0f172a !important; }
+      .section-title, .slide-title {
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        background-clip: initial !important;
+        color: #0b1020 !important;
+        -webkit-text-fill-color: #0b1020 !important;
+      }
+      .role { color: #1e40af !important; }
+      .job-company { color: #1e40af !important; }
+      .pill, .skill, a.link, .slide-stack span, .slide-tag {
+        color: #1e293b !important;
+        border-color: #cbd5e1 !important;
+        background: #f1f5f9 !important;
+      }
+      .skill-ico { filter: none !important; }
+      .text-muted, .edu-meta, .simple-meta { color: #475569 !important; }
+      .slide-block ul, .job p { color: #1e293b !important; }
+      /* expand carousel: stack all slides */
+      .carousel-viewport { overflow: visible !important; }
+      .carousel-track {
+        display: block !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .slide {
+        flex: none !important;
+        width: 100% !important;
+        margin-bottom: 10px !important;
+        background: #ffffff !important;
+        border: 1px solid #d6dbe6 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .stats { display: grid !important; }
+      .qr-print { display: flex !important; }
+    }
 
-      .pill,
-      .skill,
-      a.link {
-        color: #222;
-        border-color: #ccc;
-      }
+    /* ===== Stats counters ===== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      text-align: center;
+    }
+    .stat {
+      padding: 8px 6px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(140deg, rgba(118,169,255,0.08), rgba(145,240,211,0.05));
+    }
+    .stat-num {
+      display: block;
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800;
+      line-height: 1.05;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.5px;
+    }
+    .stat-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: 1fr; }
+    }
 
-      .job-company,
-      .role {
-        color: #0b4ab6;
-      }
+    /* ===== Skill icons & tiers ===== */
+    .skill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .skill-ico {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    body.light .skill-ico { filter: none; }
+    .tier {
+      margin-bottom: 14px;
+    }
+    .tier:last-child { margin-bottom: 0; }
+    .tier-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 8px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .tier-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tier-expert .tier-dot { background: linear-gradient(140deg, #91f0d3, #76a9ff); box-shadow: 0 0 14px rgba(145,240,211,0.6); }
+    .tier-advanced .tier-dot { background: linear-gradient(140deg, #76a9ff, #c084fc); box-shadow: 0 0 12px rgba(118,169,255,0.5); }
+    .tier-familiar .tier-dot { background: linear-gradient(140deg, #94a3b8, #cbd5e1); }
+    .tier-expert .tier-head { color: var(--accent-2); }
+
+    /* ===== QR code ===== */
+    .qr-print {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .qr-print img {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #d6dbe6;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .qr-print .qr-text {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.4;
     }
 
     /* ===== Toolbar (lang + theme + pdf) ===== */
@@ -782,6 +905,21 @@
       </div>
     </section>
 
+    <section class="card stats reveal" id="statsCard" aria-label="Ключевые цифры">
+      <div class="stat">
+        <span class="stat-num" data-target="3" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stat_years">лет в ИИ</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="20" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stat_projects">AI-проектов реализовано</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="5" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stat_prod">AI-систем в проде</span>
+      </div>
+    </section>
+
     <section class="card reveal">
       <h2 class="section-title" data-i18n="about_title">Обо мне</h2>
       <p class="text-muted" data-i18n="about_desc">
@@ -794,69 +932,66 @@
     </section>
 
     <section class="card reveal">
-      <h2 class="section-title" data-i18n="skills_title">Навыки</h2>
-      <div class="skills">
-        <span class="skill">Python</span>
-        <span class="skill">TensorFlow</span>
-        <span class="skill">PyTorch</span>
-        <span class="skill">OpenCV</span>
-        <span class="skill">NumPy</span>
-        <span class="skill">Pandas</span>
-        <span class="skill">Matplotlib</span>
-        <span class="skill">FastAPI</span>
-        <span class="skill">Flask</span>
-        <span class="skill">Django</span>
-        <span class="skill">Streamlit</span>
-        <span class="skill">NLP / NLU</span>
-        <span class="skill">Prompt Engineering</span>
-        <span class="skill">Fine-tuning</span>
-        <span class="skill">Transfer Learning</span>
-        <span class="skill">Few-shot / Zero-shot</span>
-        <span class="skill">Active Learning</span>
-        <span class="skill">Reinforcement Learning</span>
-        <span class="skill">Federated Learning</span>
-        <span class="skill">Self-supervised Learning</span>
-        <span class="skill">Docker</span>
-        <span class="skill">GitLab CI/CD</span>
-        <span class="skill">PostgreSQL</span>
-        <span class="skill">GigaChat</span>
-        <span class="skill">LLaMA</span>
-        <span class="skill">DeepSeek</span>
-        <span class="skill">Ollama</span>
-        <span class="skill">vLLM</span>
-        <span class="skill">RAG</span>
-        <span class="skill">LangChain</span>
-        <span class="skill">LangGraph</span>
-        <span class="skill">FAISS</span>
-        <span class="skill">Qdrant</span>
-        <span class="skill">MLflow</span>
-        <span class="skill">Weights & Biases</span>
-        <span class="skill">MLOps</span>
-        <span class="skill">Model Monitoring</span>
-        <span class="skill">LoRA / QLoRA</span>
-        <span class="skill">ONNX</span>
-        <span class="skill">TensorRT</span>
-        <span class="skill">Kubernetes</span>
-        <span class="skill">Apache Airflow</span>
-        <span class="skill">AI Agents</span>
-        <span class="skill">Multi-agent Systems</span>
-        <span class="skill">AutoGen</span>
-        <span class="skill">CrewAI</span>
-        <span class="skill">OCR (PaddleOCR / Tesseract)</span>
-        <span class="skill">Document AI</span>
-        <span class="skill">Computer Vision</span>
-        <span class="skill">YOLO</span>
-        <span class="skill">Whisper / Speech-to-Text</span>
-        <span class="skill">Hugging Face</span>
-        <span class="skill">Sentence Transformers</span>
-        <span class="skill">Chroma / Weaviate</span>
-        <span class="skill">n8n / Make</span>
-        <span class="skill">AI-автоматизация бизнеса</span>
-        <span class="skill">Telegram Bots</span>
-        <span class="skill">REST API</span>
-        <span class="skill">WebSockets</span>
-        <span class="skill">Linux</span>
-        <span class="skill">Git</span>
+      <h2 class="section-title" data-i18n="skills_title">Стек по уровням</h2>
+
+      <div class="tier tier-expert">
+        <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_expert">Expert · ежедневно в проде</span></h4>
+        <div class="skills">
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/python/76a9ff" alt="" loading="lazy" />Python</span>
+          <span class="skill">LLM · RAG</span>
+          <span class="skill">Prompt Engineering</span>
+          <span class="skill">Fine-tuning · LoRA / QLoRA</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/langchain/76a9ff" alt="" loading="lazy" />LangChain</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/fastapi/76a9ff" alt="" loading="lazy" />FastAPI</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/docker/76a9ff" alt="" loading="lazy" />Docker</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/postgresql/76a9ff" alt="" loading="lazy" />PostgreSQL</span>
+          <span class="skill">OCR · PaddleOCR · Tesseract</span>
+          <span class="skill">REST API · WebSockets</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/git/76a9ff" alt="" loading="lazy" />Git</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/linux/76a9ff" alt="" loading="lazy" />Linux</span>
+        </div>
+      </div>
+
+      <div class="tier tier-advanced">
+        <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_advanced">Advanced · уверенно в боевых задачах</span></h4>
+        <div class="skills">
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/pytorch/76a9ff" alt="" loading="lazy" />PyTorch</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/tensorflow/76a9ff" alt="" loading="lazy" />TensorFlow</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/huggingface/76a9ff" alt="" loading="lazy" />Hugging Face</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/ollama/76a9ff" alt="" loading="lazy" />Ollama</span>
+          <span class="skill">LangGraph · AutoGen · CrewAI</span>
+          <span class="skill">AI Agents · Multi-agent</span>
+          <span class="skill">Qdrant · FAISS · Chroma</span>
+          <span class="skill">Sentence Transformers</span>
+          <span class="skill">vLLM · GigaChat · LLaMA · DeepSeek</span>
+          <span class="skill">Whisper · TTS</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/opencv/76a9ff" alt="" loading="lazy" />OpenCV · YOLO · CV</span>
+          <span class="skill">MLOps · MLflow · W&amp;B</span>
+          <span class="skill">n8n · Make</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/telegram/76a9ff" alt="" loading="lazy" />Telegram Bots</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/numpy/76a9ff" alt="" loading="lazy" />NumPy</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/pandas/76a9ff" alt="" loading="lazy" />Pandas</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/flask/76a9ff" alt="" loading="lazy" />Flask</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/django/76a9ff" alt="" loading="lazy" />Django</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/streamlit/76a9ff" alt="" loading="lazy" />Streamlit</span>
+          <span class="skill">1С · Интеграции</span>
+        </div>
+      </div>
+
+      <div class="tier tier-familiar">
+        <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_familiar">Familiar · был опыт, могу подхватить</span></h4>
+        <div class="skills">
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/kubernetes/76a9ff" alt="" loading="lazy" />Kubernetes</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/apacheairflow/76a9ff" alt="" loading="lazy" />Apache Airflow</span>
+          <span class="skill">ONNX · TensorRT</span>
+          <span class="skill">Reinforcement Learning</span>
+          <span class="skill">Federated Learning</span>
+          <span class="skill">Self-supervised</span>
+          <span class="skill">Active Learning</span>
+          <span class="skill">Few-shot / Zero-shot</span>
+          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/gitlab/76a9ff" alt="" loading="lazy" />GitLab CI/CD</span>
+          <span class="skill">Model Monitoring</span>
+        </div>
       </div>
     </section>
 
@@ -907,17 +1042,17 @@
 
             <article class="slide" aria-roledescription="slide">
               <div class="slide-head">
-                <h3 class="slide-title" data-i18n="slide1_title">AI-обучающая платформа</h3>
-                <span class="slide-tag" data-i18n="slide1_tag">EdTech · 2023—настоящее время</span>
+                <h3 class="slide-title" data-i18n="slide1_title">AI-обучающая платформа (EduTest)</h3>
+                <span class="slide-tag" data-i18n="slide1_tag">EdTech · 2023—настоящее</span>
               </div>
               <div class="slide-grid">
                 <div class="slide-block">
                   <h5 data-i18n="slide_what">Что делала система</h5>
                   <ul>
-                    <li data-i18n="slide1_w1">AI-тьютор в диалоге с учеником</li>
-                    <li data-i18n="slide1_w2">Авто-генерация заданий и тестов через LLM</li>
-                    <li data-i18n="slide1_w3">Голосовые уроки (Whisper + TTS)</li>
-                    <li data-i18n="slide1_w4">Персонализация траектории обучения</li>
+                    <li data-i18n="slide1_w1">Создание тестов с любыми типами вопросов</li>
+                    <li data-i18n="slide1_w2">AI-проверка открытых ответов (Qwen 2.5 / Ollama)</li>
+                    <li data-i18n="slide1_w3">Персональные AI-рекомендации ученикам</li>
+                    <li data-i18n="slide1_w4">Аналитика прогресса и сложности заданий</li>
                   </ul>
                 </div>
                 <div class="slide-block">
@@ -925,13 +1060,13 @@
                   <ul>
                     <li data-i18n="slide1_i1">Проверка домашки быстрее в ~10×</li>
                     <li data-i18n="slide1_i2">Нагрузка на преподавателей — меньше на 60%</li>
-                    <li data-i18n="slide1_i3">Адаптивная сложность под каждого ученика</li>
+                    <li data-i18n="slide1_i3">Лидерборды, групповые тесты, экспорт Excel/PDF</li>
                     <li data-i18n="slide1_i4">Рост вовлечённости и ретеншна</li>
                   </ul>
                 </div>
               </div>
               <div class="slide-stack">
-                <span>LLM</span><span>Whisper</span><span>TTS</span><span>RAG</span><span>FastAPI</span><span>PostgreSQL</span><span>React</span>
+                <span>React</span><span>Vite</span><span>TypeScript</span><span>Express</span><span>PostgreSQL</span><span>Drizzle ORM</span><span>Ollama · Qwen 2.5</span><span>shadcn/ui</span>
               </div>
             </article>
 
@@ -955,7 +1090,7 @@
                   <ul>
                     <li data-i18n="slide2_i1">Ручная обработка сокращена на ~70%</li>
                     <li data-i18n="slide2_i2">Точность извлечения — 95%+</li>
-                    <li data-i18n="slide2_i3">Среднее время обработки дока — секунды вместо минут</li>
+                    <li data-i18n="slide2_i3">Среднее время обработки — секунды вместо минут</li>
                     <li data-i18n="slide2_i4">RAG-поиск по внутренней базе знаний</li>
                   </ul>
                 </div>
@@ -967,26 +1102,116 @@
 
             <article class="slide" aria-roledescription="slide">
               <div class="slide-head">
-                <h3 class="slide-title" data-i18n="slide3_title">AI-автоматизация бизнес-процессов</h3>
-                <span class="slide-tag" data-i18n="slide3_tag">B2B · автоматизация · 2023—настоящее</span>
+                <h3 class="slide-title" data-i18n="slide3_title">AI-помощник в 1С</h3>
+                <span class="slide-tag" data-i18n="slide3_tag">1С · ИИ-категоризация · 2024—настоящее</span>
               </div>
               <div class="slide-grid">
                 <div class="slide-block">
                   <h5 data-i18n="slide_what">Что делала система</h5>
                   <ul>
-                    <li data-i18n="slide3_w1">AI-ассистент продаж и поддержки</li>
-                    <li data-i18n="slide3_w2">Генерация КП, смет и отчётов</li>
-                    <li data-i18n="slide3_w3">Интеграция LLM с CRM и 1С</li>
-                    <li data-i18n="slide3_w4">Сквозные пайплайны на n8n/Make</li>
+                    <li data-i18n="slide3_w1">Краткое содержание документа в карточке 1С</li>
+                    <li data-i18n="slide3_w2">AI-категоризация документов и контрагентов</li>
+                    <li data-i18n="slide3_w3">Извлечение полей в реквизиты документа</li>
+                    <li data-i18n="slide3_w4">Подсказки и AI-комментарии прямо в форме</li>
                   </ul>
                 </div>
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide3_i1">Скорость подготовки КП — минуты вместо часов</li>
-                    <li data-i18n="slide3_i2">Первая линия поддержки автоматизирована</li>
-                    <li data-i18n="slide3_i3">Экономия десятков чел/часов в неделю</li>
-                    <li data-i18n="slide3_i4">Рост конверсии входящих заявок</li>
+                    <li data-i18n="slide3_i1">Скорость разбора входящих документов — в разы выше</li>
+                    <li data-i18n="slide3_i2">Меньше ручной классификации делопроизводителями</li>
+                    <li data-i18n="slide3_i3">Единый AI-слой поверх типовой 1С-конфигурации</li>
+                    <li data-i18n="slide3_i4">Прозрачные логи обращений к LLM</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>1С:Предприятие</span><span>BSL</span><span>HTTP-сервисы</span><span>GigaChat</span><span>LLaMA · DeepSeek</span><span>FastAPI</span><span>JSON-обмен</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide4_title">AI-психолог: тесты и аналитика</h3>
+                <span class="slide-tag" data-i18n="slide4_tag">HR-Tech · AI-анализ · 2024—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide4_w1">Психологические тесты: шкалы + открытые ответы</li>
+                    <li data-i18n="slide4_w2">AI-анализ свободных ответов по методике</li>
+                    <li data-i18n="slide4_w3">Формирование структурированного отчёта</li>
+                    <li data-i18n="slide4_w4">Роли: respondent / specialist / admin (RBAC)</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide4_i1">Часы работы психолога → минуты на отчёт</li>
+                    <li data-i18n="slide4_i2">Версионирование методик, промптов и моделей</li>
+                    <li data-i18n="slide4_i3">Confidence-метрика и аудит решений</li>
+                    <li data-i18n="slide4_i4">Безопасное хранение ПДн без утечек в логи</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy · Alembic</span><span>JWT · RBAC</span><span>Docker Compose</span><span>LLM-провайдеры (multi)</span>
+              </div>
+            </article>
+
+            <article class="slide slide-feature" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide5_title">ФАКТ — аудит конфиденциальных файлов</h3>
+                <span class="slide-tag" data-i18n="slide5_tag">Security · OCR + LLM локально · 2024—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide5_w1">Поиск ДСП, ПДн, «Секретно» в файловых хранилищах</li>
+                    <li data-i18n="slide5_w2">OCR изображений и PDF (PaddleOCR + VLM)</li>
+                    <li data-i18n="slide5_w3">LLM-классификация документов (Ollama, локально)</li>
+                    <li data-i18n="slide5_w4">Поиск дубликатов: SHA-256 + эмбеддинги</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide5_i1">Всё работает локально — файлы не покидают контур</li>
+                    <li data-i18n="slide5_i2">Скан VLM-OCR: ~15 сек на файл вместо ~3 минут CPU</li>
+                    <li data-i18n="slide5_i3">Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL</li>
+                    <li data-i18n="slide5_i4">Поддержка txt/doc/docx/pdf/xlsx/изображений/архивов</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>Python</span><span>PaddleOCR</span><span>Qwen2.5-VL</span><span>GigaChat3-10B</span><span>Ollama</span><span>PostgreSQL</span><span>FastAPI</span><span>Windows Server</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide6_title">AI-автоматизация бизнес-процессов</h3>
+                <span class="slide-tag" data-i18n="slide6_tag">B2B · автоматизация · 2023—настоящее</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide6_w1">AI-ассистент продаж и поддержки</li>
+                    <li data-i18n="slide6_w2">Генерация КП, смет и отчётов</li>
+                    <li data-i18n="slide6_w3">Интеграция LLM с CRM и 1С</li>
+                    <li data-i18n="slide6_w4">Сквозные пайплайны на n8n/Make</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide6_i1">Скорость подготовки КП — минуты вместо часов</li>
+                    <li data-i18n="slide6_i2">Первая линия поддержки автоматизирована</li>
+                    <li data-i18n="slide6_i3">Экономия десятков чел/часов в неделю</li>
+                    <li data-i18n="slide6_i4">Рост конверсии входящих заявок</li>
                   </ul>
                 </div>
               </div>
@@ -997,26 +1222,26 @@
 
             <article class="slide" aria-roledescription="slide">
               <div class="slide-head">
-                <h3 class="slide-title" data-i18n="slide4_title">Мульти-агентная AI-система</h3>
-                <span class="slide-tag" data-i18n="slide4_tag">AI Agents · 2024—настоящее</span>
+                <h3 class="slide-title" data-i18n="slide7_title">Мульти-агентная AI-система</h3>
+                <span class="slide-tag" data-i18n="slide7_tag">AI Agents · 2024—настоящее</span>
               </div>
               <div class="slide-grid">
                 <div class="slide-block">
                   <h5 data-i18n="slide_what">Что делала система</h5>
                   <ul>
-                    <li data-i18n="slide4_w1">Команда автономных агентов (LangGraph)</li>
-                    <li data-i18n="slide4_w2">Авто-исследование и сбор данных</li>
-                    <li data-i18n="slide4_w3">Tool use: function calling и MCP</li>
-                    <li data-i18n="slide4_w4">Многошаговые задачи без человека</li>
+                    <li data-i18n="slide7_w1">Команда автономных агентов (LangGraph)</li>
+                    <li data-i18n="slide7_w2">Авто-исследование и сбор данных</li>
+                    <li data-i18n="slide7_w3">Tool use: function calling и MCP</li>
+                    <li data-i18n="slide7_w4">Многошаговые задачи без человека в цикле</li>
                   </ul>
                 </div>
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide4_i1">Отчёты, которые раньше готовились днями, готовы за часы</li>
-                    <li data-i18n="slide4_i2">Полностью автономные рутины</li>
-                    <li data-i18n="slide4_i3">Гибкая архитектура под новые инструменты</li>
-                    <li data-i18n="slide4_i4">Прозрачные логи решений агентов</li>
+                    <li data-i18n="slide7_i1">Отчёты, которые раньше готовились днями, готовы за часы</li>
+                    <li data-i18n="slide7_i2">Полностью автономные рутины</li>
+                    <li data-i18n="slide7_i3">Гибкая архитектура под новые инструменты</li>
+                    <li data-i18n="slide7_i4">Прозрачные логи решений агентов</li>
                   </ul>
                 </div>
               </div>
@@ -1027,31 +1252,61 @@
 
             <article class="slide" aria-roledescription="slide">
               <div class="slide-head">
-                <h3 class="slide-title" data-i18n="slide5_title">RAG-ассистент по внутренней базе</h3>
-                <span class="slide-tag" data-i18n="slide5_tag">Knowledge Base · RAG · 2024—настоящее</span>
+                <h3 class="slide-title" data-i18n="slide8_title">RAG-ассистент по внутренней базе</h3>
+                <span class="slide-tag" data-i18n="slide8_tag">Knowledge Base · RAG · 2024—настоящее</span>
               </div>
               <div class="slide-grid">
                 <div class="slide-block">
                   <h5 data-i18n="slide_what">Что делала система</h5>
                   <ul>
-                    <li data-i18n="slide5_w1">Поиск по тысячам внутренних документов</li>
-                    <li data-i18n="slide5_w2">Гибридный retrieval (BM25 + vector)</li>
-                    <li data-i18n="slide5_w3">Ответы с цитатами и ссылками на источник</li>
-                    <li data-i18n="slide5_w4">Re-ranking и guardrails против галлюцинаций</li>
+                    <li data-i18n="slide8_w1">Поиск по тысячам внутренних документов</li>
+                    <li data-i18n="slide8_w2">Гибридный retrieval (BM25 + vector)</li>
+                    <li data-i18n="slide8_w3">Ответы с цитатами и ссылками на источник</li>
+                    <li data-i18n="slide8_w4">Re-ranking и guardrails против галлюцинаций</li>
                   </ul>
                 </div>
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide5_i1">Поиск ответа — секунды вместо часов</li>
-                    <li data-i18n="slide5_i2">Меньше нагрузки на экспертов</li>
-                    <li data-i18n="slide5_i3">Единая точка входа в знания компании</li>
-                    <li data-i18n="slide5_i4">Ответы с проверяемыми источниками</li>
+                    <li data-i18n="slide8_i1">Поиск ответа — секунды вместо часов</li>
+                    <li data-i18n="slide8_i2">Меньше нагрузки на экспертов</li>
+                    <li data-i18n="slide8_i3">Единая точка входа в знания компании</li>
+                    <li data-i18n="slide8_i4">Ответы с проверяемыми источниками</li>
                   </ul>
                 </div>
               </div>
               <div class="slide-stack">
                 <span>RAG</span><span>Sentence Transformers</span><span>FAISS</span><span>Qdrant</span><span>BM25</span><span>LangChain</span><span>FastAPI</span>
+              </div>
+            </article>
+
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide9_title">Голосовой AI-агент колл-центра</h3>
+                <span class="slide-tag" data-i18n="slide9_tag">Voice AI · STT/TTS · 2025</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала система</h5>
+                  <ul>
+                    <li data-i18n="slide9_w1">Распознавание речи клиента в реальном времени (Whisper)</li>
+                    <li data-i18n="slide9_w2">LLM-диалог по скриптам и базе знаний</li>
+                    <li data-i18n="slide9_w3">Реалистичный голос (TTS) с эмоциональной окраской</li>
+                    <li data-i18n="slide9_w4">Маршрутизация на оператора по сигналам недовольства</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_impact">Результаты</h5>
+                  <ul>
+                    <li data-i18n="slide9_i1">До 80% входящих обращений закрывались ботом</li>
+                    <li data-i18n="slide9_i2">Среднее время ожидания клиента ↓ в 3 раза</li>
+                    <li data-i18n="slide9_i3">CSAT не падал — клиенты не понимали, что это бот</li>
+                    <li data-i18n="slide9_i4">Полные транскрипты и AI-резюме каждого звонка</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack">
+                <span>Whisper</span><span>Silero TTS</span><span>LangChain</span><span>WebRTC</span><span>Redis</span><span>FastAPI</span><span>Asterisk SIP</span>
               </div>
             </article>
 
@@ -1103,6 +1358,15 @@
         </div>
       </div>
     </section>
+
+    <div class="qr-print" aria-hidden="true">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://selkinegor2000-sudo.github.io/resume/" alt="QR на онлайн-версию резюме" />
+      <div class="qr-text">
+        <strong data-i18n="qr_title">Онлайн-версия резюме</strong><br />
+        <span data-i18n="qr_desc">Отсканируйте, чтобы открыть актуальную версию с каруселью проектов</span><br />
+        selkinegor2000-sudo.github.io/resume
+      </div>
+    </div>
 
     <footer data-i18n="footer">Технологии и ИИ — это не просто тренд, это фундамент будущего, которое мы создаём уже сегодня.</footer>
   </main>
@@ -1156,15 +1420,15 @@
         projects_intro: 'Параллельно с работой в компаниях реализовал множество AI-систем «под ключ». Проекты конфиденциальны — показываю описание систем, что они делали и какие результаты дали.',
         slide_what: 'Что делала система',
         slide_impact: 'Результаты',
-        slide1_title: 'AI-обучающая платформа',
-        slide1_tag: 'EdTech · 2023—настоящее время',
-        slide1_w1: 'AI-тьютор в диалоге с учеником',
-        slide1_w2: 'Авто-генерация заданий и тестов через LLM',
-        slide1_w3: 'Голосовые уроки (Whisper + TTS)',
-        slide1_w4: 'Персонализация траектории обучения',
+        slide1_title: 'AI-обучающая платформа (EduTest)',
+        slide1_tag: 'EdTech · 2023—настоящее',
+        slide1_w1: 'Создание тестов с любыми типами вопросов',
+        slide1_w2: 'AI-проверка открытых ответов (Qwen 2.5 / Ollama)',
+        slide1_w3: 'Персональные AI-рекомендации ученикам',
+        slide1_w4: 'Аналитика прогресса и сложности заданий',
         slide1_i1: 'Проверка домашки быстрее в ~10×',
         slide1_i2: 'Нагрузка на преподавателей — меньше на 60%',
-        slide1_i3: 'Адаптивная сложность под каждого ученика',
+        slide1_i3: 'Лидерборды, групповые тесты, экспорт Excel/PDF',
         slide1_i4: 'Рост вовлечённости и ретеншна',
         slide2_title: 'Интеллектуальный документооборот',
         slide2_tag: 'DocAI · OCR + LLM · 2024—настоящее',
@@ -1174,38 +1438,87 @@
         slide2_w4: 'Дообучение LoRA/QLoRA под домен клиента',
         slide2_i1: 'Ручная обработка сокращена на ~70%',
         slide2_i2: 'Точность извлечения — 95%+',
-        slide2_i3: 'Среднее время обработки дока — секунды вместо минут',
+        slide2_i3: 'Среднее время обработки — секунды вместо минут',
         slide2_i4: 'RAG-поиск по внутренней базе знаний',
-        slide3_title: 'AI-автоматизация бизнес-процессов',
-        slide3_tag: 'B2B · автоматизация · 2023—настоящее',
-        slide3_w1: 'AI-ассистент продаж и поддержки',
-        slide3_w2: 'Генерация КП, смет и отчётов',
-        slide3_w3: 'Интеграция LLM с CRM и 1С',
-        slide3_w4: 'Сквозные пайплайны на n8n/Make',
-        slide3_i1: 'Скорость подготовки КП — минуты вместо часов',
-        slide3_i2: 'Первая линия поддержки автоматизирована',
-        slide3_i3: 'Экономия десятков чел/часов в неделю',
-        slide3_i4: 'Рост конверсии входящих заявок',
-        slide4_title: 'Мульти-агентная AI-система',
-        slide4_tag: 'AI Agents · 2024—настоящее',
-        slide4_w1: 'Команда автономных агентов (LangGraph)',
-        slide4_w2: 'Авто-исследование и сбор данных',
-        slide4_w3: 'Tool use: function calling и MCP',
-        slide4_w4: 'Многошаговые задачи без человека',
-        slide4_i1: 'Отчёты, которые раньше готовились днями, готовы за часы',
-        slide4_i2: 'Полностью автономные рутины',
-        slide4_i3: 'Гибкая архитектура под новые инструменты',
-        slide4_i4: 'Прозрачные логи решений агентов',
-        slide5_title: 'RAG-ассистент по внутренней базе',
-        slide5_tag: 'Knowledge Base · RAG · 2024—настоящее',
-        slide5_w1: 'Поиск по тысячам внутренних документов',
-        slide5_w2: 'Гибридный retrieval (BM25 + vector)',
-        slide5_w3: 'Ответы с цитатами и ссылками на источник',
-        slide5_w4: 'Re-ranking и guardrails против галлюцинаций',
-        slide5_i1: 'Поиск ответа — секунды вместо часов',
-        slide5_i2: 'Меньше нагрузки на экспертов',
-        slide5_i3: 'Единая точка входа в знания компании',
-        slide5_i4: 'Ответы с проверяемыми источниками',
+        slide3_title: 'AI-помощник в 1С',
+        slide3_tag: '1С · ИИ-категоризация · 2024—настоящее',
+        slide3_w1: 'Краткое содержание документа в карточке 1С',
+        slide3_w2: 'AI-категоризация документов и контрагентов',
+        slide3_w3: 'Извлечение полей в реквизиты документа',
+        slide3_w4: 'Подсказки и AI-комментарии прямо в форме',
+        slide3_i1: 'Скорость разбора входящих документов — в разы выше',
+        slide3_i2: 'Меньше ручной классификации делопроизводителями',
+        slide3_i3: 'Единый AI-слой поверх типовой 1С-конфигурации',
+        slide3_i4: 'Прозрачные логи обращений к LLM',
+        slide4_title: 'AI-психолог: тесты и аналитика',
+        slide4_tag: 'HR-Tech · AI-анализ · 2024—настоящее',
+        slide4_w1: 'Психологические тесты: шкалы + открытые ответы',
+        slide4_w2: 'AI-анализ свободных ответов по методике',
+        slide4_w3: 'Формирование структурированного отчёта',
+        slide4_w4: 'Роли: respondent / specialist / admin (RBAC)',
+        slide4_i1: 'Часы работы психолога → минуты на отчёт',
+        slide4_i2: 'Версионирование методик, промптов и моделей',
+        slide4_i3: 'Confidence-метрика и аудит решений',
+        slide4_i4: 'Безопасное хранение ПДн без утечек в логи',
+        slide5_title: 'ФАКТ — аудит конфиденциальных файлов',
+        slide5_tag: 'Security · OCR + LLM локально · 2024—настоящее',
+        slide5_w1: 'Поиск ДСП, ПДн, «Секретно» в файловых хранилищах',
+        slide5_w2: 'OCR изображений и PDF (PaddleOCR + VLM)',
+        slide5_w3: 'LLM-классификация документов (Ollama, локально)',
+        slide5_w4: 'Поиск дубликатов: SHA-256 + эмбеддинги',
+        slide5_i1: 'Всё работает локально — файлы не покидают контур',
+        slide5_i2: 'Скан VLM-OCR: ~15 сек на файл вместо ~3 минут CPU',
+        slide5_i3: 'Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL',
+        slide5_i4: 'Поддержка txt/doc/docx/pdf/xlsx/изображений/архивов',
+        slide6_title: 'AI-автоматизация бизнес-процессов',
+        slide6_tag: 'B2B · автоматизация · 2023—настоящее',
+        slide6_w1: 'AI-ассистент продаж и поддержки',
+        slide6_w2: 'Генерация КП, смет и отчётов',
+        slide6_w3: 'Интеграция LLM с CRM и 1С',
+        slide6_w4: 'Сквозные пайплайны на n8n/Make',
+        slide6_i1: 'Скорость подготовки КП — минуты вместо часов',
+        slide6_i2: 'Первая линия поддержки автоматизирована',
+        slide6_i3: 'Экономия десятков чел/часов в неделю',
+        slide6_i4: 'Рост конверсии входящих заявок',
+        slide7_title: 'Мульти-агентная AI-система',
+        slide7_tag: 'AI Agents · 2024—настоящее',
+        slide7_w1: 'Команда автономных агентов (LangGraph)',
+        slide7_w2: 'Авто-исследование и сбор данных',
+        slide7_w3: 'Tool use: function calling и MCP',
+        slide7_w4: 'Многошаговые задачи без человека в цикле',
+        slide7_i1: 'Отчёты, которые раньше готовились днями, готовы за часы',
+        slide7_i2: 'Полностью автономные рутины',
+        slide7_i3: 'Гибкая архитектура под новые инструменты',
+        slide7_i4: 'Прозрачные логи решений агентов',
+        slide8_title: 'RAG-ассистент по внутренней базе',
+        slide8_tag: 'Knowledge Base · RAG · 2024—настоящее',
+        slide8_w1: 'Поиск по тысячам внутренних документов',
+        slide8_w2: 'Гибридный retrieval (BM25 + vector)',
+        slide8_w3: 'Ответы с цитатами и ссылками на источник',
+        slide8_w4: 'Re-ranking и guardrails против галлюцинаций',
+        slide8_i1: 'Поиск ответа — секунды вместо часов',
+        slide8_i2: 'Меньше нагрузки на экспертов',
+        slide8_i3: 'Единая точка входа в знания компании',
+        slide8_i4: 'Ответы с проверяемыми источниками',
+        slide9_title: 'Голосовой AI-агент колл-центра',
+        slide9_tag: 'Voice AI · STT/TTS · 2025',
+        slide9_w1: 'Распознавание речи клиента в реальном времени (Whisper)',
+        slide9_w2: 'LLM-диалог по скриптам и базе знаний',
+        slide9_w3: 'Реалистичный голос (TTS) с эмоциональной окраской',
+        slide9_w4: 'Маршрутизация на оператора по сигналам недовольства',
+        slide9_i1: 'До 80% входящих обращений закрывались ботом',
+        slide9_i2: 'Среднее время ожидания клиента ↓ в 3 раза',
+        slide9_i3: 'CSAT не падал — клиенты не понимали, что это бот',
+        slide9_i4: 'Полные транскрипты и AI-резюме каждого звонка',
+        stat_years: 'лет в ИИ',
+        stat_projects: 'AI-проектов реализовано',
+        stat_prod: 'AI-систем в проде',
+        tier_expert: 'Expert · ежедневно в проде',
+        tier_advanced: 'Advanced · уверенно в боевых задачах',
+        tier_familiar: 'Familiar · был опыт, могу подхватить',
+        skills_title: 'Стек по уровням',
+        qr_title: 'Онлайн-версия резюме',
+        qr_desc: 'Отсканируйте, чтобы открыть актуальную версию с каруселью проектов',
         pdf_btn: '⤓ PDF',
         education_title: 'Образование',
         edu1_title: 'Большие данные и машинное обучение',
@@ -1252,15 +1565,15 @@
         projects_intro: 'In parallel with company work, I have personally delivered many end-to-end AI systems. Projects are confidential — I describe what each system did and what results it produced.',
         slide_what: 'What the system did',
         slide_impact: 'Impact',
-        slide1_title: 'AI-powered Learning Platform',
+        slide1_title: 'AI Learning Platform (EduTest)',
         slide1_tag: 'EdTech · 2023—Present',
-        slide1_w1: 'AI tutor in dialogue with the student',
-        slide1_w2: 'Auto-generation of tasks and tests via LLM',
-        slide1_w3: 'Voice lessons (Whisper + TTS)',
-        slide1_w4: 'Personalized learning trajectory',
+        slide1_w1: 'Tests with multiple question types',
+        slide1_w2: 'AI grading of open answers (Qwen 2.5 / Ollama)',
+        slide1_w3: 'Personalized AI recommendations for students',
+        slide1_w4: 'Progress analytics and difficulty insights',
         slide1_i1: 'Homework checking ~10× faster',
         slide1_i2: 'Teacher workload reduced by 60%',
-        slide1_i3: 'Adaptive difficulty per student',
+        slide1_i3: 'Leaderboards, group tests, Excel/PDF export',
         slide1_i4: 'Higher engagement and retention',
         slide2_title: 'Intelligent Document Workflow',
         slide2_tag: 'DocAI · OCR + LLM · 2024—Present',
@@ -1272,36 +1585,85 @@
         slide2_i2: 'Extraction accuracy — 95%+',
         slide2_i3: 'Per-document time: seconds, not minutes',
         slide2_i4: 'RAG search over internal knowledge base',
-        slide3_title: 'AI Automation of Business Processes',
-        slide3_tag: 'B2B · Automation · 2023—Present',
-        slide3_w1: 'AI assistant for sales & support',
-        slide3_w2: 'Generation of proposals, estimates, reports',
-        slide3_w3: 'LLM integration with CRM and 1C',
-        slide3_w4: 'End-to-end pipelines on n8n/Make',
-        slide3_i1: 'Proposal preparation — minutes, not hours',
-        slide3_i2: 'First-line support fully automated',
-        slide3_i3: 'Saves dozens of person-hours per week',
-        slide3_i4: 'Higher conversion of incoming leads',
-        slide4_title: 'Multi-agent AI System',
-        slide4_tag: 'AI Agents · 2024—Present',
-        slide4_w1: 'Team of autonomous agents (LangGraph)',
-        slide4_w2: 'Auto-research and data gathering',
-        slide4_w3: 'Tool use: function calling and MCP',
-        slide4_w4: 'Multi-step tasks without human in the loop',
-        slide4_i1: 'Reports that took days are ready in hours',
-        slide4_i2: 'Fully autonomous routines',
-        slide4_i3: 'Flexible architecture for new tools',
-        slide4_i4: 'Transparent agent decision logs',
-        slide5_title: 'RAG Assistant over Internal Knowledge Base',
-        slide5_tag: 'Knowledge Base · RAG · 2024—Present',
-        slide5_w1: 'Search across thousands of internal docs',
-        slide5_w2: 'Hybrid retrieval (BM25 + vector)',
-        slide5_w3: 'Answers with citations to source',
-        slide5_w4: 'Re-ranking and guardrails against hallucinations',
-        slide5_i1: 'Finding an answer — seconds, not hours',
-        slide5_i2: 'Less load on subject-matter experts',
-        slide5_i3: 'Single entry point to company knowledge',
-        slide5_i4: 'Answers with verifiable sources',
+        slide3_title: 'AI Assistant inside 1C',
+        slide3_tag: '1C · AI categorization · 2024—Present',
+        slide3_w1: 'Document summary in the 1C card',
+        slide3_w2: 'AI categorization of documents and counterparties',
+        slide3_w3: 'Field extraction into 1C attributes',
+        slide3_w4: 'AI hints and comments right inside the form',
+        slide3_i1: 'Incoming docs processed multiple times faster',
+        slide3_i2: 'Less manual classification by clerks',
+        slide3_i3: 'Single AI layer on top of standard 1C config',
+        slide3_i4: 'Transparent LLM call logs',
+        slide4_title: 'AI Psychologist: Tests & Analytics',
+        slide4_tag: 'HR-Tech · AI analysis · 2024—Present',
+        slide4_w1: 'Psychological tests: scales + open answers',
+        slide4_w2: 'AI analysis of free-text answers by methodology',
+        slide4_w3: 'Structured analytical report generation',
+        slide4_w4: 'Roles: respondent / specialist / admin (RBAC)',
+        slide4_i1: 'Hours of psychologist work → minutes per report',
+        slide4_i2: 'Versioning of methods, prompts, and models',
+        slide4_i3: 'Confidence metric and decision audit',
+        slide4_i4: 'Safe PII storage, no leaks into logs',
+        slide5_title: 'FAKT — Confidential File Audit',
+        slide5_tag: 'Security · OCR + LLM on-prem · 2024—Present',
+        slide5_w1: 'Detection of restricted, PII and classified content',
+        slide5_w2: 'OCR of images and PDFs (PaddleOCR + VLM)',
+        slide5_w3: 'LLM classification (Ollama, fully local)',
+        slide5_w4: 'Duplicate detection: SHA-256 + embeddings',
+        slide5_i1: 'Fully on-prem — files never leave the perimeter',
+        slide5_i2: 'VLM-OCR: ~15s per file vs ~3 min on CPU',
+        slide5_i3: 'Web UI, scheduler, CSV/JSON/PostgreSQL export',
+        slide5_i4: 'Supports txt/doc/docx/pdf/xlsx/images/archives',
+        slide6_title: 'AI Automation of Business Processes',
+        slide6_tag: 'B2B · Automation · 2023—Present',
+        slide6_w1: 'AI assistant for sales & support',
+        slide6_w2: 'Generation of proposals, estimates, reports',
+        slide6_w3: 'LLM integration with CRM and 1C',
+        slide6_w4: 'End-to-end pipelines on n8n/Make',
+        slide6_i1: 'Proposal preparation — minutes, not hours',
+        slide6_i2: 'First-line support fully automated',
+        slide6_i3: 'Saves dozens of person-hours per week',
+        slide6_i4: 'Higher conversion of incoming leads',
+        slide7_title: 'Multi-agent AI System',
+        slide7_tag: 'AI Agents · 2024—Present',
+        slide7_w1: 'Team of autonomous agents (LangGraph)',
+        slide7_w2: 'Auto-research and data gathering',
+        slide7_w3: 'Tool use: function calling and MCP',
+        slide7_w4: 'Multi-step tasks without human in the loop',
+        slide7_i1: 'Reports that took days are ready in hours',
+        slide7_i2: 'Fully autonomous routines',
+        slide7_i3: 'Flexible architecture for new tools',
+        slide7_i4: 'Transparent agent decision logs',
+        slide8_title: 'RAG Assistant over Internal Knowledge Base',
+        slide8_tag: 'Knowledge Base · RAG · 2024—Present',
+        slide8_w1: 'Search across thousands of internal docs',
+        slide8_w2: 'Hybrid retrieval (BM25 + vector)',
+        slide8_w3: 'Answers with citations to source',
+        slide8_w4: 'Re-ranking and guardrails against hallucinations',
+        slide8_i1: 'Finding an answer — seconds, not hours',
+        slide8_i2: 'Less load on subject-matter experts',
+        slide8_i3: 'Single entry point to company knowledge',
+        slide8_i4: 'Answers with verifiable sources',
+        slide9_title: 'Voice AI Agent for Call Center',
+        slide9_tag: 'Voice AI · STT/TTS · 2025',
+        slide9_w1: 'Real-time speech recognition (Whisper)',
+        slide9_w2: 'LLM dialogue driven by scripts and KB',
+        slide9_w3: 'Realistic TTS voice with emotional shading',
+        slide9_w4: 'Routing to a human on frustration signals',
+        slide9_i1: 'Up to 80% of calls closed by the bot',
+        slide9_i2: 'Average wait time reduced ~3×',
+        slide9_i3: 'CSAT stayed flat — callers did not notice the bot',
+        slide9_i4: 'Full transcripts and AI summaries of every call',
+        stat_years: 'years in AI',
+        stat_projects: 'AI projects delivered',
+        stat_prod: 'AI systems in production',
+        tier_expert: 'Expert · daily in production',
+        tier_advanced: 'Advanced · confident in real-world tasks',
+        tier_familiar: 'Familiar · have used, can pick up',
+        skills_title: 'Stack by proficiency',
+        qr_title: 'Online resume',
+        qr_desc: 'Scan to open the up-to-date version with project carousel',
         pdf_btn: '⤓ PDF',
         education_title: 'Education',
         edu1_title: 'Big Data and Machine Learning',
@@ -1487,6 +1849,34 @@
 
       update();
       start();
+    })();
+
+    /* ===== Counters animation ===== */
+    (function initCounters() {
+      const nums = document.querySelectorAll('.stat-num');
+      if (!nums.length) return;
+      const animate = (el) => {
+        const target = parseInt(el.dataset.target, 10) || 0;
+        const suffix = el.dataset.suffix || '';
+        const duration = 1400;
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + (p === 1 ? suffix : '');
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      nums.forEach((n) => io.observe(n));
     })();
   </script>
 </body>
