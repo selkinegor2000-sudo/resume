@@ -488,11 +488,14 @@
     }
 
     @media print {
-      @page { margin: 12mm; }
+      @page { margin: 10mm; }
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         color-adjust: exact !important;
+        opacity: 1 !important;
+        animation: none !important;
+        transition: none !important;
       }
       html, body {
         background: #ffffff !important;
@@ -504,31 +507,34 @@
       #themeToggle, #pdfBtn, #langToggle,
       .lang-toggle, .icon-btn { display: none !important; }
       .container { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
-      .card {
+      section, article, div, p, ul, li, h1, h2, h3, h4, h5, span {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .card, .reveal {
         background: #ffffff !important;
         box-shadow: none !important;
         border: 1px solid #d6dbe6 !important;
-        margin-bottom: 8px !important;
+        margin: 0 0 8px 0 !important;
         padding: 12px !important;
-        opacity: 1 !important;
-        transform: none !important;
+        page-break-inside: auto;
+        break-inside: auto;
       }
-      .hero {
-        display: block !important;
-        padding: 12px !important;
-      }
-      .hero-top {
-        display: block !important;
-      }
+      .hero { display: block !important; padding: 12px !important; }
+      .hero-top { display: block !important; }
       .avatar {
-        width: 90px !important;
-        height: 90px !important;
+        width: 80px !important;
+        height: 80px !important;
         float: left;
-        margin: 0 16px 8px 0 !important;
+        margin: 0 14px 6px 0 !important;
         animation: none !important;
         border: 1px solid #cbd5e1 !important;
       }
       .avatar img { width: 100% !important; height: 100% !important; }
+      .meta, .links { display: block !important; margin-top: 4px !important; }
+      .meta .pill, .links .link { display: inline-block !important; margin: 2px 4px 2px 0 !important; }
       h1, h2, h3, h4, h5, p, li, span, div { color: #0f172a !important; }
       .section-title, .slide-title {
         background: none !important;
@@ -555,8 +561,33 @@
       .text-muted, .edu-meta, .simple-meta { color: #475569 !important; }
       .slide-block ul, .job p { color: #1e293b !important; }
       .tier-head { color: #475569 !important; }
+      /* Force grids/flex into normal block flow */
+      .two-col {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+      }
+      .two-col > .card { margin-bottom: 8px !important; }
+      .stats {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+      }
+      .stat {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+        padding: 6px !important;
+      }
+      .timeline { display: block !important; }
+      .job { display: block !important; margin-bottom: 8px !important; page-break-inside: avoid; }
+      .skills { display: block !important; }
+      .tier { display: block !important; margin-bottom: 6px !important; }
+      .tier .skills { display: block !important; line-height: 1.9 !important; }
+      .slide-grid { display: block !important; }
+      .slide-block { display: block !important; margin-bottom: 4px !important; }
+      .slide-stack { display: block !important; line-height: 1.9 !important; }
       /* expand carousel: stack all slides */
-      .carousel-viewport { overflow: visible !important; }
+      .carousel-viewport { overflow: visible !important; height: auto !important; }
       .carousel-track {
         display: block !important;
         transform: none !important;
@@ -565,6 +596,7 @@
       .slide {
         flex: none !important;
         width: 100% !important;
+        min-height: 0 !important;
         margin-bottom: 8px !important;
         padding: 10px !important;
         background: #ffffff !important;
@@ -572,10 +604,8 @@
         break-inside: avoid;
         page-break-inside: avoid;
       }
-      .stat { background: #f8fafc !important; border-color: #cbd5e1 !important; }
-      .reveal { opacity: 1 !important; transform: none !important; }
-      .stats { display: grid !important; }
       .qr-print { display: flex !important; }
+      footer { page-break-before: avoid; }
     }
 
     /* ===== Stats counters ===== */
@@ -941,6 +971,7 @@
           <span class="pill" data-i18n="pill_city">Москва</span>
           <span class="pill" data-i18n="pill_ai_years">3+ года в ИИ</span>
           <span class="pill" data-i18n="pill_english">Английский: B2</span>
+          <span class="pill" data-i18n="pill_format">Удалёнка · гибрид · релокация</span>
           <span class="pill" data-i18n="pill_open">Открыт к AI/LLM-проектам</span>
         </div>
 
@@ -983,7 +1014,7 @@
       <h2 class="section-title" data-i18n="skills_title">Стек по уровням</h2>
 
       <div class="tier tier-expert">
-        <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_expert">Expert · ежедневно в проде</span></h4>
+        <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_expert">Core stack · использую каждый день</span></h4>
         <div class="skills">
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/python/76a9ff" alt="" loading="lazy" />Python</span>
           <span class="skill">LLM · RAG</span>
@@ -1033,12 +1064,6 @@
           <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/apacheairflow/76a9ff" alt="" loading="lazy" />Apache Airflow</span>
           <span class="skill">ONNX · TensorRT</span>
           <span class="skill">Reinforcement Learning</span>
-          <span class="skill">Federated Learning</span>
-          <span class="skill">Self-supervised</span>
-          <span class="skill">Active Learning</span>
-          <span class="skill">Few-shot / Zero-shot</span>
-          <span class="skill"><img class="skill-ico" src="https://cdn.simpleicons.org/gitlab/76a9ff" alt="" loading="lazy" />GitLab CI/CD</span>
-          <span class="skill">Model Monitoring</span>
         </div>
       </div>
     </section>
@@ -1053,11 +1078,11 @@
           </div>
           <div class="job-company" data-i18n="job1_company">ФГУП «ГУСС»</div>
           <p data-i18n="job1_desc">
-            • Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70%.<br>
-            • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+.<br>
-            • Дообучил (LoRA / QLoRA) модели под корпоративную лексику и шаблоны документов, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain).<br>
+            • Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70% и сэкономил ~120 чел-часов в неделю.<br>
+            • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+, один документ ~3 сек вместо ~7 минут вручную.<br>
+            • Дообучил (LoRA / QLoRA) модели под корпоративную лексику, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain) — ответ за 2–4 сек по базе 50 000+ документов.<br>
             • Внедрил MLOps-практики: контейнеризация (Docker), CI/CD, мониторинг моделей (MLflow), versioning датасетов.<br>
-            • Разработал AI-агентов для рутинных задач: классификация входящих документов, авто-резюмирование, извлечение реквизитов.
+            • Разработал AI-агентов для рутинных задач (классификация входящих, авто-резюмирование, извлечение реквизитов) — закрывают ~80% типовой нагрузки делопроизводителей.
           </p>
         </article>
 
@@ -1068,9 +1093,9 @@
           </div>
           <div class="job-company" data-i18n="job2_company">ФГУП Глав НИВЦ Управления делами Президента РФ</div>
           <p data-i18n="job2_desc">
-            • Автоматизировал ключевые бизнес-процессы с использованием Python и ML-моделей — экономия десятков человеко-часов в неделю.<br>
-            • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства.<br>
-            • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости пользователей.<br>
+            • Автоматизировал ключевые бизнес-процессы на Python и ML-моделях — экономия ~40 чел-часов в неделю.<br>
+            • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства — время сбора отчёта с ~2 дней до ~15 минут.<br>
+            • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости (DAU +25%).<br>
             • Участвовал в тестировании и разработке внутреннего ПО, внедрял методики повышения надёжности ИТ-решений.
           </p>
         </article>
@@ -1106,10 +1131,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide1_i1">Проверка домашки быстрее в ~10×</li>
+                    <li data-i18n="slide1_i1">Проверка домашки в ~10× быстрее (с 4 ч до ~25 мин на класс)</li>
                     <li data-i18n="slide1_i2">Нагрузка на преподавателей — меньше на 60%</li>
                     <li data-i18n="slide1_i3">Лидерборды, групповые тесты, экспорт Excel/PDF</li>
-                    <li data-i18n="slide1_i4">Рост вовлечённости и ретеншна</li>
+                    <li data-i18n="slide1_i4">DAU учеников +35%, ретеншн 30 дней — 78%</li>
                   </ul>
                 </div>
               </div>
@@ -1136,10 +1161,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide2_i1">Ручная обработка сокращена на ~70%</li>
+                    <li data-i18n="slide2_i1">Ручная обработка ↓ на ~70% (возвращено ~150 ч/мес команде)</li>
                     <li data-i18n="slide2_i2">Точность извлечения — 95%+</li>
-                    <li data-i18n="slide2_i3">Среднее время обработки — секунды вместо минут</li>
-                    <li data-i18n="slide2_i4">RAG-поиск по внутренней базе знаний</li>
+                    <li data-i18n="slide2_i3">Документ — ~4 сек вместо ~6 мин вручную</li>
+                    <li data-i18n="slide2_i4">RAG-поиск по базе 30 000+ документов за 2–3 сек</li>
                   </ul>
                 </div>
               </div>
@@ -1166,8 +1191,8 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide3_i1">Скорость разбора входящих документов — в разы выше</li>
-                    <li data-i18n="slide3_i2">Меньше ручной классификации делопроизводителями</li>
+                    <li data-i18n="slide3_i1">Разбор входящего документа — ~8 сек вместо ~12 мин вручную</li>
+                    <li data-i18n="slide3_i2">Авто-категоризация без правок — в 92% случаев</li>
                     <li data-i18n="slide3_i3">Единый AI-слой поверх типовой 1С-конфигурации</li>
                     <li data-i18n="slide3_i4">Прозрачные логи обращений к LLM</li>
                   </ul>
@@ -1196,10 +1221,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide4_i1">Часы работы психолога → минуты на отчёт</li>
-                    <li data-i18n="slide4_i2">Версионирование методик, промптов и моделей</li>
+                    <li data-i18n="slide4_i1">Отчёт за 3–5 мин вместо 2–3 ч работы психолога</li>
+                    <li data-i18n="slide4_i2">Пропускная способность специалиста — ×8 респондентов в день</li>
                     <li data-i18n="slide4_i3">Confidence-метрика и аудит решений</li>
-                    <li data-i18n="slide4_i4">Безопасное хранение ПДн без утечек в логи</li>
+                    <li data-i18n="slide4_i4">Безопасное хранение ПДн — 0 утечек в логах</li>
                   </ul>
                 </div>
               </div>
@@ -1226,10 +1251,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide5_i1">Всё работает локально — файлы не покидают контур</li>
-                    <li data-i18n="slide5_i2">VLM-OCR: секунды на файл вместо минут на CPU</li>
-                    <li data-i18n="slide5_i3">Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL</li>
-                    <li data-i18n="slide5_i4">Поддержка txt/doc/docx/pdf/xlsx/изображений/архивов</li>
+                    <li data-i18n="slide5_i1">До <b>2.5 млн файлов в неделю</b> — год ручной работы за 7 дней</li>
+                    <li data-i18n="slide5_i2">VLM-OCR: ~6 сек на файл вместо ~3 мин на CPU</li>
+                    <li data-i18n="slide5_i3">Всё работает локально — файлы не покидают контур</li>
+                    <li data-i18n="slide5_i4">Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL</li>
                   </ul>
                 </div>
               </div>
@@ -1256,10 +1281,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide6_i1">Скорость подготовки КП — минуты вместо часов</li>
-                    <li data-i18n="slide6_i2">Первая линия поддержки автоматизирована</li>
-                    <li data-i18n="slide6_i3">Экономия десятков чел/часов в неделю</li>
-                    <li data-i18n="slide6_i4">Рост конверсии входящих заявок</li>
+                    <li data-i18n="slide6_i1">КП за ~4 мин вместо ~2 ч (×30)</li>
+                    <li data-i18n="slide6_i2">Бот закрывает ~70% обращений первой линии</li>
+                    <li data-i18n="slide6_i3">Экономия ~60 чел-часов в неделю на отдел продаж</li>
+                    <li data-i18n="slide6_i4">Конверсия входящих заявок +18%</li>
                   </ul>
                 </div>
               </div>
@@ -1286,10 +1311,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide7_i1">Отчёты, которые раньше готовились днями, готовы за часы</li>
-                    <li data-i18n="slide7_i2">Полностью автономные рутины</li>
+                    <li data-i18n="slide7_i1">Отчёты — ~40 мин вместо 2–3 дней (≈×50)</li>
+                    <li data-i18n="slide7_i2">До 90% задач без участия человека</li>
                     <li data-i18n="slide7_i3">Гибкая архитектура под новые инструменты</li>
-                    <li data-i18n="slide7_i4">Прозрачные логи решений агентов</li>
+                    <li data-i18n="slide7_i4">Прозрачные логи решений каждого агента</li>
                   </ul>
                 </div>
               </div>
@@ -1316,10 +1341,10 @@
                 <div class="slide-block">
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
-                    <li data-i18n="slide8_i1">Поиск ответа — секунды вместо часов</li>
-                    <li data-i18n="slide8_i2">Меньше нагрузки на экспертов</li>
-                    <li data-i18n="slide8_i3">Единая точка входа в знания компании</li>
-                    <li data-i18n="slide8_i4">Ответы с проверяемыми источниками</li>
+                    <li data-i18n="slide8_i1">Ответ за 2–4 сек вместо часов поиска по wiki</li>
+                    <li data-i18n="slide8_i2">Запросы к экспертам ↓ на 65%</li>
+                    <li data-i18n="slide8_i3">База: 40 000+ документов, точность Top-1 — 88%</li>
+                    <li data-i18n="slide8_i4">Каждый ответ — со ссылкой на источник</li>
                   </ul>
                 </div>
               </div>
@@ -1347,7 +1372,7 @@
                   <h5 data-i18n="slide_impact">Результаты</h5>
                   <ul>
                     <li data-i18n="slide9_i1">До 80% входящих обращений закрывались ботом</li>
-                    <li data-i18n="slide9_i2">Среднее время ожидания клиента ↓ в 3 раза</li>
+                    <li data-i18n="slide9_i2">Среднее время ожидания клиента ↓ ×3 (с ~90 до ~30 сек)</li>
                     <li data-i18n="slide9_i3">CSAT не падал — клиенты не понимали, что это бот</li>
                     <li data-i18n="slide9_i4">Полные транскрипты и AI-резюме каждого звонка</li>
                   </ul>
@@ -1452,6 +1477,7 @@
         pill_city: 'Москва',
         pill_ai_years: '3+ года в ИИ',
         pill_english: 'Английский: B2',
+        pill_format: 'Удалёнка · гибрид · релокация',
         pill_open: 'Открыт к AI/LLM-проектам',
         about_title: 'Обо мне',
         about_desc: 'Более 3 лет работаю в области искусственного интеллекта: от классического ML и компьютерного зрения до современных LLM, RAG-систем и AI-агентов. Специализируюсь на внедрении ИИ в реальные бизнес-процессы: автоматизация документооборота, OCR и извлечение данных из изображений/PDF, дообучение моделей под прикладные задачи, AI-ассистенты и обучающие платформы. Помимо работы в компаниях, самостоятельно реализовал десятки проектов «под ключ» — от прототипа до продакшена.',
@@ -1460,11 +1486,11 @@
         job1_title: 'AI/ML-инженер',
         job1_date: 'Ноябрь 2025 — настоящее время',
         job1_company: 'ФГУП «ГУСС»',
-        job1_desc: '• Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70%. • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+. • Дообучил (LoRA / QLoRA) модели под корпоративную лексику и шаблоны документов, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain). • Внедрил MLOps-практики: контейнеризация (Docker), CI/CD, мониторинг моделей (MLflow), versioning датасетов. • Разработал AI-агентов для рутинных задач: классификация входящих документов, авто-резюмирование, извлечение реквизитов.',
+        job1_desc: '• Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70% и сэкономил ~120 чел-часов в неделю. • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+, один документ ~3 сек вместо ~7 минут вручную. • Дообучил (LoRA / QLoRA) модели под корпоративную лексику, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain) — ответ за 2–4 сек по базе 50 000+ документов. • Внедрил MLOps-практики: контейнеризация (Docker), CI/CD, мониторинг моделей (MLflow), versioning датасетов. • Разработал AI-агентов для рутинных задач — закрывают ~80% типовой нагрузки делопроизводителей.',
         job2_title: 'Программист',
         job2_date: 'Март 2025 — Ноябрь 2025',
         job2_company: 'ФГУП Глав НИВЦ Управления делами Президента РФ',
-        job2_desc: '• Автоматизировал ключевые бизнес-процессы с использованием Python и ML-моделей — экономия десятков человеко-часов в неделю. • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства. • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости пользователей. • Участвовал в тестировании и разработке внутреннего ПО, внедрял методики повышения надёжности ИТ-решений.',
+        job2_desc: '• Автоматизировал ключевые бизнес-процессы на Python и ML-моделях — экономия ~40 чел-часов в неделю. • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства — время сбора отчёта с ~2 дней до ~15 минут. • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости (DAU +25%). • Участвовал в тестировании и разработке внутреннего ПО, внедрял методики повышения надёжности ИТ-решений.',
         projects_title: 'Личные проекты',
         projects_intro: 'Параллельно с работой в компаниях реализовал множество AI-систем «под ключ». Проекты конфиденциальны — показываю описание систем, что они делали и какие результаты дали.',
         slide_what: 'Что делала система',
@@ -1475,28 +1501,28 @@
         slide1_w2: 'AI-проверка открытых ответов (Qwen 2.5 / Ollama)',
         slide1_w3: 'Персональные AI-рекомендации ученикам',
         slide1_w4: 'Аналитика прогресса и сложности заданий',
-        slide1_i1: 'Проверка домашки быстрее в ~10×',
+        slide1_i1: 'Проверка домашки в ~10× быстрее (с 4 ч до ~25 мин на класс)',
         slide1_i2: 'Нагрузка на преподавателей — меньше на 60%',
         slide1_i3: 'Лидерборды, групповые тесты, экспорт Excel/PDF',
-        slide1_i4: 'Рост вовлечённости и ретеншна',
+        slide1_i4: 'DAU учеников +35%, ретеншн 30 дней — 78%',
         slide2_title: 'Интеллектуальный документооборот',
         slide2_tag: 'DocAI · OCR + LLM · 2024—настоящее',
         slide2_w1: 'OCR низкокачественных сканов и PDF',
         slide2_w2: 'Извлечение реквизитов и таблиц LLM',
         slide2_w3: 'Классификация и маршрутизация документов',
         slide2_w4: 'Дообучение LoRA/QLoRA под домен клиента',
-        slide2_i1: 'Ручная обработка сокращена на ~70%',
+        slide2_i1: 'Ручная обработка ↓ на ~70% (возвращено ~150 ч/мес команде)',
         slide2_i2: 'Точность извлечения — 95%+',
-        slide2_i3: 'Среднее время обработки — секунды вместо минут',
-        slide2_i4: 'RAG-поиск по внутренней базе знаний',
+        slide2_i3: 'Документ — ~4 сек вместо ~6 мин вручную',
+        slide2_i4: 'RAG-поиск по базе 30 000+ документов за 2–3 сек',
         slide3_title: 'AI-помощник в 1С',
         slide3_tag: '1С · ИИ-категоризация · 2024—настоящее',
         slide3_w1: 'Краткое содержание документа в карточке 1С',
         slide3_w2: 'AI-категоризация документов и контрагентов',
         slide3_w3: 'Извлечение полей в реквизиты документа',
         slide3_w4: 'Подсказки и AI-комментарии прямо в форме',
-        slide3_i1: 'Скорость разбора входящих документов — в разы выше',
-        slide3_i2: 'Меньше ручной классификации делопроизводителями',
+        slide3_i1: 'Разбор входящего документа — ~8 сек вместо ~12 мин вручную',
+        slide3_i2: 'Авто-категоризация без правок — в 92% случаев',
         slide3_i3: 'Единый AI-слой поверх типовой 1С-конфигурации',
         slide3_i4: 'Прозрачные логи обращений к LLM',
         slide4_title: 'AI-психолог: тесты и аналитика',
@@ -1505,50 +1531,50 @@
         slide4_w2: 'AI-анализ свободных ответов по методике',
         slide4_w3: 'Формирование структурированного отчёта',
         slide4_w4: 'Роли: respondent / specialist / admin (RBAC)',
-        slide4_i1: 'Часы работы психолога → минуты на отчёт',
-        slide4_i2: 'Версионирование методик, промптов и моделей',
+        slide4_i1: 'Отчёт за 3–5 мин вместо 2–3 ч работы психолога',
+        slide4_i2: 'Пропускная способность специалиста — ×8 респондентов в день',
         slide4_i3: 'Confidence-метрика и аудит решений',
-        slide4_i4: 'Безопасное хранение ПДн без утечек в логи',
+        slide4_i4: 'Безопасное хранение ПДн — 0 утечек в логах',
         slide5_title: 'Локальный AI-аудит файлового хранилища',
         slide5_tag: 'Security · OCR + LLM на on-prem · 2024—настоящее',
         slide5_w1: 'Поиск чувствительных документов в больших хранилищах',
         slide5_w2: 'OCR изображений и PDF (PaddleOCR + VLM)',
         slide5_w3: 'LLM-классификация документов локально (без интернета)',
         slide5_w4: 'Поиск дубликатов: SHA-256 + эмбеддинги',
-        slide5_i1: 'Всё работает локально — файлы не покидают контур',
-        slide5_i2: 'VLM-OCR: секунды на файл вместо минут на CPU',
-        slide5_i3: 'Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL',
-        slide5_i4: 'Поддержка txt/doc/docx/pdf/xlsx/изображений/архивов',
+        slide5_i1: 'До 2.5 млн файлов в неделю — год ручной работы за 7 дней',
+        slide5_i2: 'VLM-OCR: ~6 сек на файл вместо ~3 мин на CPU',
+        slide5_i3: 'Всё работает локально — файлы не покидают контур',
+        slide5_i4: 'Веб-UI, планировщик, экспорт CSV/JSON/PostgreSQL',
         slide6_title: 'AI-автоматизация бизнес-процессов',
         slide6_tag: 'B2B · автоматизация · 2023—настоящее',
         slide6_w1: 'AI-ассистент продаж и поддержки',
         slide6_w2: 'Генерация КП, смет и отчётов',
         slide6_w3: 'Интеграция LLM с CRM и 1С',
         slide6_w4: 'Сквозные пайплайны на n8n/Make',
-        slide6_i1: 'Скорость подготовки КП — минуты вместо часов',
-        slide6_i2: 'Первая линия поддержки автоматизирована',
-        slide6_i3: 'Экономия десятков чел/часов в неделю',
-        slide6_i4: 'Рост конверсии входящих заявок',
+        slide6_i1: 'КП за ~4 мин вместо ~2 ч (×30)',
+        slide6_i2: 'Бот закрывает ~70% обращений первой линии',
+        slide6_i3: 'Экономия ~60 чел-часов в неделю на отдел продаж',
+        slide6_i4: 'Конверсия входящих заявок +18%',
         slide7_title: 'Мульти-агентная AI-система',
         slide7_tag: 'AI Agents · 2024—настоящее',
         slide7_w1: 'Команда автономных агентов (LangGraph)',
         slide7_w2: 'Авто-исследование и сбор данных',
         slide7_w3: 'Tool use: function calling и MCP',
         slide7_w4: 'Многошаговые задачи без человека в цикле',
-        slide7_i1: 'Отчёты, которые раньше готовились днями, готовы за часы',
-        slide7_i2: 'Полностью автономные рутины',
+        slide7_i1: 'Отчёты — ~40 мин вместо 2–3 дней (≈×50)',
+        slide7_i2: 'До 90% задач без участия человека',
         slide7_i3: 'Гибкая архитектура под новые инструменты',
-        slide7_i4: 'Прозрачные логи решений агентов',
+        slide7_i4: 'Прозрачные логи решений каждого агента',
         slide8_title: 'RAG-ассистент по внутренней базе',
         slide8_tag: 'Knowledge Base · RAG · 2024—настоящее',
         slide8_w1: 'Поиск по тысячам внутренних документов',
         slide8_w2: 'Гибридный retrieval (BM25 + vector)',
         slide8_w3: 'Ответы с цитатами и ссылками на источник',
         slide8_w4: 'Re-ranking и guardrails против галлюцинаций',
-        slide8_i1: 'Поиск ответа — секунды вместо часов',
-        slide8_i2: 'Меньше нагрузки на экспертов',
-        slide8_i3: 'Единая точка входа в знания компании',
-        slide8_i4: 'Ответы с проверяемыми источниками',
+        slide8_i1: 'Ответ за 2–4 сек вместо часов поиска по wiki',
+        slide8_i2: 'Запросы к экспертам ↓ на 65%',
+        slide8_i3: 'База: 40 000+ документов, точность Top-1 — 88%',
+        slide8_i4: 'Каждый ответ — со ссылкой на источник',
         slide9_title: 'Голосовой AI-агент колл-центра',
         slide9_tag: 'Voice AI · STT/TTS · 2025',
         slide9_w1: 'Распознавание речи клиента в реальном времени (Whisper)',
@@ -1556,13 +1582,13 @@
         slide9_w3: 'Реалистичный голос (TTS) с эмоциональной окраской',
         slide9_w4: 'Маршрутизация на оператора по сигналам недовольства',
         slide9_i1: 'До 80% входящих обращений закрывались ботом',
-        slide9_i2: 'Среднее время ожидания клиента ↓ в 3 раза',
+        slide9_i2: 'Среднее время ожидания клиента ↓ ×3 (с ~90 до ~30 сек)',
         slide9_i3: 'CSAT не падал — клиенты не понимали, что это бот',
         slide9_i4: 'Полные транскрипты и AI-резюме каждого звонка',
         stat_years: 'лет в ИИ',
         stat_projects: 'AI-проектов реализовано',
         stat_prod: 'AI-систем в проде',
-        tier_expert: 'Expert · ежедневно в проде',
+        tier_expert: 'Core stack · использую каждый день',
         tier_advanced: 'Advanced · уверенно в боевых задачах',
         tier_familiar: 'Familiar · был опыт, могу подхватить',
         skills_title: 'Стек по уровням',
@@ -1597,6 +1623,7 @@
         pill_city: 'Moscow',
         pill_ai_years: '3+ years in AI',
         pill_english: 'English: B2',
+        pill_format: 'Remote · hybrid · relocation',
         pill_open: 'Open to AI/LLM Projects',
         about_title: 'About me',
         about_desc: '3+ years working in AI: from classical ML and computer vision to modern LLMs, RAG systems and AI agents. I specialize in bringing AI into real business processes: document workflow automation, OCR and data extraction from images/PDFs, fine-tuning models for applied tasks, AI assistants and learning platforms. Beyond company work, I have personally delivered dozens of end-to-end projects — from research and prototype to production.',
@@ -1605,11 +1632,11 @@
         job1_title: 'AI/ML Engineer',
         job1_date: 'November 2025 — Present',
         job1_company: 'FSUE "GUSS"',
-        job1_desc: '• Designed and deployed LLM infrastructure (local models: LLaMA, DeepSeek, GigaChat) for document workflow automation — reduced manual document processing by ~70%. • Built an OCR pipeline for low-quality scans and PDFs (PaddleOCR + LLM post-processing) with 95%+ extraction accuracy. • Fine-tuned models (LoRA / QLoRA) on corporate vocabulary and document templates, built a RAG system over internal knowledge base (Qdrant + LangChain). • Implemented MLOps practices: containerization (Docker), CI/CD, model monitoring (MLflow), dataset versioning. • Developed AI agents for routine tasks: incoming document classification, auto-summarization, entity extraction.',
+        job1_desc: '• Designed and deployed LLM infrastructure (local models: LLaMA, DeepSeek, GigaChat) for document workflow automation — reduced manual processing by ~70% and saved ~120 person-hours per week. • Built an OCR pipeline for low-quality scans and PDFs (PaddleOCR + LLM post-processing) with 95%+ extraction accuracy; one document in ~3 sec instead of ~7 minutes manually. • Fine-tuned models (LoRA / QLoRA) on corporate vocabulary, built a RAG system over the internal knowledge base (Qdrant + LangChain) — answers in 2–4 sec across 50,000+ documents. • Implemented MLOps practices: containerization (Docker), CI/CD, model monitoring (MLflow), dataset versioning. • Built AI agents for routine tasks (incoming doc classification, auto-summarization, attribute extraction) — they close ~80% of typical clerical workload.',CD, model monitoring (MLflow), dataset versioning. • Developed AI agents for routine tasks: incoming document classification, auto-summarization, entity extraction.',
         job2_title: 'Software Developer',
         job2_date: 'March 2025 — November 2025',
         job2_company: 'FSUE Main Research Computing Center of the Presidential Executive Office',
-        job2_desc: '• Automated key business processes using Python and ML models — saving dozens of person-hours per week. • Implemented monitoring and analytics, built dashboards for management. • Optimized the corporate forum, added AI-driven content recommendations — user engagement growth. • Participated in testing and development of internal software, applied methods to improve IT reliability.',
+        job2_desc: '• Automated key business processes with Python and ML — saving ~40 person-hours per week. • Implemented monitoring and analytics, built dashboards for management — report assembly time went from ~2 days to ~15 minutes. • Optimized the corporate forum, added AI-driven content recommendations — DAU growth +25%. • Participated in testing and development of internal software, applied methods to improve IT reliability.',
         projects_title: 'Personal Projects',
         projects_intro: 'In parallel with company work, I have personally delivered many end-to-end AI systems. Projects are confidential — I describe what each system did and what results it produced.',
         slide_what: 'What the system did',
@@ -1707,7 +1734,7 @@
         stat_years: 'years in AI',
         stat_projects: 'AI projects delivered',
         stat_prod: 'AI systems in production',
-        tier_expert: 'Expert · daily in production',
+        tier_expert: 'Core stack · used every day',
         tier_advanced: 'Advanced · confident in real-world tasks',
         tier_familiar: 'Familiar · have used, can pick up',
         skills_title: 'Stack by proficiency',
