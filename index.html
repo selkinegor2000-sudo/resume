@@ -345,23 +345,10 @@
     }
 
     .link-accent {
-      color: #0b1020;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-color: transparent;
-      font-weight: 700;
-      position: relative;
-      box-shadow: 0 6px 22px rgba(118, 169, 255, 0.35);
-      animation: codePulse 2.6s ease-in-out infinite;
+      color: var(--text);
     }
-    body.light .link-accent { color: #0b1020; }
     .link-accent:hover {
-      filter: brightness(1.08);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(118, 169, 255, 0.5);
-    }
-    @keyframes codePulse {
-      0%, 100% { box-shadow: 0 6px 22px rgba(118, 169, 255, 0.35); }
-      50%      { box-shadow: 0 6px 30px rgba(145, 240, 211, 0.55); }
+      border-color: rgba(118, 169, 255, 0.55);
     }
 
     /* ===== Code modal ===== */
@@ -1294,7 +1281,7 @@
             <h3 class="job-title" data-i18n="job1_title">Разработчик (ML-инженер)</h3>
             <div class="job-date" data-i18n="job1_date">Ноябрь 2025 — настоящее время</div>
           </div>
-          <div class="job-company" data-i18n="job1_company">ФГУП «ГУСС»</div>
+          <div class="job-company" data-i18n="job1_company">Государственное предприятие № 1</div>
           <p data-i18n="job1_desc">
             • Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70% и сэкономил ~120 чел-часов в неделю.<br>
             • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+, один документ ~3 сек вместо ~7 минут вручную.<br>
@@ -1310,7 +1297,7 @@
             <h3 class="job-title" data-i18n="job2_title">Программист</h3>
             <div class="job-date" data-i18n="job2_date">Март 2025 — Ноябрь 2025</div>
           </div>
-          <div class="job-company" data-i18n="job2_company">ФГУП Глав НИВЦ Управления делами Президента РФ</div>
+          <div class="job-company" data-i18n="job2_company">Государственное предприятие № 2</div>
           <p data-i18n="job2_desc">
             • Автоматизировал ключевые бизнес-процессы на Python и ML-моделях — экономия ~40 чел-часов в неделю.<br>
             • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства — время сбора отчёта с ~2 дней до ~15 минут.<br>
@@ -1735,11 +1722,11 @@
         experience_title: 'Опыт работы',
         job1_title: 'AI/ML-инженер',
         job1_date: 'Ноябрь 2025 — настоящее время',
-        job1_company: 'ФГУП «ГУСС»',
+        job1_company: 'Государственное предприятие № 1',
         job1_desc: '• Спроектировал и внедрил LLM-инфраструктуру (локальные модели: LLaMA, DeepSeek, GigaChat) для автоматизации документооборота — сократил ручную обработку документов на ~70% и сэкономил ~120 чел-часов в неделю. • Разработал OCR-конвейер для низкокачественных сканов и PDF (PaddleOCR + постобработка LLM), точность извлечения — 95%+, один документ ~3 сек вместо ~7 минут вручную. • Дообучил (LoRA / QLoRA) модели под корпоративную лексику, построил RAG-систему поверх внутренней базы знаний (Qdrant + LangChain) — ответ за 2–4 сек по базе 50 000+ документов. • Внедрил MLOps-практики: контейнеризация (Docker), CI/CD, мониторинг моделей (MLflow), versioning датасетов. • Разработал AI-агентов для рутинных задач — закрывают ~80% типовой нагрузки делопроизводителей. • Денежный эффект для отдела: ~120 ч/нед × 800 ₽/ч ≈ 4,5 млн ₽/год экономии ФОТ.',
         job2_title: 'Программист',
         job2_date: 'Март 2025 — Ноябрь 2025',
-        job2_company: 'ФГУП Глав НИВЦ Управления делами Президента РФ',
+        job2_company: 'Государственное предприятие № 2',
         job2_desc: '• Автоматизировал ключевые бизнес-процессы на Python и ML-моделях — экономия ~40 чел-часов в неделю. • Внедрил систему мониторинга и аналитики метрик, построил дашборды для руководства — время сбора отчёта с ~2 дней до ~15 минут. • Оптимизировал корпоративный форум, добавил ИИ-рекомендации контента — рост вовлечённости (DAU +25%). • Участвовал в тестировании и разработке внутреннего ПО, внедрял методики повышения надёжности ИТ-решений.',
         projects_title: 'Личные проекты',
         projects_intro: 'Параллельно с работой в компаниях реализовал множество AI-систем «под ключ». Проекты конфиденциальны — показываю описание систем, что они делали и какие результаты дали.',
@@ -1912,11 +1899,11 @@
         experience_title: 'Work Experience',
         job1_title: 'AI/ML Engineer',
         job1_date: 'November 2025 — Present',
-        job1_company: 'FSUE "GUSS"',
+        job1_company: 'Government enterprise #1',
         job1_desc: '• Designed and deployed LLM infrastructure (local models: LLaMA, DeepSeek, GigaChat) for document workflow automation — reduced manual processing by ~70% and saved ~120 person-hours per week. • Built an OCR pipeline for low-quality scans and PDFs (PaddleOCR + LLM post-processing) with 95%+ extraction accuracy; one document in ~3 sec instead of ~7 minutes manually. • Fine-tuned models (LoRA / QLoRA) on corporate vocabulary, built a RAG system over the internal knowledge base (Qdrant + LangChain) — answers in 2–4 sec across 50,000+ documents. • Implemented MLOps practices: containerization (Docker), CI/CD, model monitoring (MLflow), dataset versioning. • Built AI agents for routine tasks (incoming doc classification, auto-summarization, attribute extraction) — they close ~80% of typical clerical workload. • Monetary impact for the department: ~120 h/week × $10/h ≈ $60K/year payroll savings (excluding throughput gains).',
         job2_title: 'Software Developer',
         job2_date: 'March 2025 — November 2025',
-        job2_company: 'FSUE Main Research Computing Center of the Presidential Executive Office',
+        job2_company: 'Government enterprise #2',
         job2_desc: '• Automated key business processes with Python and ML — saving ~40 person-hours per week. • Implemented monitoring and analytics, built dashboards for management — report assembly time went from ~2 days to ~15 minutes. • Optimized the corporate forum, added AI-driven content recommendations — DAU growth +25%. • Participated in testing and development of internal software, applied methods to improve IT reliability.',
         projects_title: 'Personal Projects',
         projects_intro: 'In parallel with company work, I have personally delivered many end-to-end AI systems. Projects are confidential — I describe what each system did and what results it produced.',
