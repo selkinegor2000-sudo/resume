@@ -346,9 +346,20 @@
 
     .link-accent {
       color: var(--text);
+      background: rgba(118, 169, 255, 0.10);
+      border-color: rgba(118, 169, 255, 0.45);
+      box-shadow: 0 0 0 1px rgba(118, 169, 255, 0.18) inset;
     }
     .link-accent:hover {
-      border-color: rgba(118, 169, 255, 0.55);
+      border-color: rgba(118, 169, 255, 0.85);
+      background: rgba(118, 169, 255, 0.18);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(78, 124, 210, 0.30);
+    }
+    body.light .link-accent {
+      color: #0b1020;
+      background: rgba(118, 169, 255, 0.16);
+      border-color: rgba(78, 124, 210, 0.55);
     }
 
     /* ===== Code modal ===== */
