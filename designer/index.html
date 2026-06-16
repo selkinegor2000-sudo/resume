@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Евтухова Анастасия Артемовна — Графический дизайнер</title>
+  <meta name="description" content="Резюме Евтуховой Анастасии Артемовны: графический дизайнер, логотипы, баннеры, превью и дизайн сайтов." />
+  <meta name="theme-color" content="#f7efe7" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Евтухова Анастасия Артемовна — Графический дизайнер" />
+  <meta property="og:description" content="Графический дизайнер: логотипы, баннеры, превью, фирменный стиль и веб-дизайн." />
+  <meta property="og:url" content="https://selkinegor2000-sudo.github.io/resume/designer/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23dc8e7e'/%3E%3Cstop offset='1' stop-color='%2380b99b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23f7efe7'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='31' font-weight='700' fill='url(%23g)'%3EАЕ%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7efe7;
+      --bg-soft: #fff9f4;
+      --surface: rgba(255, 249, 244, 0.92);
+      --surface-strong: rgba(255, 252, 249, 0.97);
+      --text: #2c221c;
+      --text-soft: #5d4a41;
+      --heading: #201813;
+      --accent: #dc8e7e;
+      --accent-strong: #c86b5c;
+      --accent-2: #80b99b;
+      --line: rgba(87, 58, 44, 0.13);
+      --shadow: 0 24px 60px rgba(88, 58, 44, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --grid-flower: rgba(220, 142, 126, 0.42);
+      --grid-center: rgba(128, 185, 155, 0.52);
+      --button-bg: rgba(255, 249, 244, 0.94);
+      --button-text: #2c221c;
+      --button-border: rgba(87, 58, 44, 0.14);
+    }
+
+    body.dark {
+      color-scheme: dark;
+      --bg: #191313;
+      --bg-soft: #241a1a;
+      --surface: rgba(33, 24, 24, 0.9);
+      --surface-strong: rgba(40, 29, 29, 0.96);
+      --text: #f6ede7;
+      --text-soft: #d5c3b8;
+      --heading: #fff7f2;
+      --accent: #f0a595;
+      --accent-strong: #ffc1b0;
+      --accent-2: #98d0b3;
+      --line: rgba(255, 234, 224, 0.12);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+      --grid-flower: rgba(240, 165, 149, 0.35);
+      --grid-center: rgba(152, 208, 179, 0.45);
+      --button-bg: rgba(48, 35, 35, 0.92);
+      --button-text: #f8efe9;
+      --button-border: rgba(255, 234, 224, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Georgia, "Segoe UI", serif;
+      background:
+        radial-gradient(circle at top left, rgba(220, 142, 126, 0.16), transparent 22%),
+        radial-gradient(circle at 85% 10%, rgba(128, 185, 155, 0.14), transparent 18%),
+        linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
+      color: var(--text);
+      transition: background 0.35s ease, color 0.35s ease;
+      overflow-x: hidden;
+    }
+
+    body { position: relative; }
+
+    #flowerGrid {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.95;
+    }
+
+    .page-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(220, 142, 126, 0.18), transparent 18%),
+        radial-gradient(circle at 88% 30%, rgba(128, 185, 155, 0.16), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(220, 142, 126, 0.1), transparent 24%);
+      filter: blur(8px);
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 28px auto 48px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 18px;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn,
+    .link,
+    .link-static {
+      appearance: none;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: var(--button-text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .action-btn:hover,
+    .link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(220, 142, 126, 0.42);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .link-static {
+      cursor: default;
+      opacity: 0.92;
+    }
+
+    .link-static small {
+      display: block;
+      margin-top: 3px;
+      color: var(--accent-strong);
+      font-size: 11px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 42%);
+      pointer-events: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 22px;
+      align-items: center;
+      background: linear-gradient(145deg, var(--surface-strong), var(--surface));
+    }
+
+    .hero-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(220, 142, 126, 0.22);
+      box-shadow: 0 18px 34px rgba(90, 57, 43, 0.16);
+      cursor: zoom-in;
+      background: #ead8ce;
+      flex-shrink: 0;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 14, 14, 0.42);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease;
+      z-index: 20;
+    }
+
+    .photo-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .photo-modal {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: min(72vmin, 560px);
+      height: min(72vmin, 560px);
+      transform: translate(-50%, -50%) scale(0.96);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.24s ease, opacity 0.24s ease;
+      z-index: 21;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+      background: #fff;
+    }
+
+    .photo-modal.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .photo-modal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    h1, h2, h3, h4 {
+      color: var(--heading);
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.06;
+      letter-spacing: 0.02em;
+    }
+
+    .role {
+      margin-top: 8px;
+      font-size: clamp(17px, 2.2vw, 22px);
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    .summary {
+      margin-top: 12px;
+      max-width: 760px;
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--text-soft);
+    }
+
+    .meta,
+    .links,
+    .slide-stack,
+    .carousel-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta { margin-top: 14px; }
+
+    .pill,
+    .skill,
+    .slide-stack span,
+    .slide-tag {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    body.dark .pill,
+    body.dark .skill,
+    body.dark .slide-stack span,
+    body.dark .slide-tag {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .links { margin-top: 16px; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 23px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 20px rgba(220, 142, 126, 0.35);
+      flex-shrink: 0;
+    }
+
+    .text-muted {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,0.48), rgba(255,255,255,0.16));
+      text-align: center;
+    }
+
+    body.dark .stat {
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    }
+
+    .stat-num {
+      display: block;
+      font-size: clamp(32px, 5vw, 42px);
+      font-weight: 700;
+      color: var(--accent-strong);
+      line-height: 1;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 8px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .tiers {
+      display: grid;
+      gap: 16px;
+    }
+
+    .tier {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    body.dark .tier { background: rgba(255,255,255,0.03); }
+
+    .tier-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 12px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+    }
+
+    .tier-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(220, 142, 126, 0.24);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill { background: rgba(220, 142, 126, 0.08); }
+
+    .soft-skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .soft-skill-card,
+    .job,
+    .edu-item,
+    .simple-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      background: rgba(255,255,255,0.22);
+    }
+
+    body.dark .soft-skill-card,
+    body.dark .job,
+    body.dark .edu-item,
+    body.dark .simple-item {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .soft-skill-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .soft-skill-icon {
+      font-size: 19px;
+      line-height: 1;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .timeline { display: grid; gap: 14px; }
+
+    .job-head,
+    .slide-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .job-title,
+    .slide-title {
+      font-size: 18px;
+      color: var(--heading);
+    }
+
+    .job-date,
+    .job-company,
+    .edu-meta,
+    .simple-meta {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .job-company {
+      margin: 6px 0 10px;
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    .job p,
+    .edu-item p,
+    .simple-item p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.72;
+      color: var(--text);
+    }
+
+    .carousel { margin-top: 14px; }
+
+    .carousel-viewport {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    body.dark .slide { background: rgba(255,255,255,0.04); }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .slide-block h5 {
+      margin: 0 0 8px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-2);
+    }
+
+    .slide-block ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .slide-block li + li { margin-top: 6px; }
+
+    .slide-stack { margin-top: 16px; }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .carousel-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: var(--button-text);
+      font-size: 17px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(220, 142, 126, 0.42);
+    }
+
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      background: rgba(87, 58, 44, 0.24);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      transform: scale(1.3);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .carousel-progress {
+      margin-top: 12px;
+      height: 3px;
+      background: rgba(87, 58, 44, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .carousel-progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.3s ease;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .avatar {
+        width: 120px;
+        height: 120px;
+      }
+      .soft-skills-grid,
+      .slide-grid,
+      .two-col,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(1120px, calc(100% - 18px)); }
+      .card { padding: 18px; }
+      h1 { font-size: 28px; }
+      .hero-head { flex-direction: column; }
+    }
+
+    @media print {
+      @page { margin: 10mm; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      body, html {
+        background: #ffffff !important;
+        color: #222 !important;
+      }
+      #flowerGrid,
+      .page-glow,
+      .toolbar,
+      .photo-overlay,
+      .photo-modal,
+      .carousel-nav,
+      .carousel-progress {
+        display: none !important;
+      }
+      .card {
+        background: #fff !important;
+        box-shadow: none !important;
+        border-color: #ddd !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="flowerGrid" aria-hidden="true"></canvas>
+  <div class="page-glow" aria-hidden="true"></div>
+  <div class="photo-overlay" id="photoOverlay" aria-hidden="true"></div>
+  <div class="photo-modal" id="photoModal" aria-hidden="true">
+    <img id="photoModalImg" src="photo_2025-11-02_09-01-47.jpg" alt="Увеличенное фото Евтуховой Анастасии Артемовны" />
+  </div>
+
+  <main class="container">
+    <section class="card hero reveal">
+      <div class="avatar" id="avatarZoom" role="button" tabindex="0" aria-label="Увеличить фото">
+        <img src="photo_2025-11-02_09-01-47.jpg" alt="Евтухова Анастасия Артемовна" loading="lazy" />
+      </div>
+      <div>
+        <div class="hero-head">
+          <div>
+            <h1 data-i18n="name">Евтухова Анастасия Артемовна</h1>
+            <div class="role" data-i18n="role">Графический дизайнер · Логотипы · Баннеры · Веб-дизайн</div>
+          </div>
+          <div class="toolbar">
+            <button class="action-btn" id="themeToggle" type="button" data-i18n="theme_button">Тёмная тема</button>
+            <button class="action-btn" id="langToggle" type="button">EN</button>
+          </div>
+        </div>
+
+        <p class="summary" data-i18n="hero_summary">
+          Работаю с заказами онлайн и собираю сильное дизайнерское портфолио на реальных задачах: логотипы, баннеры, превью, фирменные стили и сайты. Люблю аккуратную композицию, тёплые палитры и дизайн, который не просто выглядит красиво, а помогает бренду запоминаться.
+        </p>
+
+        <div class="meta">
+          <span class="pill" data-i18n="pill_format">Фриланс и онлайн-заказы</span>
+          <span class="pill" data-i18n="pill_projects">Проекты 2025–2026</span>
+          <span class="pill">Figma · Illustrator · Adobe</span>
+          <span class="pill" data-i18n="pill_english">Английский: изучаю</span>
+          <span class="pill" data-i18n="pill_study">3 курс обучения · с 2025 года</span>
+        </div>
+
+        <div class="links">
+          <a class="link" href="mailto:Yevtukhova.nastya@bk.ru">Yevtukhova.nastya@bk.ru</a>
+          <a class="link" href="tel:+79777900905">+7 977 790 0905</a>
+          <a class="link" href="https://t.me/evtukhova_a" target="_blank" rel="noopener">Telegram</a>
+          <a class="link" href="https://vk.com/evtukhovaan" target="_blank" rel="noopener">VK</a>
+          <span class="link-static">Behance<small data-i18n="behance_soon">скоро будет добавлен</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card stats reveal" id="statsCard" aria-label="Ключевые цифры">
+      <div class="stat">
+        <span class="stat-num" data-target="20" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stat_projects">проектов в портфолио</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="2" data-suffix="+">0</span>
+        <span class="stat-label" data-i18n="stat_sites">сайта в дизайне</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="3">0</span>
+        <span class="stat-label" data-i18n="stat_course">курс обучения</span>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="about_title">Обо мне</h2>
+      <p class="text-muted" data-i18n="about_text">
+        Я графический дизайнер и сейчас активно нарабатываю опыт через заказы онлайн. Такой формат научил меня быстро понимать задачу клиента, собирать референсы, предлагать несколько визуальных решений и доводить работу до аккуратного финального результата. Больше всего мне интересны логотипы, баннеры, превью и дизайн сайтов. С 2025 года учусь и параллельно продолжаю развивать практику на реальных проектах.
+      </p>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="stack_title">Основной стек</h2>
+      <div class="tiers">
+        <div class="tier">
+          <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_daily">Использую постоянно</span></h4>
+          <div class="skills">
+            <span class="skill">Figma</span>
+            <span class="skill">Adobe Illustrator</span>
+            <span class="skill">Adobe Photoshop</span>
+            <span class="skill" data-i18n="skill_typography">Типографика</span>
+            <span class="skill" data-i18n="skill_color">Цвет и композиция</span>
+            <span class="skill">Preview Design</span>
+          </div>
+        </div>
+        <div class="tier">
+          <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_extended">Уверенно работаю</span></h4>
+          <div class="skills">
+            <span class="skill" data-i18n="skill_branding">Фирменный стиль</span>
+            <span class="skill" data-i18n="skill_logo">Логотипы</span>
+            <span class="skill" data-i18n="skill_web">Веб-дизайн</span>
+            <span class="skill" data-i18n="skill_banner">Баннеры</span>
+            <span class="skill">Adobe InDesign</span>
+            <span class="skill">UI/UX Basics</span>
+          </div>
+        </div>
+        <div class="tier">
+          <h4 class="tier-head"><span class="tier-dot"></span><span data-i18n="tier_growth">Развиваю дальше</span></h4>
+          <div class="skills">
+            <span class="skill">After Effects</span>
+            <span class="skill">Webflow</span>
+            <span class="skill">HTML/CSS</span>
+            <span class="skill">Procreate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="soft_title">Soft Skills</h2>
+      <div class="soft-skills-grid">
+        <div class="soft-skill-card"><span class="soft-skill-icon">🎯</span><span data-i18n="soft_1"><strong>Креативность</strong> — предлагаю несколько идей и умею искать нестандартный визуальный ход.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">👁</span><span data-i18n="soft_2"><strong>Внимание к деталям</strong> — слежу за сеткой, интервалами, читабельностью и балансом.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">💬</span><span data-i18n="soft_3"><strong>Коммуникация</strong> — спокойно обсуждаю правки и умею слышать клиента.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">⏱</span><span data-i18n="soft_4"><strong>Управление временем</strong> — держу сроки и распределяю задачи по приоритету.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">🔧</span><span data-i18n="soft_5"><strong>Решение задач</strong> — адаптирую дизайн под ограничения и цель проекта.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">🌿</span><span data-i18n="soft_6"><strong>Адаптивность</strong> — быстро переключаюсь между разными стилями и нишами.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">🧵</span><span data-i18n="soft_7"><strong>Терпение</strong> — могу аккуратно довести работу до финальной версии.</span></div>
+        <div class="soft-skill-card"><span class="soft-skill-icon">🤝</span><span data-i18n="soft_8"><strong>Командная работа</strong> — комфортно взаимодействую с заказчиком и разработчиком.</span></div>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="cases_title">Фриланс-кейсы</h2>
+      <div class="timeline">
+        <article class="job">
+          <div class="job-head">
+            <h3 class="job-title" data-i18n="case1_title">Айдентика для онлайн-магазина</h3>
+            <div class="job-date">2025</div>
+          </div>
+          <div class="job-company" data-i18n="case_company">Онлайн-заказ</div>
+          <p data-i18n="case1_text">Разработала логотип, цветовую палитру и визуальное направление для магазина. Подготовила несколько концепций и финальный комплект для использования в соцсетях и на сайте.</p>
+        </article>
+        <article class="job">
+          <div class="job-head">
+            <h3 class="job-title" data-i18n="case2_title">Серия баннеров для продвижения</h3>
+            <div class="job-date">2025</div>
+          </div>
+          <div class="job-company" data-i18n="case_company">Онлайн-заказ</div>
+          <p data-i18n="case2_text">Сделала набор баннеров под разные площадки и размеры. Учитывала рекламную подачу, читаемость текста и скорость восприятия визуала.</p>
+        </article>
+        <article class="job">
+          <div class="job-head">
+            <h3 class="job-title" data-i18n="case3_title">Дизайн сайта-визитки</h3>
+            <div class="job-date">2026</div>
+          </div>
+          <div class="job-company" data-i18n="case_company">Онлайн-заказ</div>
+          <p data-i18n="case3_text">Создала дизайн сайта с продуманной структурой первого экрана, карточек услуг и адаптивной мобильной версии. Подготовила макет для передачи в разработку.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="portfolio_title">Избранные проекты</h2>
+      <p class="text-muted" data-i18n="portfolio_intro">Ниже собраны типы проектов, с которыми я уже работала в 2025–2026 годах.</p>
+      <div class="carousel" id="projCarousel" aria-roledescription="carousel">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carouselTrack">
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide1_title">Логотип и фирменный стиль</h3>
+                <span class="slide-tag">Branding · 2025</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала</h5>
+                  <ul>
+                    <li data-i18n="slide1_w1">Несколько концепций логотипа под разные характеры бренда.</li>
+                    <li data-i18n="slide1_w2">Подбор палитры, шрифтов и базовых носителей.</li>
+                    <li data-i18n="slide1_w3">Подготовка материалов для соцсетей и сайта.</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_result">Результат</h5>
+                  <ul>
+                    <li data-i18n="slide1_r1">Клиент получил целостный визуальный образ.</li>
+                    <li data-i18n="slide1_r2">Материалы легко масштабировались под новые задачи.</li>
+                    <li data-i18n="slide1_r3">Проект стал базой для дальнейших заказов.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack"><span>Figma</span><span>Illustrator</span><span data-i18n="skill_branding">Фирменный стиль</span></div>
+            </article>
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide2_title">Баннеры и рекламные креативы</h3>
+                <span class="slide-tag">Ads · 2025</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала</h5>
+                  <ul>
+                    <li data-i18n="slide2_w1">Собирала баннеры под разные форматы и площадки.</li>
+                    <li data-i18n="slide2_w2">Упрощала композицию, чтобы текст читался быстрее.</li>
+                    <li data-i18n="slide2_w3">Предлагала варианты с разной эмоциональной подачей.</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_result">Результат</h5>
+                  <ul>
+                    <li data-i18n="slide2_r1">Клиент получил готовую серию визуалов без перегруза.</li>
+                    <li data-i18n="slide2_r2">Упростился запуск рекламных материалов.</li>
+                    <li data-i18n="slide2_r3">Правки вносились быстро и понятно.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack"><span>Photoshop</span><span>Figma</span><span data-i18n="skill_banner">Баннеры</span></div>
+            </article>
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide3_title">Превью и обложки</h3>
+                <span class="slide-tag">Preview · 2026</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала</h5>
+                  <ul>
+                    <li data-i18n="slide3_w1">Собирала превью с акцентом на читаемый заголовок.</li>
+                    <li data-i18n="slide3_w2">Балансировала фон, персонажей и текстовые блоки.</li>
+                    <li data-i18n="slide3_w3">Подбирала визуальные акценты под тематику канала.</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_result">Результат</h5>
+                  <ul>
+                    <li data-i18n="slide3_r1">Обложки стали ярче и чище по композиции.</li>
+                    <li data-i18n="slide3_r2">Контент визуально выделялся в ленте.</li>
+                    <li data-i18n="slide3_r3">Клиент вернулся с новыми задачами.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack"><span>Photoshop</span><span data-i18n="skill_typography">Типографика</span><span>Preview Design</span></div>
+            </article>
+            <article class="slide" aria-roledescription="slide">
+              <div class="slide-head">
+                <h3 class="slide-title" data-i18n="slide4_title">Дизайн сайта</h3>
+                <span class="slide-tag">Web Design · 2026</span>
+              </div>
+              <div class="slide-grid">
+                <div class="slide-block">
+                  <h5 data-i18n="slide_what">Что делала</h5>
+                  <ul>
+                    <li data-i18n="slide4_w1">Прорабатывала сетку, иерархию и сценарий просмотра.</li>
+                    <li data-i18n="slide4_w2">Собирала desktop и mobile версии страниц.</li>
+                    <li data-i18n="slide4_w3">Готовила макет и элементы для разработчика.</li>
+                  </ul>
+                </div>
+                <div class="slide-block">
+                  <h5 data-i18n="slide_result">Результат</h5>
+                  <ul>
+                    <li data-i18n="slide4_r1">Получился аккуратный, современный визуальный стиль.</li>
+                    <li data-i18n="slide4_r2">Страницы читаются легко и не перегружены.</li>
+                    <li data-i18n="slide4_r3">Макет был понятен для последующей верстки.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="slide-stack"><span>Figma</span><span data-i18n="skill_web">Веб-дизайн</span><span>Adaptive UI</span></div>
+            </article>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="prevBtn" type="button" aria-label="Previous">←</button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn" id="nextBtn" type="button" aria-label="Next">→</button>
+        </div>
+        <div class="carousel-progress"><div class="carousel-progress-bar" id="progressBar"></div></div>
+      </div>
+    </section>
+
+    <section class="card reveal">
+      <h2 class="section-title" data-i18n="education_title">Образование и языки</h2>
+      <div class="two-col">
+        <div class="edu-item">
+          <h4 data-i18n="edu_title">Обучение дизайну</h4>
+          <p class="edu-meta" data-i18n="edu_meta">2025 — настоящее время</p>
+          <p data-i18n="edu_text">Сейчас на 3 курсе обучения. Параллельно развиваю практику на реальных заказах и собираю портфолио.</p>
+        </div>
+        <div class="simple-item">
+          <h4 data-i18n="lang_title">Языки</h4>
+          <p class="simple-meta" data-i18n="lang_ru">Русский — родной</p>
+          <p class="simple-meta" data-i18n="lang_en">Английский — изучаю</p>
+          <p data-i18n="interests">Интересы: айдентика, типографика, баннеры, превью, сайты и мягкие уютные палитры.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p data-i18n="footer_text">Портфолио в процессе расширения: новые кейсы и Behance будут добавлены позже.</p>
+    </footer>
+  </main>
+
+  <script>
+    const translations = {
+      ru: {
+        name: "Евтухова Анастасия Артемовна",
+        role: "Графический дизайнер · Логотипы · Баннеры · Веб-дизайн",
+        theme_button_light: "Тёмная тема",
+        theme_button_dark: "Светлая тема",
+        hero_summary: "Работаю с заказами онлайн и собираю сильное дизайнерское портфолио на реальных задачах: логотипы, баннеры, превью, фирменные стили и сайты. Люблю аккуратную композицию, тёплые палитры и дизайн, который не просто выглядит красиво, а помогает бренду запоминаться.",
+        pill_format: "Фриланс и онлайн-заказы",
+        pill_projects: "Проекты 2025–2026",
+        pill_english: "Английский: изучаю",
+        pill_study: "3 курс обучения · с 2025 года",
+        behance_soon: "скоро будет добавлен",
+        stat_projects: "проектов в портфолио",
+        stat_sites: "сайта в дизайне",
+        stat_course: "курс обучения",
+        about_title: "Обо мне",
+        about_text: "Я графический дизайнер и сейчас активно нарабатываю опыт через заказы онлайн. Такой формат научил меня быстро понимать задачу клиента, собирать референсы, предлагать несколько визуальных решений и доводить работу до аккуратного финального результата. Больше всего мне интересны логотипы, баннеры, превью и дизайн сайтов. С 2025 года учусь и параллельно продолжаю развивать практику на реальных проектах.",
+        stack_title: "Основной стек",
+        tier_daily: "Использую постоянно",
+        tier_extended: "Уверенно работаю",
+        tier_growth: "Развиваю дальше",
+        skill_typography: "Типографика",
+        skill_color: "Цвет и композиция",
+        skill_branding: "Фирменный стиль",
+        skill_logo: "Логотипы",
+        skill_web: "Веб-дизайн",
+        skill_banner: "Баннеры",
+        soft_title: "Soft Skills",
+        soft_1: "<strong>Креативность</strong> — предлагаю несколько идей и умею искать нестандартный визуальный ход.",
+        soft_2: "<strong>Внимание к деталям</strong> — слежу за сеткой, интервалами, читабельностью и балансом.",
+        soft_3: "<strong>Коммуникация</strong> — спокойно обсуждаю правки и умею слышать клиента.",
+        soft_4: "<strong>Управление временем</strong> — держу сроки и распределяю задачи по приоритету.",
+        soft_5: "<strong>Решение задач</strong> — адаптирую дизайн под ограничения и цель проекта.",
+        soft_6: "<strong>Адаптивность</strong> — быстро переключаюсь между разными стилями и нишами.",
+        soft_7: "<strong>Терпение</strong> — могу аккуратно довести работу до финальной версии.",
+        soft_8: "<strong>Командная работа</strong> — комфортно взаимодействую с заказчиком и разработчиком.",
+        cases_title: "Фриланс-кейсы",
+        case_company: "Онлайн-заказ",
+        case1_title: "Айдентика для онлайн-магазина",
+        case1_text: "Разработала логотип, цветовую палитру и визуальное направление для магазина. Подготовила несколько концепций и финальный комплект для использования в соцсетях и на сайте.",
+        case2_title: "Серия баннеров для продвижения",
+        case2_text: "Сделала набор баннеров под разные площадки и размеры. Учитывала рекламную подачу, читаемость текста и скорость восприятия визуала.",
+        case3_title: "Дизайн сайта-визитки",
+        case3_text: "Создала дизайн сайта с продуманной структурой первого экрана, карточек услуг и адаптивной мобильной версии. Подготовила макет для передачи в разработку.",
+        portfolio_title: "Избранные проекты",
+        portfolio_intro: "Ниже собраны типы проектов, с которыми я уже работала в 2025–2026 годах.",
+        slide_what: "Что делала",
+        slide_result: "Результат",
+        slide1_title: "Логотип и фирменный стиль",
+        slide1_w1: "Несколько концепций логотипа под разные характеры бренда.",
+        slide1_w2: "Подбор палитры, шрифтов и базовых носителей.",
+        slide1_w3: "Подготовка материалов для соцсетей и сайта.",
+        slide1_r1: "Клиент получил целостный визуальный образ.",
+        slide1_r2: "Материалы легко масштабировались под новые задачи.",
+        slide1_r3: "Проект стал базой для дальнейших заказов.",
+        slide2_title: "Баннеры и рекламные креативы",
+        slide2_w1: "Собирала баннеры под разные форматы и площадки.",
+        slide2_w2: "Упрощала композицию, чтобы текст читался быстрее.",
+        slide2_w3: "Предлагала варианты с разной эмоциональной подачей.",
+        slide2_r1: "Клиент получил готовую серию визуалов без перегруза.",
+        slide2_r2: "Упростился запуск рекламных материалов.",
+        slide2_r3: "Правки вносились быстро и понятно.",
+        slide3_title: "Превью и обложки",
+        slide3_w1: "Собирала превью с акцентом на читаемый заголовок.",
+        slide3_w2: "Балансировала фон, персонажей и текстовые блоки.",
+        slide3_w3: "Подбирала визуальные акценты под тематику канала.",
+        slide3_r1: "Обложки стали ярче и чище по композиции.",
+        slide3_r2: "Контент визуально выделялся в ленте.",
+        slide3_r3: "Клиент вернулся с новыми задачами.",
+        slide4_title: "Дизайн сайта",
+        slide4_w1: "Прорабатывала сетку, иерархию и сценарий просмотра.",
+        slide4_w2: "Собирала desktop и mobile версии страниц.",
+        slide4_w3: "Готовила макет и элементы для разработчика.",
+        slide4_r1: "Получился аккуратный, современный визуальный стиль.",
+        slide4_r2: "Страницы читаются легко и не перегружены.",
+        slide4_r3: "Макет был понятен для последующей верстки.",
+        education_title: "Образование и языки",
+        edu_title: "Обучение дизайну",
+        edu_meta: "2025 — настоящее время",
+        edu_text: "Сейчас на 3 курсе обучения. Параллельно развиваю практику на реальных заказах и собираю портфолио.",
+        lang_title: "Языки",
+        lang_ru: "Русский — родной",
+        lang_en: "Английский — изучаю",
+        interests: "Интересы: айдентика, типографика, баннеры, превью, сайты и мягкие уютные палитры.",
+        footer_text: "Портфолио в процессе расширения: новые кейсы и Behance будут добавлены позже."
+      },
+      en: {
+        name: "Anastasia Artemovna Evtukhova",
+        role: "Graphic Designer · Logos · Banners · Web Design",
+        theme_button_light: "Dark theme",
+        theme_button_dark: "Light theme",
+        hero_summary: "I work with online design commissions and build a strong portfolio through real projects: logos, banners, previews, visual identity, and website design. I enjoy clean composition, warm palettes, and design that not only looks beautiful but also helps a brand stay memorable.",
+        pill_format: "Freelance and online commissions",
+        pill_projects: "Projects in 2025–2026",
+        pill_english: "English: learning",
+        pill_study: "3rd year of studies · since 2025",
+        behance_soon: "coming soon",
+        stat_projects: "portfolio projects",
+        stat_sites: "website design projects",
+        stat_course: "year of studies",
+        about_title: "About Me",
+        about_text: "I am a graphic designer and currently build practical experience through online commissions. This format taught me to understand a client brief quickly, gather references, suggest several visual directions, and polish the work into a clean final result. I am most interested in logos, banners, previews, and website design. Since 2025, I have been studying while continuing to grow through real client projects.",
+        stack_title: "Core Stack",
+        tier_daily: "Used every day",
+        tier_extended: "Confident with",
+        tier_growth: "Currently expanding",
+        skill_typography: "Typography",
+        skill_color: "Color and composition",
+        skill_branding: "Brand identity",
+        skill_logo: "Logos",
+        skill_web: "Web design",
+        skill_banner: "Banners",
+        soft_title: "Soft Skills",
+        soft_1: "<strong>Creativity</strong> — I can propose several concepts and search for a distinctive visual idea.",
+        soft_2: "<strong>Attention to detail</strong> — I care about layout, spacing, readability, and balance.",
+        soft_3: "<strong>Communication</strong> — I discuss revisions calmly and listen to the client carefully.",
+        soft_4: "<strong>Time management</strong> — I keep deadlines and prioritize tasks clearly.",
+        soft_5: "<strong>Problem solving</strong> — I adapt design to project limits and business goals.",
+        soft_6: "<strong>Adaptability</strong> — I switch quickly between different styles and niches.",
+        soft_7: "<strong>Patience</strong> — I can refine a piece carefully until the final version feels right.",
+        soft_8: "<strong>Teamwork</strong> — I work comfortably with clients and developers.",
+        cases_title: "Freelance Cases",
+        case_company: "Online commission",
+        case1_title: "Visual identity for an online store",
+        case1_text: "I developed a logo, a color palette, and a visual direction for the store. I prepared several concepts and a final package for social media and website use.",
+        case2_title: "Promotional banner series",
+        case2_text: "I designed a set of banners for different platforms and sizes, focusing on ad clarity, readability, and fast visual perception.",
+        case3_title: "Business card website design",
+        case3_text: "I created a website design with a strong first screen, service cards, and an adaptive mobile version, then prepared the layout for development handoff.",
+        portfolio_title: "Selected Projects",
+        portfolio_intro: "Below are the project types I worked on in 2025–2026.",
+        slide_what: "What I did",
+        slide_result: "Result",
+        slide1_title: "Logo and visual identity",
+        slide1_w1: "Created several logo concepts for different brand personalities.",
+        slide1_w2: "Selected palette, typography, and basic brand carriers.",
+        slide1_w3: "Prepared design assets for social media and website usage.",
+        slide1_r1: "The client received a cohesive visual identity.",
+        slide1_r2: "Assets scaled easily for future tasks.",
+        slide1_r3: "The project became a base for follow-up work.",
+        slide2_title: "Banners and ad creatives",
+        slide2_w1: "Built banners for different formats and placements.",
+        slide2_w2: "Simplified composition to improve readability.",
+        slide2_w3: "Suggested options with different emotional tones.",
+        slide2_r1: "The client received a clean set of ready-to-use visuals.",
+        slide2_r2: "Launching campaign materials became easier.",
+        slide2_r3: "Feedback rounds stayed quick and clear.",
+        slide3_title: "Previews and covers",
+        slide3_w1: "Designed previews with a strong readable headline.",
+        slide3_w2: "Balanced backgrounds, characters, and text blocks.",
+        slide3_w3: "Matched accents to the channel topic and mood.",
+        slide3_r1: "Covers became brighter and compositionally cleaner.",
+        slide3_r2: "Content stood out better in the feed.",
+        slide3_r3: "The client returned with new requests.",
+        slide4_title: "Website design",
+        slide4_w1: "Planned grid, hierarchy, and viewing flow.",
+        slide4_w2: "Designed both desktop and mobile versions.",
+        slide4_w3: "Prepared layout and components for developer handoff.",
+        slide4_r1: "The result was a clean, modern visual style.",
+        slide4_r2: "Pages are easy to read and not overloaded.",
+        slide4_r3: "The layout was clear for implementation.",
+        education_title: "Education and Languages",
+        edu_title: "Design Studies",
+        edu_meta: "2025 — present",
+        edu_text: "I am currently in my 3rd year of studies and keep building real practice through client work.",
+        lang_title: "Languages",
+        lang_ru: "Russian — native",
+        lang_en: "English — learning",
+        interests: "Interests: visual identity, typography, banners, previews, websites, and warm cozy palettes.",
+        footer_text: "The portfolio is still growing: more cases and Behance will be added later."
+      }
+    };
+
+    const themeToggle = document.getElementById("themeToggle");
+    const langToggle = document.getElementById("langToggle");
+    const body = document.body;
+    const photoOverlay = document.getElementById("photoOverlay");
+    const photoModal = document.getElementById("photoModal");
+    const photoModalImg = document.getElementById("photoModalImg");
+    const avatarZoom = document.getElementById("avatarZoom");
+
+    let currentLang = localStorage.getItem("designer-lang") || "ru";
+    let currentTheme = localStorage.getItem("designer-theme") || "light";
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      body.classList.toggle("dark", theme === "dark");
+      localStorage.setItem("designer-theme", theme);
+      const labels = translations[currentLang];
+      themeToggle.textContent = theme === "dark" ? labels.theme_button_dark : labels.theme_button_light;
+    }
+
+    function applyTranslations(lang) {
+      currentLang = lang;
+      localStorage.setItem("designer-lang", lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.dataset.i18n;
+        const value = translations[lang][key];
+        if (typeof value === "string") {
+          node.innerHTML = value;
+        }
+      });
+      langToggle.textContent = lang === "ru" ? "EN" : "RU";
+      applyTheme(currentTheme);
+    }
+
+    themeToggle.addEventListener("click", () => {
+      applyTheme(currentTheme === "dark" ? "light" : "dark");
+    });
+
+    langToggle.addEventListener("click", () => {
+      applyTranslations(currentLang === "ru" ? "en" : "ru");
+    });
+
+    applyTranslations(currentLang);
+    applyTheme(currentTheme);
+
+    avatarZoom.addEventListener("click", () => {
+      photoModalImg.src = avatarZoom.querySelector("img").src;
+      photoModal.classList.add("visible");
+      photoOverlay.classList.add("visible");
+      body.classList.add("modal-open");
+    });
+
+    avatarZoom.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        avatarZoom.click();
+      }
+    });
+
+    function closePhoto() {
+      photoModal.classList.remove("visible");
+      photoOverlay.classList.remove("visible");
+      body.classList.remove("modal-open");
+    }
+
+    photoOverlay.addEventListener("click", closePhoto);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closePhoto();
+      }
+    });
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.target.dataset.done === "1") {
+          return;
+        }
+        const target = Number(entry.target.dataset.target || 0);
+        const suffix = entry.target.dataset.suffix || "";
+        const start = performance.now();
+        const duration = 1200;
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          entry.target.textContent = Math.round(target * progress) + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        }
+        requestAnimationFrame(tick);
+        entry.target.dataset.done = "1";
+      });
+    }, { threshold: 0.45 });
+
+    document.querySelectorAll(".stat-num").forEach((node) => statObserver.observe(node));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((node) => revealObserver.observe(node));
+
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const track = document.getElementById("carouselTrack");
+    const dotsWrap = document.getElementById("carouselDots");
+    const progressBar = document.getElementById("progressBar");
+    let currentSlide = 0;
+
+    function renderCarousel() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dotsWrap.querySelectorAll(".carousel-dot").forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+      });
+      progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+    }
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = `carousel-dot${index === 0 ? " active" : ""}`;
+      dot.addEventListener("click", () => {
+        currentSlide = index;
+        renderCarousel();
+      });
+      dotsWrap.appendChild(dot);
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      renderCarousel();
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      renderCarousel();
+    });
+
+    renderCarousel();
+
+    const canvas = document.getElementById("flowerGrid");
+    const ctx = canvas.getContext("2d");
+    const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2, active: false };
+    let dpr = window.devicePixelRatio || 1;
+    let gridCols = 0;
+    let gridRows = 0;
+    let spacing = 54;
+
+    function resizeCanvas() {
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      spacing = window.innerWidth < 700 ? 44 : 54;
+      gridCols = Math.ceil(window.innerWidth / spacing) + 2;
+      gridRows = Math.ceil(window.innerHeight / spacing) + 2;
+    }
+
+    function getCssVar(name) {
+      return getComputedStyle(document.body).getPropertyValue(name).trim();
+    }
+
+    function drawFlower(x, y, scale, angle) {
+      const petalColor = getCssVar("--grid-flower");
+      const centerColor = getCssVar("--grid-center");
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.fillStyle = petalColor;
+      for (let i = 0; i < 4; i += 1) {
+        ctx.save();
+        ctx.rotate((Math.PI / 2) * i);
+        ctx.beginPath();
+        ctx.ellipse(0, -5 * scale, 3.5 * scale, 6.5 * scale, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.fillStyle = centerColor;
+      ctx.beginPath();
+      ctx.arc(0, 0, 2.4 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawGrid() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      const influence = pointer.active ? 150 : 0;
+      for (let row = -1; row < gridRows; row += 1) {
+        for (let col = -1; col < gridCols; col += 1) {
+          const baseX = col * spacing + ((row % 2) * spacing) / 2;
+          const baseY = row * spacing;
+          let x = baseX;
+          let y = baseY;
+          let scale = 0.9;
+          let angle = 0;
+          if (pointer.active) {
+            const dx = x - pointer.x;
+            const dy = y - pointer.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance < influence) {
+              const force = 1 - distance / influence;
+              const push = force * 12;
+              const dirX = distance === 0 ? 0 : dx / distance;
+              const dirY = distance === 0 ? 0 : dy / distance;
+              x += dirX * push;
+              y += dirY * push;
+              scale = 0.8 - force * 0.22;
+              angle = force * 0.9;
+            }
+          }
+          drawFlower(x, y, Math.max(scale, 0.52), angle);
+        }
+      }
+      requestAnimationFrame(drawGrid);
+    }
+
+    window.addEventListener("mousemove", (event) => {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      pointer.active = true;
+    });
+
+    window.addEventListener("mouseleave", () => {
+      pointer.active = false;
+    });
+
+    window.addEventListener("touchmove", (event) => {
+      if (event.touches[0]) {
+        pointer.x = event.touches[0].clientX;
+        pointer.y = event.touches[0].clientY;
+        pointer.active = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      pointer.active = false;
+    });
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    drawGrid();
+  </script>
+</body>
+</html>
