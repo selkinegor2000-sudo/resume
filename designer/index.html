@@ -17,8 +17,8 @@
       color-scheme: light;
       --bg: #f7efe7;
       --bg-soft: #fff9f4;
-      --surface: rgba(255, 249, 244, 0.92);
-      --surface-strong: rgba(255, 252, 249, 0.97);
+      --surface: rgba(255, 249, 244, 0.82);
+      --surface-strong: rgba(255, 252, 249, 0.88);
       --text: #2c221c;
       --text-soft: #5d4a41;
       --heading: #201813;
@@ -32,7 +32,7 @@
       --radius-md: 14px;
       --grid-flower: rgba(220, 142, 126, 0.42);
       --grid-center: rgba(128, 185, 155, 0.52);
-      --button-bg: rgba(255, 249, 244, 0.94);
+      --button-bg: rgba(255, 249, 244, 0.82);
       --button-text: #2c221c;
       --button-border: rgba(87, 58, 44, 0.14);
     }
@@ -41,8 +41,8 @@
       color-scheme: dark;
       --bg: #191313;
       --bg-soft: #241a1a;
-      --surface: rgba(33, 24, 24, 0.9);
-      --surface-strong: rgba(40, 29, 29, 0.96);
+      --surface: rgba(33, 24, 24, 0.8);
+      --surface-strong: rgba(40, 29, 29, 0.88);
       --text: #f6ede7;
       --text-soft: #d5c3b8;
       --heading: #fff7f2;
@@ -53,7 +53,7 @@
       --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
       --grid-flower: rgba(240, 165, 149, 0.35);
       --grid-center: rgba(152, 208, 179, 0.45);
-      --button-bg: rgba(48, 35, 35, 0.92);
+      --button-bg: rgba(48, 35, 35, 0.78);
       --button-text: #f8efe9;
       --button-border: rgba(255, 234, 224, 0.12);
     }
@@ -184,6 +184,13 @@
       align-items: flex-start;
       gap: 16px;
       flex-wrap: wrap;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 140px;
     }
 
     .avatar {
@@ -676,15 +683,15 @@
   <div class="page-glow" aria-hidden="true"></div>
   <div class="photo-overlay" id="photoOverlay" aria-hidden="true"></div>
   <div class="photo-modal" id="photoModal" aria-hidden="true">
-    <img id="photoModalImg" src="photo_2025-11-02_09-01-47.jpg" alt="Увеличенное фото Евтуховой Анастасии Артемовны" />
+    <img id="photoModalImg" alt="Увеличенное фото Евтуховой Анастасии Артемовны" />
   </div>
 
   <main class="container">
     <section class="card hero reveal">
       <div class="avatar" id="avatarZoom" role="button" tabindex="0" aria-label="Увеличить фото">
-        <img src="photo_2025-11-02_09-01-47.jpg" alt="Евтухова Анастасия Артемовна" loading="lazy" />
+        <img id="avatarImage" alt="Евтухова Анастасия Артемовна" loading="lazy" />
       </div>
-      <div>
+      <div class="hero-content">
         <div class="hero-head">
           <div>
             <h1 data-i18n="name">Евтухова Анастасия Артемовна</h1>
@@ -705,7 +712,7 @@
           <span class="pill" data-i18n="pill_projects">Проекты 2025–2026</span>
           <span class="pill">Figma · Illustrator · Adobe</span>
           <span class="pill" data-i18n="pill_english">Английский: изучаю</span>
-          <span class="pill" data-i18n="pill_study">3 курс обучения · с 2025 года</span>
+          <span class="pill" data-i18n="pill_study">1 курс вуза · 3 онлайн-курса</span>
         </div>
 
         <div class="links">
@@ -728,15 +735,15 @@
         <span class="stat-label" data-i18n="stat_sites">сайта в дизайне</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-target="3">0</span>
-        <span class="stat-label" data-i18n="stat_course">курс обучения</span>
+        <span class="stat-num" data-target="1">0</span>
+        <span class="stat-label" data-i18n="stat_course">курс в вузе</span>
       </div>
     </section>
 
     <section class="card reveal">
       <h2 class="section-title" data-i18n="about_title">Обо мне</h2>
       <p class="text-muted" data-i18n="about_text">
-        Я графический дизайнер и сейчас активно нарабатываю опыт через заказы онлайн. Такой формат научил меня быстро понимать задачу клиента, собирать референсы, предлагать несколько визуальных решений и доводить работу до аккуратного финального результата. Больше всего мне интересны логотипы, баннеры, превью и дизайн сайтов. С 2025 года учусь и параллельно продолжаю развивать практику на реальных проектах.
+        Я графический дизайнер и сейчас активно нарабатываю опыт через заказы онлайн. Такой формат научил меня быстро понимать задачу клиента, собирать референсы, предлагать несколько визуальных решений и доводить работу до аккуратного финального результата. Больше всего мне интересны логотипы, баннеры, превью и дизайн сайтов. Сейчас учусь на 1 курсе в вузе и параллельно продолжаю развивать практику на реальных проектах.
       </p>
     </section>
 
@@ -944,7 +951,7 @@
         <div class="edu-item">
           <h4 data-i18n="edu_title">Обучение дизайну</h4>
           <p class="edu-meta" data-i18n="edu_meta">2025 — настоящее время</p>
-          <p data-i18n="edu_text">Сейчас на 3 курсе обучения. Параллельно развиваю практику на реальных заказах и собираю портфолио.</p>
+          <p data-i18n="edu_text">Сейчас на 1 курсе обучения. Параллельно развиваю практику на реальных заказах и собираю портфолио. Дополнительно прошла 3 онлайн-курса по дизайну.</p>
         </div>
         <div class="simple-item">
           <h4 data-i18n="lang_title">Языки</h4>
@@ -971,13 +978,13 @@
         pill_format: "Фриланс и онлайн-заказы",
         pill_projects: "Проекты 2025–2026",
         pill_english: "Английский: изучаю",
-        pill_study: "3 курс обучения · с 2025 года",
+        pill_study: "1 курс вуза · 3 онлайн-курса",
         behance_soon: "скоро будет добавлен",
         stat_projects: "проектов в портфолио",
         stat_sites: "сайта в дизайне",
-        stat_course: "курс обучения",
+        stat_course: "курс в вузе",
         about_title: "Обо мне",
-        about_text: "Я графический дизайнер и сейчас активно нарабатываю опыт через заказы онлайн. Такой формат научил меня быстро понимать задачу клиента, собирать референсы, предлагать несколько визуальных решений и доводить работу до аккуратного финального результата. Больше всего мне интересны логотипы, баннеры, превью и дизайн сайтов. С 2025 года учусь и параллельно продолжаю развивать практику на реальных проектах.",
+        about_text: "Я графический дизайнер и сейчас активно нарабатываю опыт через заказы онлайн. Такой формат научил меня быстро понимать задачу клиента, собирать референсы, предлагать несколько визуальных решений и доводить работу до аккуратного финального результата. Больше всего мне интересны логотипы, баннеры, превью и дизайн сайтов. Сейчас учусь на 1 курсе в вузе и параллельно продолжаю развивать практику на реальных проектах.",
         stack_title: "Основной стек",
         tier_daily: "Использую постоянно",
         tier_extended: "Уверенно работаю",
@@ -1040,7 +1047,7 @@
         education_title: "Образование и языки",
         edu_title: "Обучение дизайну",
         edu_meta: "2025 — настоящее время",
-        edu_text: "Сейчас на 3 курсе обучения. Параллельно развиваю практику на реальных заказах и собираю портфолио.",
+        edu_text: "Сейчас на 1 курсе обучения. Параллельно развиваю практику на реальных заказах и собираю портфолио. Дополнительно прошла 3 онлайн-курса по дизайну.",
         lang_title: "Языки",
         lang_ru: "Русский — родной",
         lang_en: "Английский — изучаю",
@@ -1056,13 +1063,13 @@
         pill_format: "Freelance and online commissions",
         pill_projects: "Projects in 2025–2026",
         pill_english: "English: learning",
-        pill_study: "3rd year of studies · since 2025",
+        pill_study: "1st year at university · 3 online courses",
         behance_soon: "coming soon",
         stat_projects: "portfolio projects",
         stat_sites: "website design projects",
-        stat_course: "year of studies",
+        stat_course: "university year",
         about_title: "About Me",
-        about_text: "I am a graphic designer and currently build practical experience through online commissions. This format taught me to understand a client brief quickly, gather references, suggest several visual directions, and polish the work into a clean final result. I am most interested in logos, banners, previews, and website design. Since 2025, I have been studying while continuing to grow through real client projects.",
+        about_text: "I am a graphic designer and currently build practical experience through online commissions. This format taught me to understand a client brief quickly, gather references, suggest several visual directions, and polish the work into a clean final result. I am most interested in logos, banners, previews, and website design. I am now in my 1st year at university while continuing to grow through real client projects.",
         stack_title: "Core Stack",
         tier_daily: "Used every day",
         tier_extended: "Confident with",
@@ -1125,7 +1132,7 @@
         education_title: "Education and Languages",
         edu_title: "Design Studies",
         edu_meta: "2025 — present",
-        edu_text: "I am currently in my 3rd year of studies and keep building real practice through client work.",
+        edu_text: "I am currently in my 1st year at university and keep building real practice through client work. I have also completed 3 online design courses.",
         lang_title: "Languages",
         lang_ru: "Russian — native",
         lang_en: "English — learning",
@@ -1134,6 +1141,7 @@
       }
     };
 
+    const embeddedPhoto = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAQICAgIDAgIDAwYEAwMDAwcFBQQGCAcJCAgHCAgJCg0LCQoMCggICw8LDA0ODg8OCQsQERAOEQ0ODg7/2wBDAQIDAwMDAwcEBAcOCQgJDg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg7/wAARCAKAAoADASIAAhEBAxEB/8QAHgAAAgIDAQEBAQAAAAAAAAAABgcFCAMECQIACgH/xABaEAABAgQEAwQGBQcICAQDBwUCAwQABQYSBxMiMhRCUgEjYnIIFSQzgpIRQ6KywhYhU2HS4vAlMTRBUWNxgQkXRHORwdHyNYOhsSZUkxg2ZKOzw+HxKDd0Rf/EABwBAAIDAQEBAQAAAAAAAAAAAAQFAwYHAgABCP/EADwRAAICAQQBAwIEAwcDBAIDAAACAxIEBRMiMkIBI1IGFBEzYnIVorIhJEOCktLwFiXCNEFT4gcxNUSj/9oADAMBAAIRAxEAPwDsMxnaTgQVbuwV/WCl0fVPOjYUwLzt/PafJHIei/SQcSucAzZzU9ID3J85Rax96QEqqTCeZM3rn1bMhRu16duraUfl6XT86CyOvY1r0w43kV0CX0rWjqo/RMmdRU+Z+uJK24kwR3GnbqH5Y/OtMp0+nU4WmDo77jjuvhNia1qejKyp2aPA4Z4zJEL/ABaeaOJ1bU/6pxsnclah7ML8hCzzRsv0eyxLLBIvuKVXXI5UVFjbidN/RwZjQ3+jQqypltC00uss3GO2OZU8TcTLExyLMDWcuHJCiAaiMi8MdbHFIzpb0I6DwzpJgbydzJsmRgHJ9I3ERfbh84Eeg/R2GqKNSVmmjUdVqagNYLkkS8Iwn0fVYsafKym5NIzFi1rCT0xYMdmrUopgP6DdXVMozn1aOVpVKlLS4ME9RiX7sdQZBSlIYJYdoymSNUWlobwTtI/NDDrGtpHQ9PmWjOstBEN3wxQHFLFSYPk3LhO9HOC7OPk6Yr+bm5mqz1dv9oXp2DFGlvRar/MwF+kRjI4m0w9RyVzY22rLdZRzvqSolnE04FM9ZGN/TBJX1WKKPHjjOMzLSF6kJNS5F/xBAZmR3BYpGqaHpKwQWYrmt6oy+xEwzGKLMZW59ZGBnyWQwsP3Ewk9SNlpaBrMyMbw5YSMtnBLKG3dBfo54eWHL7OeeoSPJbONh83hhlnxMsDWKjjtaVS3lJzJNZRZNRYLFLrwDaHNBozpOXqIcU+sDM1AYdP4Y2KPp3D+Q0As6qa9FyjqAz1Z0Ds4xKkbqeMGrW9tLU/c+zxjrqzM20aAiQKvuBonIUXkwRZqZwSctKxn8MSkyoGSt5efqtYHiO0AW5/phY1ZihKXEwYS1u/4YLx2fa/4xYCTt6XnFBtlkZ9nOW4ZnLo0wG6ZkSqwUq4zFdaqRcUfhnOHCcqsywKww1CBWxQl5OHD5mcwmixrLLHF9sYq8aynCucSlw5Bys6O1Ew2mPiGOepNU3iht+QT5P1xqn09E2wzyqUfVFrKqqY058KLdZO/RZv/AAxFs3ihTC7YjfG5Npam1psFvv7ogxyRZgRHYtui+JGteJXWGZLXxesAJFYA0cl0FzWtnktmCLeZGZoqd0B6i0wrZK+RJQLrwDccEkyFFwmAqBZ+0MK58eJmrIp5XlibiH04qIm7YxbrdyQaLN0RdJ+ulJgsScyBmCgaDzLStKBeQvE27dZF4Gcjfz7o9T61vNEXEtAwbcnTAP2qraJQxZWZrDMRTWpWeZbxyblspqNY1LrP3YxozxFnViyjGa5za/QB/hhQuqoePE0UX3fAmAj/AAUD6k2ueIkPc3HsjlcBm/MCt/4lmHE4fKPOORc6C2Igndp6YySn19MlwFTQCh74UslnT5ZS1FyBgIbDhlU7VCzeaZih5KIhacK5cdol4qSbq25D2TcS+h5EzdLNr";
     const themeToggle = document.getElementById("themeToggle");
     const langToggle = document.getElementById("langToggle");
     const body = document.body;
@@ -1141,9 +1149,13 @@
     const photoModal = document.getElementById("photoModal");
     const photoModalImg = document.getElementById("photoModalImg");
     const avatarZoom = document.getElementById("avatarZoom");
+    const avatarImage = document.getElementById("avatarImage");
 
     let currentLang = localStorage.getItem("designer-lang") || "ru";
-    let currentTheme = localStorage.getItem("designer-theme") || "light";
+    let currentTheme = localStorage.getItem("designer-theme") || "dark";
+
+    avatarImage.src = embeddedPhoto;
+    photoModalImg.src = embeddedPhoto;
 
     function applyTheme(theme) {
       currentTheme = theme;
